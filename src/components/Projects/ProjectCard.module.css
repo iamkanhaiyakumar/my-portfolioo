@@ -1,0 +1,101 @@
+@import "../../vars.css";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #576cbc 0%, #132a53 100%);
+  box-shadow: 10px 10px 19px 0 #04152d;
+  padding: 20px 24px;
+  max-width: 390px;
+  /* max-height: 100%; */
+}
+
+.container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: translateY(-15px);
+  transform: translateX(-10px);
+  transition: transform 0.3s;
+  cursor: pointer;
+  transform:scale3d(1.05, 1.05, 1.05)
+}
+
+.image {
+  margin-bottom: 7px;
+}
+
+.title {
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.description {
+  margin-top: 3px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.skills {
+  width: 100%;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+}
+
+.skill {
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 100px;
+  background: var(--color-dark);
+  padding: 2px 20px;
+}
+
+.links {
+  width: 100%;
+  margin-top: 26px;
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+.link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 35px;
+  font-weight: 600;
+  border-radius: 100px;
+  background: var(--color-primary);
+  padding: 1px 20px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(232, 5, 5, 0.42) 0%,
+    rgba(13, 241, 89, 0) 100%
+  );
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  transition: 0.4s;
+  
+}
+
+.link:hover {
+  /* background: var(--color-primary-hover); */
+  background-color: var(--color-bg);
+  transform: scale(1.1);
+  background-size: 100% 100%;
+ 
+}
+
+/* @media screen and (max-width: 730px) {
+  .container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 24px;
+    flex-direction: row;
+    justify-content: center;
+
+  }
+} */

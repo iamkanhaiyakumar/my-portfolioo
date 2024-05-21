@@ -1,0 +1,34 @@
+[
+  {
+    "title": "C++",
+    
+    "imageSrc": "skills/figma.png"
+  },
+  {
+    "title": "HTML",
+    "imageSrc": "skills/html.png"
+    
+  },
+  {
+    "title": "CSS",
+    "imageSrc": "skills/css.png"
+  },
+  {
+    "title": "TailWind",
+    "imageSrc": "skills/graphql.png"
+    
+  },
+  
+  {
+    "title": "JavaScript",
+    "imageSrc": "skills/mongodb.png"
+  },
+  {
+    "title": "React",
+    "imageSrc": "skills/react.png"
+  }
+ 
+]
+
+
+

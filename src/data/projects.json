@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Weather App",
+    "imageSrc": "projects/project.png",
+    "description": "This is a project made to learn the latest languages by building an app.",
+    "skills": ["HTML", "CSS", "JS"],
+    "demo": "https://iamkanhaiyakumar.github.io/weather-app-0.1/" ,
+    "source": "https://github.com/iamkanhaiyakumar/weather-app-0.1"
+  },
+  {
+    "title": "Calculator",
+    "imageSrc": "projects/project.png",
+    "description": "This is a project made to learn the latest languages by building an app.",
+    "skills": ["HTML", "CSS", "JS"],
+    "demo": "https://iamkanhaiyakumar.github.io/Calculator./",
+    "source": "https://github.com/iamkanhaiyakumar/Calculator."
+  },
+  {
+    "title": "Tic-tac-toe",
+    "imageSrc": "projects/project.png",
+    "description": "This is a project made to learn the latest languages by building an app.",
+    "skills": ["HTML", "CSS", "JS"],
+    "demo": "https://iamkanhaiyakumar.github.io/Tic-tac-toe-web-application-/",
+    "source": "https://github.com/iamkanhaiyakumar/Tic-tac-toe-web-application-"
+  },
+  {
+    "title": "Password Generator",
+    "imageSrc": "projects/project.png",
+    "description": "This is a project made to learn the latest languages by building an app.",
+    "skills": ["HTML", "CSS", "JS"],
+    "demo": "https://iamkanhaiyakumar.github.io/Password-Generator/",
+    "source": "https://github.com/iamkanhaiyakumar/Password-Generator"
+  },
+  {
+    "title": "StopWatch",
+    "imageSrc": "projects/project.png",
+    "description": "This is a project made to learn the latest languages by building an app.",
+    "skills": ["HTML", "CSS", "JS"],
+    "demo": "https://iamkanhaiyakumar.github.io/StopWatch/",
+    "source": "https://github.com/iamkanhaiyakumar/StopWatch"
+  },
+  {
+    "title": "Email Validator",
+    "imageSrc": "projects/project.png",
+    "description": "This is a project made to learn the latest languages by building an app.",
+    "skills": ["HTML", "CSS", "JS"],
+    "demo": "https://iamkanhaiyakumar.github.io/Email-Validator/",
+    "source": "https://github.com/iamkanhaiyakumar/Email-Validator"
+  }
+]
