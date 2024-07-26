@@ -78,7 +78,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📞 Contact
 
-I am Kanhaiya Kumar, a 2nd year CSE AIML student. Feel free to reach out to me via:
+I am Kanhaiya Kumar, a 3rd year CSE AIML student. Feel free to reach out to me via:
 
 - Twitter: [@Kanhaiyakr01](https://x.com/Kanhaiyakr01)
 - LinkedIn: [Kanhaiya Kumar](https://www.linkedin.com/in/kanhaiyakumar01/)
