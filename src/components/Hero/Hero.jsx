@@ -13,7 +13,7 @@ export const Hero = () => {
           I'm a frontend developer with 1 years of experience using HTML, CSS, TailWind, JavaScript and React. 
           Reach out if you would like to learn more!
         </p>
-        <p className={styles.socialLinks}>
+{/*         <p className={styles.socialLinks}>
         <img
             src={getImageUrl("contact/linkedinIcon.png")}
             alt="LinkedIn icon"
@@ -21,7 +21,7 @@ export const Hero = () => {
           <a href="https://www.linkedin.com/in/kanhaiyakumar01">Linked</a>
           <img src={getImageUrl("contact/githubIcon.png")} alt="Github icon" />
           <a href="https://github.com/iamkanhaiyakumar"></a>
-          </p>
+          </p> */}
           <p className="btn">
         <a href="mailto:kanhaiyak0104@gmail.com" className={styles.contactBtn}>
           Contact Me
