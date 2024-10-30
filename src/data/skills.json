@@ -5,6 +5,10 @@
     "imageSrc": "skills/figma.png"
   },
   {
+    "title": "Python",
+    "imageSrc": "skills/python.png"
+  },
+  {
     "title": "HTML",
     "imageSrc": "skills/html.png"
     
@@ -24,8 +28,13 @@
     "imageSrc": "skills/mongodb.png"
   },
   {
-    "title": "React",
+    "title": "React JS",
     "imageSrc": "skills/react.png"
+  },
+  
+  {
+    "title": "Cloud Computing",
+    "imageSrc": "skills/cloud.png"
   }
  
 ]
