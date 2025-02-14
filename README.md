@@ -15,7 +15,7 @@ Welcome to my portfolio repository! This is a personal project to showcase my wo
 
 This portfolio is designed to highlight my projects, skills, and professional journey. It includes various sections such as:
 
-- 🏠 **Home**: I am Kanhaiya Kumar, a 2nd year CSE AIML student.
+- 🏠 **Home**: I am Kanhaiya Kumar, a CSE AIML student.
 - ℹ️ **About**: I am a frontend developer with tech skills in HTML, CSS, Tailwind, and JavaScript.
 
 ## 🚀 Getting Started
