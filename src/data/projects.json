@@ -1,5 +1,22 @@
 [
   {
+    "title": "My Portfolio",
+    "imageSrc": "projects/project.png",
+    "description": "This is a project made to learn the latest languages by building an app.",
+    "skills": ["HTML", "CSS", "React JS"],
+    "demo": "https://kanhaiya-k-portfolioo.vercel.app/" ,
+    "source": "https://github.com/iamkanhaiyakumar/my-portfolioo"
+  },
+  {
+    "title": "Book Recommender",
+    "imageSrc": "projects/project.png",
+    "description": "This is a project made to learn the latest languages by building an app.",
+    "skills": ["HTML", "CSS", "React JS"],
+    "demo": "https://book-recommender-system-l1dw.onrender.com/" ,
+    "source": "https://github.com/iamkanhaiyakumar/Book_Recommender_System"
+  },
+  
+  {
     "title": "Weather App",
     "imageSrc": "projects/project.png",
     "description": "This is a project made to learn the latest languages by building an app.",
@@ -30,21 +47,10 @@
     "skills": ["HTML", "CSS", "JS"],
     "demo": "https://iamkanhaiyakumar.github.io/Password-Generator/",
     "source": "https://github.com/iamkanhaiyakumar/Password-Generator"
-  },
-  {
-    "title": "StopWatch",
-    "imageSrc": "projects/project.png",
-    "description": "This is a project made to learn the latest languages by building an app.",
-    "skills": ["HTML", "CSS", "JS"],
-    "demo": "https://iamkanhaiyakumar.github.io/StopWatch/",
-    "source": "https://github.com/iamkanhaiyakumar/StopWatch"
-  },
-  {
-    "title": "Email Validator",
-    "imageSrc": "projects/project.png",
-    "description": "This is a project made to learn the latest languages by building an app.",
-    "skills": ["HTML", "CSS", "JS"],
-    "demo": "https://iamkanhaiyakumar.github.io/Email-Validator/",
-    "source": "https://github.com/iamkanhaiyakumar/Email-Validator"
   }
+  
+  
 ]
+
+
+

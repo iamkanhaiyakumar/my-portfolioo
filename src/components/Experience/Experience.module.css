@@ -5,6 +5,7 @@
   margin-top: 79px;
   margin-left: 10%;
   margin-right: 10%;
+  text-align: center; /* Center all text within the container */
 }
 
 .title {
@@ -13,20 +14,24 @@
   font-weight: 700;
   letter-spacing: 1.75px;
   text-transform: uppercase;
+  margin: 20px 0; /* Add spacing above and below the title */
 }
 
 .content {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-top: 14px;
 }
 
 .skills {
-  width: 45%;
   display: flex;
+   width: 100%;
+    flex-direction: row;
+    justify-content: center;
   flex-wrap: wrap;
-  gap: 37px;
+  gap: 40px;
+  justify-content: center; /* Center the skills horizontally */
 }
 
 .skill {
@@ -34,6 +39,7 @@
   flex-direction: column;
   align-items: center;
   gap: 11px;
+  
 }
 
 .skillImageContainer {
@@ -67,6 +73,9 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  /* background: #f8f9fa; Set a light background for the experience section */
+  border-radius: 10px; /* Optional: round corners */
+  padding: 20px; /* Add padding */
 }
 
 .historyItem {
@@ -74,7 +83,6 @@
   flex-direction: row;
   align-items: center;
   gap: 17px;
-  background: #19376d;
   background: linear-gradient(90deg, #19376d 0%, rgba(25, 55, 109, 0) 100%);
   border-radius: 10px;
   padding: 24px;
@@ -119,8 +127,7 @@
     justify-content: center;
   }
 
-  /* .history {
-    width: 100%;
-    gap: 9px;
-  } */
+  .history {
+    width: 100%; /* Ensure history section takes full width */
+  }
 }

@@ -2,14 +2,14 @@ import React from "react";
 
 import styles from "./Experience.module.css";
 import skills from "../../data/skills.json";
-// import history from "../../data/history.json";
+import history from "../../data/history.json";
 import { getImageUrl } from "../../utils";
 
 export const Experience = () => {
   return (
     <section className={styles.container} id="experience">
       <h2 className={styles.title}>Skills</h2>
-      <div className={styles.content}>
+      <div className={styles.skillsContainer}>
         <div className={styles.skills}>
           {skills.map((skill, id) => {
             return (
@@ -22,7 +22,11 @@ export const Experience = () => {
             );
           })}
         </div>
-        {/* <ul className={styles.history}>
+      </div>
+
+      <h2 className={styles.title}>Experience</h2>
+      <div className={styles.experienceContainer}>
+        <ul className={styles.history}>
           {history.map((historyItem, id) => {
             return (
               <li key={id} className={styles.historyItem}>
@@ -42,7 +46,7 @@ export const Experience = () => {
               </li>
             );
           })}
-        </ul> */}
+        </ul>
       </div>
     </section>
   );
