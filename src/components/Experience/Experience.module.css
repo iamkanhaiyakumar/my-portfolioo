@@ -103,6 +103,32 @@
   cursor: pointer;
 }
 
+/* ===== Experience Buttons ===== */
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.viewButton {
+  text-decoration: none;
+  background: linear-gradient(90deg, #0df159 0%, #e80505 100%);
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.viewButton:hover {
+  background: linear-gradient(90deg, #e80505 0%, #0df159 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(13, 241, 89, 0.4);
+}
+
 
 /* ✅ Responsive: 2 per row on small screens */
 @media screen and (max-width: 768px) {

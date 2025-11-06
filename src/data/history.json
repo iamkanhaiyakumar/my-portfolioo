@@ -4,21 +4,40 @@
     "organisation": "Infosys Springboard Internship",
     "startDate": "Oct, 2024",
     "endDate": "Dec, 2024",
-    "experiences": ["Worked on Machine Learning models", "Developed AI solutions", "Collaborated with cross-functional teams", "Presented findings to stakeholders"],
-    "imageSrc": "history/google.png"
+    "experiences": [
+      "Worked on Machine Learning models",
+      "Developed AI solutions",
+      "Collaborated with cross-functional teams",
+      "Presented findings to stakeholders"
+    ],
+    "imageSrc": "history/google.png",
+    "links": [
+      {
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/1Mw2kp41jncZkQfyzLJPhA8-8LYcmh6ZP/view?usp=sharing"
+      }
+    ]
   },
-  
- {
+  {
     "role": "Research Paper Author",
     "organisation": "IEEE Conference Publication",
-    "startDate": "Jan, 2025",
-    "endDate": "July, 2025",
+    "startDate": "May, 2024",
+    "endDate": "Present",
     "experiences": [
       "Published a research paper on PPE detection using YOLO models",
       "Implemented YOLO-based deep learning models for enhanced detection accuracy",
       "Performed extensive dataset preprocessing and model evaluation",
-      "Presented paper findings in IEEE International Conference 2025 at LNCT Group of Colleges, Bhopal"
+      "Presented paper findings in IEEE International Conference 2024"
     ],
-    "imageSrc": "history/research.png"
+    "imageSrc": "history/research.png",
+    "links": [
+      {
+        "label": "View Paper",
+        "url": "https://ieeexplore.ieee.org/document/11211593"
+      }
+    ]
   }
 ]
+
+
+
