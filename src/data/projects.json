@@ -1,32 +1,31 @@
 [
   {
     "title": "My Portfolio",
-    "imageSrc": "projects/project.png",
+    "imageSrc": "projects/portfolio.jpg",
     "description": "This is a project made to learn the latest languages by building an app.",
     "skills": ["HTML", "CSS", "React JS"],
-    "demo": "https://kanhaiya-k-portfolioo.vercel.app/" ,
+    "demo": "https://kanhaiya-k-portfolioo.vercel.app/",
     "source": "https://github.com/iamkanhaiyakumar/my-portfolioo"
   },
   {
     "title": "Book Recommender",
-    "imageSrc": "projects/project.png",
+    "imageSrc": "projects/Book.jpg",
     "description": "This is a project made to learn the latest languages by building an app.",
     "skills": ["HTML", "CSS", "React JS"],
-    "demo": "https://book-recommender-system-l1dw.onrender.com/" ,
+    "demo": "https://book-recommender-system-l1dw.onrender.com/",
     "source": "https://github.com/iamkanhaiyakumar/Book_Recommender_System"
   },
-  
   {
     "title": "Weather App",
-    "imageSrc": "projects/project.png",
+    "imageSrc": "projects/WeatherApp.jpg",
     "description": "This is a project made to learn the latest languages by building an app.",
     "skills": ["HTML", "CSS", "JS"],
-    "demo": "https://iamkanhaiyakumar.github.io/weather-app-0.1/" ,
+    "demo": "https://iamkanhaiyakumar.github.io/weather-app-0.1/",
     "source": "https://github.com/iamkanhaiyakumar/weather-app-0.1"
   },
   {
     "title": "Calculator",
-    "imageSrc": "projects/project.png",
+    "imageSrc": "projects/Calculator.jpg",
     "description": "This is a project made to learn the latest languages by building an app.",
     "skills": ["HTML", "CSS", "JS"],
     "demo": "https://iamkanhaiyakumar.github.io/Calculator./",
@@ -34,7 +33,7 @@
   },
   {
     "title": "Tic-tac-toe",
-    "imageSrc": "projects/project.png",
+    "imageSrc": "projects/Tic-tac-toe.jpg",
     "description": "This is a project made to learn the latest languages by building an app.",
     "skills": ["HTML", "CSS", "JS"],
     "demo": "https://iamkanhaiyakumar.github.io/Tic-tac-toe-web-application-/",
@@ -42,15 +41,10 @@
   },
   {
     "title": "Password Generator",
-    "imageSrc": "projects/project.png",
+    "imageSrc": "projects/Password.jpg",
     "description": "This is a project made to learn the latest languages by building an app.",
     "skills": ["HTML", "CSS", "JS"],
     "demo": "https://iamkanhaiyakumar.github.io/Password-Generator/",
     "source": "https://github.com/iamkanhaiyakumar/Password-Generator"
   }
-  
-  
 ]
-
-
-

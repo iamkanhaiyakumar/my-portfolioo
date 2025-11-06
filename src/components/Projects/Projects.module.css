@@ -31,12 +31,32 @@
 /* ===== Projects Grid ===== */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   justify-items: center;
-  align-items: start;
+  align-items: stretch; /* ✅ ensures equal height for all cards */
   gap: 50px;
   padding: 0 10px;
   width: 100%;
+}
+
+/* ===== Individual Project Card ===== */
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* ✅ keeps buttons at bottom */
+  align-items: center;
+  background: linear-gradient(180deg, #576cbc 0%, #132a53 100%);
+  border-radius: 15px;
+  box-shadow: 10px 10px 19px 0 #04152d;
+  padding: 25px 24px;
+  width: 100%;
+  min-height: 480px; /* ✅ uniform card height */
+  transition: all 0.3s ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 /* ===== Fade In Animation ===== */
@@ -64,6 +84,10 @@
   .projects {
     gap: 40px;
   }
+
+  .projectCard {
+    min-height: 460px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -78,5 +102,9 @@
 
   .title {
     font-size: 28px;
+  }
+
+  .projectCard {
+    min-height: 420px;
   }
 }

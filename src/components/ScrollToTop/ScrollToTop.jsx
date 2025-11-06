@@ -31,7 +31,7 @@ export const ScrollToTop = () => {
       {visible && (
         <button className={styles.scrollToTop} onClick={scrollToTop}>
           <img
-            src={getImageUrl("icons/upArrow.png")} // 📁 place your arrow icon here
+            src={getImageUrl("icons/upArrow.jpg")} // 📁 place your arrow icon here
             alt="Scroll to top"
           />
         </button>
