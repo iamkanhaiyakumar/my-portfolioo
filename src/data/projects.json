@@ -1,49 +1,75 @@
 [
+ 
   {
+    "title": "PPE Kit Detection System",
+    "imageSrc": "projects/PPE.jpg",
+    "description": "An AI-based system that detects PPE (Personal Protective Equipment) such as helmets and vests using YOLOv8 and OpenCV to ensure workplace safety.",
+    "skills": ["Python", "YOLO", "OpenCV", "Machine Learning"],
+    "demo": "https://example.com/ppe-detection-demo",
+    "source": "https://github.com/iamkanhaiyakumar/PPE_detection_Kit"
+  },
+  {
+    "title": "Job Role Prediction Web App",
+    "imageSrc": "projects/JobPrediction.jpg",
+    "description": "A machine learning-based web application that predicts the most suitable job role for users based on their skills and educational background.",
+    "skills": ["Python", "Flask", "Machine Learning", "MySQL"],
+    "demo": "https://example.com/job-role-prediction-demo",
+    "source": "https://github.com/iamkanhaiyakumar/job_role_prediction"
+  },
+  {
+    "title": "AI-powered Resume Analyzer",
+    "imageSrc": "projects/ResumeAnalyzer.jpg",
+    "description": "An AI-powered tool that analyzes resumes, extracts key information, and evaluates candidates based on skill relevance using NLP and Machine Learning.",
+    "skills": ["Python", "Streamlit", "NLP", "Machine Learning"],
+    "demo": "https://example.com/resume-analyzer-demo",
+    "source": "https://github.com/iamkanhaiyakumar/AI-powered-Resume-Analyzer"
+  },
+  {
+    "title": "Book Recommender System",
+    "imageSrc": "projects/Book.jpg",
+    "description": "A book recommendation system built using machine learning techniques to suggest books based on user interests.",
+    "skills": ["Python", "Pandas", "Streamlit", "ML"],
+    "demo": "https://book-recommender-system-l1dw.onrender.com/",
+    "source": "https://github.com/iamkanhaiyakumar/Book_Recommender_System"
+  },
+   {
     "title": "My Portfolio",
     "imageSrc": "projects/portfolio.jpg",
-    "description": "This is a project made to learn the latest languages by building an app.",
+    "description": "A personal portfolio website showcasing my projects, experience, and skills, built using React JS and modern UI design principles.",
     "skills": ["HTML", "CSS", "React JS"],
     "demo": "https://kanhaiya-k-portfolioo.vercel.app/",
     "source": "https://github.com/iamkanhaiyakumar/my-portfolioo"
   },
-  {
-    "title": "Book Recommender",
-    "imageSrc": "projects/Book.jpg",
-    "description": "This is a project made to learn the latest languages by building an app.",
-    "skills": ["HTML", "CSS", "React JS"],
-    "demo": "https://book-recommender-system-l1dw.onrender.com/",
-    "source": "https://github.com/iamkanhaiyakumar/Book_Recommender_System"
-  },
+  
   {
     "title": "Weather App",
     "imageSrc": "projects/WeatherApp.jpg",
-    "description": "This is a project made to learn the latest languages by building an app.",
-    "skills": ["HTML", "CSS", "JS"],
+    "description": "A weather forecast app that displays real-time temperature, humidity, and conditions using API integration.",
+    "skills": ["HTML", "CSS", "JavaScript", "API"],
     "demo": "https://iamkanhaiyakumar.github.io/weather-app-0.1/",
     "source": "https://github.com/iamkanhaiyakumar/weather-app-0.1"
   },
   {
     "title": "Calculator",
     "imageSrc": "projects/Calculator.jpg",
-    "description": "This is a project made to learn the latest languages by building an app.",
-    "skills": ["HTML", "CSS", "JS"],
+    "description": "A simple and responsive calculator built using HTML, CSS, and JavaScript for performing basic arithmetic operations.",
+    "skills": ["HTML", "CSS", "JavaScript"],
     "demo": "https://iamkanhaiyakumar.github.io/Calculator./",
     "source": "https://github.com/iamkanhaiyakumar/Calculator."
   },
   {
     "title": "Tic-tac-toe",
     "imageSrc": "projects/Tic-tac-toe.jpg",
-    "description": "This is a project made to learn the latest languages by building an app.",
-    "skills": ["HTML", "CSS", "JS"],
+    "description": "A classic Tic-tac-toe game built using HTML, CSS, and JavaScript that allows two players to compete interactively.",
+    "skills": ["HTML", "CSS", "JavaScript"],
     "demo": "https://iamkanhaiyakumar.github.io/Tic-tac-toe-web-application-/",
     "source": "https://github.com/iamkanhaiyakumar/Tic-tac-toe-web-application-"
   },
   {
     "title": "Password Generator",
     "imageSrc": "projects/Password.jpg",
-    "description": "This is a project made to learn the latest languages by building an app.",
-    "skills": ["HTML", "CSS", "JS"],
+    "description": "A secure password generator that creates strong, random passwords with user-defined parameters.",
+    "skills": ["HTML", "CSS", "JavaScript"],
     "demo": "https://iamkanhaiyakumar.github.io/Password-Generator/",
     "source": "https://github.com/iamkanhaiyakumar/Password-Generator"
   }

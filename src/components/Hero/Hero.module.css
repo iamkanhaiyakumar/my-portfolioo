@@ -27,7 +27,7 @@
   font-size: 68px;
   font-weight: 900;
   line-height: 1.2;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   font-family: var(--font-roboto);
   background: linear-gradient(90deg, #ffffff 0%, #00ffff 60%, #00a3ff 100%);
   -webkit-text-fill-color: transparent;
@@ -35,26 +35,42 @@
   letter-spacing: 1.5px;
 }
 
+.highlight {
+  background: linear-gradient(90deg, #00eaff 0%, #0077ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Subtitle (Tagline) ===== */
+.subtitle {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #0df1a2 0%, #00bfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* ===== Description ===== */
 .description {
-  font-size: 22px;
-  line-height: 1.7;
+  font-size: 21px;
+  line-height: 1.8;
   font-family: var(--font-roboto);
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 40px;
   text-align: justify;
+  max-width: 90%;
 }
 
 /* ===== Buttons ===== */
-.btn {
+.btnGroup {
   display: flex;
+  gap: 35px;
   flex-wrap: wrap;
-  gap: 45px;
   margin-top: 10px;
-}
-
-.contactBtn {
-  margin-right: 25px; /* 👈 adds gap before the Resume button */
 }
 
 .contactBtn,
@@ -70,6 +86,8 @@
   transition: all 0.4s ease;
   border: none;
   cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .contactBtn:hover,
@@ -83,9 +101,9 @@
 .heroImg {
   width: 45%;
   z-index: 1;
-  animation: floating 3s ease-in-out infinite;
   filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4));
   transition: transform 0.4s ease;
+  animation: floating 3s ease-in-out infinite;
 }
 
 .heroImg:hover {
@@ -98,7 +116,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(12px);
+    transform: translateY(-15px);
   }
   100% {
     transform: translateY(0px);
@@ -144,7 +162,11 @@
   }
 
   .title {
-    font-size: 48px;
+    font-size: 50px;
+  }
+
+  .subtitle {
+    font-size: 24px;
   }
 
   .description {
@@ -157,20 +179,18 @@
     margin-bottom: 40px;
   }
 
-  /* ✅ Fix: stack buttons vertically on mobile */
-  .btn {
+  .btnGroup {
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 25px;
   }
 
   .contactBtn,
   .resumeBtn {
     width: 100%;
     text-align: center;
-    padding: 15px 0;
     font-size: 20px;
-    margin-right: 10; /* remove the side gap on mobile */
+    padding: 14px 0;
   }
 }
 

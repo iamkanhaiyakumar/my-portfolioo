@@ -1,94 +1,161 @@
 @import "../../vars.css";
 
+/* ===== Navbar Base ===== */
 .navbar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 25, 47, 0.4);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+
+/* ===== Add Shadow & Background on Scroll ===== */
+.scrolled {
+  background: rgba(10, 25, 47, 0.95);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(25px);
+}
+
+/* ===== Logo Section ===== */
+.logo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 61px;
-  z-index: 2;
-  margin: 0 10%;
-}
-
-.title {
-  font-size: 30px;
-  font-weight: 600;
-  text-decoration: none;
+  gap: 12px;
+  font-size: 26px;
+  font-weight: 800;
   color: var(--color-text);
-}
-.title:hover {
-  /* color: var(--color-primary); */
-  transform: scale3d(1.1, 1.1, 1.1);
+  text-decoration: none;
+  letter-spacing: 1.2px;
 }
 
-.menuBtn {
-  display: none;
+.logoImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: contain;
 }
 
-.menu {
-  display: flex;
-}
-
+/* ===== Desktop Menu ===== */
 .menuItems {
   display: flex;
-  gap: 47px;
   list-style: none;
-}
-.menuItems a:hover {
-  color: var(--color-primary);
- transform: scale3d(1.1, 1.1, 1.1);
+  gap: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
 }
 
-
-.menuItems a {
-  font-size: 25px;
+.menuItems li a {
   color: var(--color-text);
   text-decoration: none;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
 }
 
-@media screen and (max-width: 830px) {
-  .navbar {
+/* ===== Hover Underline Animation ===== */
+.menuItems li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.menuItems li a:hover::after {
+  width: 100%;
+}
+
+.menuItems li a:hover {
+  color: var(--color-primary);
+}
+
+/* ===== Menu Button (Hamburger) ===== */
+.menuBtn {
+  display: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  filter: invert(1);
+  transition: transform 0.3s ease;
+}
+
+.menuBtn:hover {
+  transform: rotate(90deg);
+}
+
+/* ===== Close Button (Hidden by Default) ===== */
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  filter: invert(1);
+  transition: transform 0.3s ease;
+  display: none; /* ✅ Hidden initially */
+}
+
+.menuOpen .closeBtn {
+  display: block; /* ✅ Only show when menu is open */
+}
+
+.closeBtn:hover {
+  transform: rotate(90deg);
+}
+
+/* ===== Mobile Menu ===== */
+@media screen and (max-width: 950px) {
+  .menuItems {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 50vh; /* ✅ reduced from 100vh */
+    width: 30%; /* ✅ reduced width for smaller look */
+    background: rgba(10, 25, 47, 0.97);
+    backdrop-filter: blur(15px);
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    border-radius: 0 0 0 20px; /* ✅ smooth edge */
+    transition: right 0.4s ease;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4);
   }
-  .title {
-    display: flex;
 
-  }
-
-  .menu {
-    position: absolute;
+  .menuOpen {
     right: 0;
-    margin-right: 10%;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 11px;
-    z-index: 3;
   }
 
   .menuBtn {
     display: block;
-    cursor: pointer;
   }
 
+  .menuItems li a {
+    font-size: 22px;
+    font-weight: 600;
+  }
+}
+
+/* ===== Mobile (Very Small Screens) ===== */
+@media screen and (max-width: 600px) {
   .menuItems {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 13px;
-    border-radius: 10px;
-    background: rgb(25, 55, 109);
-    background: linear-gradient(
-      0deg,
-      rgba(25, 55, 109, 0.2) 0%,
-      rgba(25, 55, 109, 1) 100%
-    );
-    padding: 24px 33px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    width: 85%; /* ✅ narrow container for tiny screens */
+    height: 75vh;
+    gap: 35px;
   }
 
-  .menuOpen {
-    display: flex;
-    z-index: 1;
+  .menuItems li a {
+    font-size: 20px;
   }
 }
