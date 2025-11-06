@@ -1,0 +1,50 @@
+[
+  {
+    "role": "NCC Cadet (Rank - LCPL)",
+    "organisation": "12 MP BN Bhopal",
+    "experiences": ["Completed NCC training with leadership and discipline excellence."],
+    "imageSrc": "achievements/ncc.png",
+    "links": [
+      {
+        "label": "View Certificate",
+        "url": "https://drive.google.com/your-ncc-certificate-link"
+      }
+    ]
+  },
+  {
+    "role": "Research Paper Author",
+    "organisation": "IEEE Conference 2025",
+    "experiences": [
+      "Presented paper titled 'AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones for Safety Compliance' (DOI: 10.1109/11211593)."
+    ],
+    "imageSrc": "achievements/research.png",
+    "links": [
+      {
+        "label": "View Paper",
+        "url": "https://ieeexplore.ieee.org/document/11211593"
+      }
+    ]
+  },
+  {
+    "role": "Young Turks Finalist",
+    "organisation": "Naukri Campus",
+    "experiences": [
+      "Secured 16th rank in Naukri Campus Young Turks Final Round and received ₹10,000 award."
+    ],
+    "imageSrc": "achievements/award.png",
+     "links": [
+      {
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/1em3haNyAVQupborNMe4FuWwCWkOEHo00/view?usp=drive_link"
+      }
+    ]
+  },
+  {
+    "role": "Volunteer",
+    "organisation": "LNCT College Fest",
+    "experiences": [
+      "Volunteered in the college fest, managing 10 teams and over 60 participants."
+    ],
+    "imageSrc": "achievements/volunteer.png"
+  }
+]

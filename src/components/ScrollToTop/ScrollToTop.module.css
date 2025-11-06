@@ -1,0 +1,66 @@
+@import "../../vars.css";
+
+.scrollToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #19376d 0%, #1e56a0 100%);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollToTop img {
+  width: 28px;
+  height: 28px;
+  filter: invert(1);
+  transition: transform 0.3s ease;
+}
+
+.scrollToTop:hover {
+  transform: scale(1.15);
+  background: linear-gradient(135deg, #0df159 0%, #e80505 100%);
+}
+
+.scrollToTop:hover img {
+  transform: translateY(-3px);
+}
+
+/* Smooth Fade-In Animation */
+.scrollToTop {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .scrollToTop {
+    width: 45px;
+    height: 45px;
+    right: 20px;
+    bottom: 25px;
+  }
+
+  .scrollToTop img {
+    width: 22px;
+    height: 22px;
+  }
+}

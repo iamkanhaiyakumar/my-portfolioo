@@ -29,11 +29,7 @@
     "imageSrc": "skills/mongodb.png",
     "link": "https://www.w3schools.com/js/"
   },
-  {
-    "title": "React JS",
-    "imageSrc": "skills/react.png",
-    "link": "https://react.dev/learn"
-  },
+  
   {
     "title": "MySQL",
     "imageSrc": "skills/MYSQL.png",

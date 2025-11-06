@@ -1,0 +1,175 @@
+@import "../../vars.css";
+
+/* ===== Global Container ===== */
+.container {
+  color: var(--color-text);
+  margin: 80px 10%;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ===== Title ===== */
+.title {
+  color: var(--color-text);
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--color-primary);
+  margin: 14px auto 0;
+  border-radius: 4px;
+}
+
+/* ===== Achievements Section (same as history) ===== */
+.history {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px 0;
+  align-items: center;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 25px;
+  width: 90%;
+  max-width: 1200px;
+  background: linear-gradient(90deg, #19376d 0%, rgba(25, 55, 109, 0.6) 100%);
+  border-radius: 15px;
+  padding: 30px 35px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.historyItem:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Icon Image Box ===== */
+.historyItem img {
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+  background-color: white;
+  padding: 5px;
+  flex-shrink: 0;
+}
+
+/* ===== Text Details ===== */
+.historyItemDetails {
+  color: var(--color-text);
+  font-family: var(--font-roboto);
+  text-align: left;
+  flex: 1;
+}
+
+.historyItemDetails h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.historyItemDetails p {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.historyItemDetails ul {
+  margin-top: 8px;
+  margin-left: 20px;
+  list-style-type: disc;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ===== Buttons ===== */
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.viewButton {
+  text-decoration: none;
+  background: linear-gradient(90deg, #0df159 0%, #e80505 100%);
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.viewButton:hover {
+  background: linear-gradient(90deg, #e80505 0%, #0df159 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(13, 241, 89, 0.4);
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 900px) {
+  .historyItem {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 95%;
+  }
+
+  .historyItem img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .historyItemDetails h3 {
+    font-size: 24px;
+  }
+
+  .historyItemDetails ul {
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .historyItem {
+    text-align: center;
+    align-items: center;
+  }
+
+  .historyItemDetails {
+    text-align: center;
+  }
+
+  .historyItem img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* ===== Animation ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
