@@ -24,9 +24,9 @@ export const Hero = () => {
           <a href="https://github.com/iamkanhaiyakumar"></a>
           </p> */}
           <p className="btn">
-        <a href="#contact" className={styles.contactBtn}>
+        {/* <a href="#contact" className={styles.contactBtn}>
           Contact Me
-        </a>
+        </a> */}
         <a href="https://drive.google.com/file/d/1li4Sca2cabe92whgVI4L2hQFZ43haJ3C/view?usp=sharing" target="blank"  rel="noopener noreferrer" className={styles.resumeBtn}>
           My Resume
         </a>
