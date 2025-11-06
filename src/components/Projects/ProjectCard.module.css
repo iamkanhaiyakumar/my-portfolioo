@@ -1,101 +1,143 @@
 @import "../../vars.css";
 
+/* === Container === */
 .container {
   display: flex;
   flex-direction: column;
-  border-radius: 15px;
-  background: linear-gradient(180deg, #576cbc 0%, #132a53 100%);
-  box-shadow: 10px 10px 19px 0 #04152d;
-  padding: 20px 24px;
-  max-width: 390px;
-  /* max-height: 100%; */
+  align-items: flex-start;
+  border-radius: 20px;
+  background: rgba(19, 42, 83, 0.75);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  padding: 24px 28px;
+  max-width: 380px;
+  transition: all 0.35s ease;
+  overflow: hidden;
 }
 
 .container:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  transform: translateY(-15px);
-  transform: translateX(-10px);
-  transition: transform 0.3s;
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
   cursor: pointer;
-  transform:scale3d(1.05, 1.05, 1.05)
 }
 
+/* === Project Image === */
 .image {
-  margin-bottom: 7px;
-}
-
-.title {
-  font-size: 35px;
-  font-weight: 700;
-}
-
-.description {
-  margin-top: 3px;
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.skills {
   width: 100%;
-  margin-top: 14px;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s ease;
+}
+
+.container:hover .image {
+  transform: scale(1.05);
+}
+
+/* === Title === */
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-top: 6px;
+  color: var(--color-text);
+}
+
+/* === Description === */
+.description {
+  margin-top: 8px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* === Skills Section === */
+.skills {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
+  margin-top: 15px;
   list-style: none;
+  padding: 0;
 }
 
 .skill {
-  font-size: 20px;
-  font-weight: 500;
-  border-radius: 100px;
-  background: var(--color-dark);
-  padding: 2px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 5px 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #19376d 0%, #1e56a0 100%);
+  transition: all 0.3s ease;
 }
 
+.skill:hover {
+  transform: scale(1.1);
+}
+
+/* === Links Section === */
 .links {
-  width: 100%;
-  margin-top: 26px;
   display: flex;
-  justify-content: space-around;
-  
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 25px;
+  gap: 20px;
 }
 
 .link {
+  flex: 1;
+  text-align: center;
   text-decoration: none;
-  color: var(--color-text);
-  font-size: 35px;
+  color: #fff;
+  font-size: 18px;
   font-weight: 600;
-  border-radius: 100px;
-  background: var(--color-primary);
-  padding: 1px 20px;
-  background-image: linear-gradient(
-    90deg,
-    rgba(232, 5, 5, 0.42) 0%,
-    rgba(13, 241, 89, 0) 100%
-  );
-  background-size: 0 100%;
-  background-repeat: no-repeat;
-  transition: 0.4s;
-  
+  padding: 10px 0;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #e80505 0%, #0df159 100%);
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
 .link:hover {
-  /* background: var(--color-primary-hover); */
-  background-color: var(--color-bg);
-  transform: scale(1.1);
-  background-size: 100% 100%;
- 
+  background: linear-gradient(90deg, #0df159 0%, #e80505 100%);
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(13, 241, 89, 0.4);
 }
 
-/* @media screen and (max-width: 730px) {
+/* === Responsive Design === */
+@media screen and (max-width: 1024px) {
+  .container {
+    max-width: 320px;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .link {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .container {
     width: 100%;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 24px;
-    flex-direction: row;
-    justify-content: center;
-
+    max-width: 90%;
+    margin: 0 auto;
   }
-} */
+
+  .links {
+    flex-direction: column;
+  }
+
+  .link {
+    width: 100%;
+  }
+}

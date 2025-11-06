@@ -1,43 +1,92 @@
 [
   {
     "title": "C++",
-    
-    "imageSrc": "skills/figma.png"
+    "imageSrc": "skills/figma.png",
+    "link": "https://www.w3schools.com/cpp/"
   },
   {
     "title": "Python",
-    "imageSrc": "skills/python.png"
+    "imageSrc": "skills/python.png",
+    "link": "https://www.w3schools.com/python/"
   },
   {
     "title": "HTML",
-    "imageSrc": "skills/html.png"
-    
+    "imageSrc": "skills/html.png",
+    "link": "https://www.w3schools.com/html/"
   },
   {
     "title": "CSS",
-    "imageSrc": "skills/css.png"
+    "imageSrc": "skills/css.png",
+    "link": "https://www.w3schools.com/css/"
   },
   {
-    "title": "TailWind",
-    "imageSrc": "skills/graphql.png"
-    
+    "title": "TailWind CSS",
+    "imageSrc": "skills/graphql.png",
+    "link": "https://tailwindcss.com/docs"
   },
-  
   {
     "title": "JavaScript",
-    "imageSrc": "skills/mongodb.png"
+    "imageSrc": "skills/mongodb.png",
+    "link": "https://www.w3schools.com/js/"
   },
   {
     "title": "React JS",
-    "imageSrc": "skills/react.png"
+    "imageSrc": "skills/react.png",
+    "link": "https://react.dev/learn"
   },
-  
+  {
+    "title": "MySQL",
+    "imageSrc": "skills/MYSQL.png",
+    "link": "https://www.w3schools.com/mysql/"
+  },
+  {
+    "title": "Machine Learning",
+    "imageSrc": "skills/ML.png",
+    "link": "https://scikit-learn.org/stable/"
+  },
+  {
+    "title": "OpenCV",
+    "imageSrc": "skills/opencv.png",
+    "link": "https://docs.opencv.org/"
+  },
+  {
+    "title": "Pandas",
+    "imageSrc": "skills/Pandas.png",
+    "link": "https://pandas.pydata.org/docs/"
+  },
+  {
+    "title": "NumPy",
+    "imageSrc": "skills/NumPy.png",
+    "link": "https://numpy.org/doc/"
+  },
+  {
+    "title": "Matplotlib",
+    "imageSrc": "skills/Matplotlib.png",
+    "link": "https://matplotlib.org/stable/contents.html"
+  },
+  {
+    "title": "Jupyter Notebook",
+    "imageSrc": "skills/JupyterNotebook.png",
+    "link": "https://docs.jupyter.org/en/latest/"
+  },
+  {
+    "title": "Google Colab",
+    "imageSrc": "skills/GoogleColab.png",
+    "link": "https://colab.research.google.com/"
+  },
+  {
+    "title": "VS Code",
+    "imageSrc": "skills/VSCode.png",
+    "link": "https://code.visualstudio.com/docs"
+  },
+  {
+    "title": "Git & GitHub",
+    "imageSrc": "skills/Git&GitHub.png",
+    "link": "https://docs.github.com/"
+  },
   {
     "title": "Cloud Computing",
-    "imageSrc": "skills/cloud.png"
+    "imageSrc": "skills/cloud.png",
+    "link": "https://aws.amazon.com/what-is-cloud-computing/"
   }
- 
 ]
-
-
-

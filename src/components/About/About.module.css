@@ -1,110 +1,184 @@
 @import "../../vars.css";
 
+/* ===== Container ===== */
 .container {
   position: relative;
-  background-color: rgba(12, 12, 12, 0.6);
-  border-radius: 15px;
-  padding: 63px;
-  margin-top: 100px;
+  background: rgba(15, 15, 25, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 70px 60px;
+  margin: 100px 10%;
   z-index: 1;
-  margin-left: 10%;
-  margin-right: 10%;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
+/* ===== Title ===== */
 .title {
   color: var(--color-text);
-  font-size: 35px;
-  font-weight: 700;
-  letter-spacing: 1.75px;
+  font-size: 40px;
+  font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+  position: relative;
 }
 
+.title::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 4px;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ===== Content Layout ===== */
 .content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* ✅ Stack image above text */
   align-items: center;
+  justify-content: center;
+  gap: 40px;
 }
 
+/* ===== About Image (Centered) ===== */
 .aboutImage {
-  width: 50%;
-  
-  z-index: 1;
-
-  animation-name: floating;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  width: 70%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  animation: floating 3s ease-in-out infinite;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  object-fit: cover;
+  margin: 0 auto; /* ✅ Ensure it’s centered horizontally */
 }
+
+.aboutImage:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
 @keyframes floating {
   0% {
-    transform: translate(0, 0px);
+    transform: translateY(0);
   }
   50% {
-    transform: translate(0, 10px);
+    transform: translateY(10px);
   }
   100% {
-    transform: translate(0, -0px);
+    transform: translateY(0);
   }
 }
 
+/* ===== About Items ===== */
 .aboutItems {
-  color: var(--color-text);
   display: flex;
   flex-direction: column;
   gap: 30px;
+  color: var(--color-text);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto; /* ✅ Center all cards under the image */
 }
 
+/* ===== Individual Card ===== */
 .aboutItem {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  gap: 25px;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
-  list-style: none;
-  padding: 20px;
-  background-image: linear-gradient(
-    90deg,
-    rgba(165, 215, 232, 0.42) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background-size: 0 100%;
-  background-repeat: no-repeat;
-  transition: 0.4s;
+  padding: 25px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .aboutItem:hover {
-  background-size: 100% 100%;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
 }
 
+.aboutItem::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, var(--color-primary), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.aboutItem:hover::before {
+  opacity: 0.15;
+}
+
+/* ===== Icon Styling (Only Inner Image Enlarged) ===== */
+.aboutItem img {
+  width: 65px; /* ⬆️ increase image size inside */
+  height: 65px;
+  object-fit: contain; /* ensures image fits nicely without stretching */
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 5px; /* ⬇️ reduced padding so icon looks bigger */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.aboutItem:hover img {
+  transform: scale(1.1) rotate(4deg);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+}
+
+
+/* ===== Text ===== */
 .aboutItem h3 {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-align: left;
 }
 
 .aboutItem p {
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+  text-align: left;
 }
 
-@media screen and (max-width: 830px) {
+/* ===== Responsive ===== */
+@media screen and (max-width: 900px) {
   .container {
-    background-color: transparent;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .content {
-    flex-direction: column;
+    padding: 50px 25px;
   }
 
   .aboutImage {
-    display: 20px;
-  }
-
-  .aboutItems {
-    margin-top: 29px;
+    width: 90%;
   }
 
   .aboutItem {
-    padding-left: 0;
-    padding-right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* ===== Fade-in Animation ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

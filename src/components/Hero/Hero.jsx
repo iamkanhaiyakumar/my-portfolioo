@@ -10,8 +10,9 @@ export const Hero = () => {
         <h1 className={styles.title}>Hi, I'm Kanhaiya </h1>
         
         <p className={styles.description}>
-          I'm a frontend developer with 1 years of experience using HTML, CSS, TailWind, JavaScript and React. 
-          Reach out if you would like to learn more!
+           AI and Machine Learning enthusiast with hands-on experience in YOLO-based object detection, full-stack web development,
+ and data-driven model optimization. Skilled in Python, C++, and MySQL, with a strong focus on building scalable AI
+ solutions and deploying real-time computer vision systems.
         </p>
 {/*         <p className={styles.socialLinks}>
         <img
@@ -23,10 +24,10 @@ export const Hero = () => {
           <a href="https://github.com/iamkanhaiyakumar"></a>
           </p> */}
           <p className="btn">
-        <a href="mailto:kanhaiyak0104@gmail.com" className={styles.contactBtn}>
+        <a href="#contact" className={styles.contactBtn}>
           Contact Me
         </a>
-        <a href="https://drive.google.com/file/d/1li4Sca2cabe92whgVI4L2hQFZ43haJ3C/view?usp=sharing" target="blank" className={styles.resumeBtn}>
+        <a href="https://drive.google.com/file/d/1li4Sca2cabe92whgVI4L2hQFZ43haJ3C/view?usp=sharing" target="blank"  rel="noopener noreferrer" className={styles.resumeBtn}>
           My Resume
         </a>
         </p>

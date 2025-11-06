@@ -1,133 +1,259 @@
 @import "../../vars.css";
 
+/* ===== Global Container ===== */
 .container {
   color: var(--color-text);
-  margin-top: 79px;
-  margin-left: 10%;
-  margin-right: 10%;
-  text-align: center; /* Center all text within the container */
+  margin: 80px 10%;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
+/* ===== Title ===== */
 .title {
   color: var(--color-text);
-  font-size: 35px;
-  font-weight: 700;
-  letter-spacing: 1.75px;
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin: 20px 0; /* Add spacing above and below the title */
+  margin-bottom: 40px;
+  position: relative;
 }
 
+.title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--color-primary);
+  margin: 14px auto 0;
+  border-radius: 4px;
+}
+
+/* ===== Main Content Layout ===== */
 .content {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  margin-top: 14px;
+  align-items: flex-start;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .skills {
-  display: flex;
-   width: 100%;
-    flex-direction: row;
-    justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* ✅ auto-fit 4 items per row */
   gap: 40px;
-  justify-content: center; /* Center the skills horizontally */
+  justify-items: center; /* center icons horizontally */
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+  margin-bottom: 80px;
 }
 
 .skill {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 11px;
-  
+  gap: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .skillImageContainer {
   background-color: var(--color-secondary);
-  border-radius: 100%;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 120px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .skillImageContainer img {
   width: 75px;
+  height: 75px;
+  object-fit: contain;
 }
 
 .skillImageContainer:hover {
   background-color: var(--color-primary);
+  transform: scale(1.15);
   cursor: pointer;
-  transform: scale(1.2);
 }
 
 .skill p {
-  font-size: 25px;
+  font-size: 20px;
   font-family: var(--font-roboto);
   font-weight: 500;
+  color: var(--color-text);
 }
 
+.skillLink {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.skillLink:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+
+/* ✅ Responsive: 2 per row on small screens */
+@media screen and (max-width: 768px) {
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .skillImageContainer {
+    width: 100px;
+    height: 100px;
+  }
+
+  .skillImageContainer img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+
+/* ✅ On very small screens (like phones): 1 per row */
+@media screen and (max-width: 480px) {
+  .skills {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+
+/* ===== Experience / History Section ===== */
 .history {
-  width: 45%;
+  width: 100%; /* Make the entire section full width */
   display: flex;
   flex-direction: column;
   gap: 40px;
-  /* background: #f8f9fa; Set a light background for the experience section */
-  border-radius: 10px; /* Optional: round corners */
-  padding: 20px; /* Add padding */
+  padding: 20px 0;
+  align-items: center;
 }
 
 .historyItem {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 17px;
-  background: linear-gradient(90deg, #19376d 0%, rgba(25, 55, 109, 0) 100%);
-  border-radius: 10px;
-  padding: 24px;
+  justify-content: flex-start;
+  gap: 25px;
+  width: 90%; /* Full-width appearance while maintaining side margins */
+  max-width: 1200px; /* Prevent it from stretching too much on large screens */
+  background: linear-gradient(90deg, #19376d 0%, rgba(25, 55, 109, 0.6) 100%);
+  border-radius: 15px;
+  padding: 30px 35px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.historyItem:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 .historyItem img {
-  width: 50px;
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+  background-color: white;
+  padding: 5px;
 }
 
 .historyItemDetails {
+  color: var(--color-text);
   font-family: var(--font-roboto);
+  text-align: left;
+  flex: 1;
 }
 
 .historyItemDetails h3 {
-  font-size: 30px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .historyItemDetails p {
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 10px;
 }
 
 .historyItemDetails ul {
-  margin-top: 6px;
-  list-style-position: inside;
-  font-size: 25px;
+  margin-top: 8px;
+  margin-left: 20px;
   list-style-type: disc;
-  margin-left: 17px;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
-@media screen and (max-width: 830px) {
+/* ✅ Responsive Layout for Smaller Screens */
+@media screen and (max-width: 900px) {
+  .historyItem {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 95%;
+  }
+
+  .historyItem img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .historyItemDetails h3 {
+    font-size: 24px;
+  }
+
+  .historyItemDetails ul {
+    font-size: 17px;
+  }
+}
+
+
+/* ===== Responsive Design ===== */
+@media screen and (max-width: 900px) {
   .content {
     flex-direction: column;
     align-items: center;
-    gap: 34px;
-  }
-
-  .skills {
-    width: 100%;
-    flex-direction: row;
-    justify-content: center;
   }
 
   .history {
-    width: 100%; /* Ensure history section takes full width */
+    width: 100%;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .skillImageContainer {
+    width: 100px;
+    height: 100px;
+  }
+
+  .skill p {
+    font-size: 20px;
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
