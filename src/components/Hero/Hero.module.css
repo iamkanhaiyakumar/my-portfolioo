@@ -45,17 +45,14 @@
   text-align: justify;
 }
 
-/* ===== Buttons ===== */
+/* ===== Buttons Container ===== */
 .btn {
   display: flex;
-  flex-wrap: wrap;
-  gap: 45px; 
+  flex-wrap: wrap; /* ✅ allows wrapping on mobile */
+  gap: 30px; /* reduced gap for better spacing */
   margin-top: 10px;
+  justify-content: flex-start;
 }
-.contactBtn {
-  margin-right: 25px; /* 👈 adds gap before the Resume button */
-}
-
 
 .contactBtn,
 .resumeBtn {
@@ -70,6 +67,8 @@
   transition: all 0.4s ease;
   border: none;
   cursor: pointer;
+  text-align: center;
+  min-width: 180px; /* ensures consistent button width */
 }
 
 .contactBtn:hover,
@@ -152,13 +151,24 @@
     text-align: center;
   }
 
-  .btn {
-    justify-content: center;
-  }
-
   .heroImg {
     width: 80%;
     margin-bottom: 40px;
+  }
+
+  /* ✅ Fix button overlapping */
+  .btn {
+    flex-direction: column; /* stack vertically */
+    align-items: center;
+    gap: 20px; /* add vertical spacing */
+  }
+
+  .contactBtn,
+  .resumeBtn {
+    width: 80%;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 20px;
   }
 }
 
