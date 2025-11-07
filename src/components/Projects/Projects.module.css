@@ -40,19 +40,46 @@
 }
 
 /* ===== Individual Project Card ===== */
-.projectCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* ✅ keeps buttons at bottom */
-  align-items: center;
-  background: linear-gradient(180deg, #576cbc 0%, #132a53 100%);
-  border-radius: 15px;
-  box-shadow: 10px 10px 19px 0 #04152d;
-  padding: 25px 24px;
+/* === Projects Grid Layout === */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 45px;
+  justify-content: center;
+  align-items: stretch;
   width: 100%;
-  min-height: 480px; /* ✅ uniform card height */
-  transition: all 0.3s ease;
+  margin: 70px auto;
+  padding: 0 5%;
 }
+
+/* === Responsive Tweaks === */
+@media screen and (max-width: 1200px) {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 per row for tablets */
+    gap: 35px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 per row on phones */
+    gap: 25px;
+  }
+}
+
+/* Optional: Single column on very tiny screens */
+@media screen and (max-width: 400px) {
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 .projectCard:hover {
   transform: translateY(-10px);

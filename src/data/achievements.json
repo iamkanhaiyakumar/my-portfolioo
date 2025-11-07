@@ -12,20 +12,24 @@
     ]
   },
   {
-    "role": "Research Paper Author",
-    "organisation": "IEEE Conference 2025",
-    "experiences": [
-      "Presented paper titled 'AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones for Safety Compliance' (DOI: 10.1109/11211593)."
-    ],
-    "imageSrc": "achievements/research.png",
-    "links": [
-      {
-        "label": "View Paper",
-        "url": "https://ieeexplore.ieee.org/document/11211593"
-      }
-    ]
-  },
-  {
+  "role": "Research Paper Author",
+  "organisation": "IEEE Conference 2025",
+  "experiences": [
+    "Presented paper titled 'AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones for Safety Compliance' (DOI: 10.1109/11211593)."
+  ],
+  "imageSrc": "achievements/research.png",
+  "links": [
+    {
+      "label": "View Paper",
+      "url": "https://ieeexplore.ieee.org/document/11211593"
+    },
+    {
+      "label": "View Certificate",
+      "url": "https://drive.google.com/file/d/1KF6pUX46g72Ct8BKegha3jO0-4Yp48uK/view?usp=drive_link"
+    }
+  ]
+},
+{
     "role": "Young Turks Finalist",
     "organisation": "Naukri Campus",
     "experiences": [

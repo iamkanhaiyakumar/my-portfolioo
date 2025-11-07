@@ -150,9 +150,9 @@
 
 
 /* ✅ On very small screens (like phones): 1 per row */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 300px) {
   .skills {
-    grid-template-columns: 1fr;
+    grid-template-columns: 3fr;
     gap: 25px;
   }
 }
