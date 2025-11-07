@@ -11,33 +11,48 @@ export const Contact = () => {
       </div>
 
       <ul className={styles.links}>
-        <li className={styles.link}>
-          <img src={getImageUrl("contact/emailIcon.png")} alt="Email icon" />
-          <a href="mailto:kanhaiyak0104@gmail.com">E-mail</a>
-        </li>
-
-        <li className={styles.link}>
-          <img
-            src={getImageUrl("contact/linkedinIcon.png")}
-            alt="LinkedIn icon"
-          />
+        {/* Email */}
+        <li>
           <a
-            href="https://www.linkedin.com/in/kanhaiyakumar01"
+            href="mailto:kanhaiyak0104@gmail.com"
+            className={styles.link}
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn
+            <img src={getImageUrl("contact/emailIcon.png")} alt="Email icon" />
+            <span>Email</span>
           </a>
         </li>
 
-        <li className={styles.link}>
-          <img src={getImageUrl("contact/githubIcon.png")} alt="Github icon" />
+        {/* LinkedIn */}
+        <li>
           <a
-            href="https://github.com/iamkanhaiyakumar"
+            href="https://www.linkedin.com/in/kanhaiyakumar01"
+            className={styles.link}
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub
+            <img
+              src={getImageUrl("contact/linkedinIcon.png")}
+              alt="LinkedIn icon"
+            />
+            <span>LinkedIn</span>
+          </a>
+        </li>
+
+        {/* GitHub */}
+        <li>
+          <a
+            href="https://github.com/iamkanhaiyakumar"
+            className={styles.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={getImageUrl("contact/githubIcon.png")}
+              alt="Github icon"
+            />
+            <span>GitHub</span>
           </a>
         </li>
       </ul>

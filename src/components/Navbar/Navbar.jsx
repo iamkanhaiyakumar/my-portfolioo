@@ -24,7 +24,7 @@ export const Navbar = () => {
           alt="Logo"
           className={styles.logoImg}
         />
-        <span>My Portfolio</span>
+        <span className={styles.my}>My Portfolio</span>
       </a>
 
       <div className={styles.menu}>
@@ -32,7 +32,7 @@ export const Navbar = () => {
         {!menuOpen && (
           <img
             className={styles.menuBtn}
-            src={getImageUrl("nav/menuIcon.png")}
+            src={getImageUrl("nav/menuIcon1.png")}
             alt="menu-button"
             onClick={() => setMenuOpen(true)}
           />
@@ -45,7 +45,7 @@ export const Navbar = () => {
           {/* Cross (Close) button inside the menu */}
           {menuOpen && (
             <img
-              src={getImageUrl("nav/closeIcon.png")}
+              src={getImageUrl("nav/close.png")}
               alt="close"
               className={styles.closeBtn}
               onClick={() => setMenuOpen(false)}
@@ -68,6 +68,9 @@ export const Navbar = () => {
             <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
           </li>
         </ul>
+
+        {/* Optional overlay behind mobile menu */}
+        {menuOpen && <div className={styles.overlay} onClick={() => setMenuOpen(false)} />}
       </div>
     </nav>
   );

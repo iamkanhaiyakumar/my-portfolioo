@@ -21,6 +21,9 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 10px;
+  background: linear-gradient(90deg, #0df159 0%, #e80505 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .text p {
@@ -34,31 +37,57 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 45px;
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
   margin: 0 auto 40px;
-  max-width: 800px;
+  max-width: 850px;
 }
 
-/* ===== Individual Link Item ===== */
+/* ===== Full Clickable Link Buttons ===== */
 .link {
   display: flex;
   align-items: center;
   gap: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 14px 25px;
+  background: linear-gradient(90deg, #19376d 0%, #0abde3 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 16px 30px;
   border-radius: 50px;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✅ Gradient Glow Effect on Hover */
+.link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 241, 89, 0.3),
+    rgba(232, 5, 5, 0.3)
+  );
+  transition: left 0.4s ease;
+}
+
+.link:hover::before {
+  left: 0;
 }
 
 .link:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-6px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(13, 241, 89, 0.4);
+  background: linear-gradient(90deg, #0df159 0%, #e80505 100%);
 }
 
 /* ===== Link Icon ===== */
@@ -67,26 +96,18 @@
   height: 28px;
   filter: brightness(1.1);
   transition: transform 0.3s ease;
+  z-index: 2;
 }
 
 .link:hover img {
   transform: scale(1.2);
 }
 
-/* ===== Anchor Text ===== */
-.link a {
-  text-decoration: none;
-  color: var(--color-text);
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: color 0.3s ease;
+/* ===== Link Text ===== */
+.link span {
+  position: relative;
+  z-index: 2;
 }
-
-.link a:hover {
-  color: var(--color-primary);
-}
-
 
 /* ===== Copyright Section ===== */
 .copyRight {
@@ -96,14 +117,16 @@
   font-size: 16px;
   opacity: 0.8;
   color: var(--color-text);
+  
 }
 
 .copyRight span {
   color: var(--color-primary);
   font-weight: 600;
+  
 }
 
-/* ===== Responsive ===== */
+/* ===== Responsive Design ===== */
 @media screen and (max-width: 768px) {
   .container {
     padding: 50px 5%;
@@ -121,6 +144,8 @@
   .link {
     width: 90%;
     justify-content: center;
+    font-size: 18px;
+    padding: 14px 20px;
   }
 
   .copyRight {

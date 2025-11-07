@@ -187,10 +187,17 @@
 
   .contactBtn,
   .resumeBtn {
-    width: 100%;
+    width: 130%;
     text-align: center;
-    font-size: 20px;
+    font-size: 22px;
     padding: 14px 0;
+    
+  }
+  .contactBtn:hover,
+  .resumeBtn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(90deg, #0df159 0%, #e80505 100%);
   }
 }
 
