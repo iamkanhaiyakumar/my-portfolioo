@@ -21,7 +21,7 @@
     "imageSrc": "projects/ResumeAnalyzer.jpg",
     "description": "An AI-powered tool that analyzes resumes, extracts key information, and evaluates candidates based on skill relevance using NLP and Machine Learning.",
     "skills": ["Python", "Streamlit", "NLP", "Machine Learning"],
-    "demo": "https://example.com/resume-analyzer-demo",
+    "demo": "https://ai-powered-resume-analyzer-kk.vercel.app/auth?next=/",
     "source": "https://github.com/iamkanhaiyakumar/AI-powered-Resume-Analyzer"
   },
   {
