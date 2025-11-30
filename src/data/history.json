@@ -1,4 +1,23 @@
 [
+   {
+    "role": "Python Project Intern",
+    "organisation": "Infosys Springboard Internship",
+    "startDate": "Aug, 2025",
+    "endDate": "Oct, 2025",
+    "experiences": [
+      "Worked on Machine Learning models",
+      "Developed AI solutions",
+      "Collaborated with cross-functional teams",
+      "Presented findings to stakeholders"
+    ],
+    "imageSrc": "history/google.png",
+    "links": [
+      {
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/18vOrcYdFcEGG5g8jrkEyGpbp3wdjkBZB/view?usp=drive_link"
+      }
+    ]
+  },
   {
     "role": "AI Project Intern",
     "organisation": "Infosys Springboard Internship",
@@ -18,6 +37,7 @@
       }
     ]
   },
+   
   {
     "role": "Research Paper Author",
     "organisation": "IEEE Conference Publication",
