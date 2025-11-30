@@ -44,6 +44,14 @@
     ]
   },
   {
+  "role": "Mentor",
+  "organisation": "LNCTE GDSC Chapter",
+  "experiences": [
+    "Mentor at GDSC LNCTE, guided 150+ students in the Google Gen AI Study Program and helped them increase productivity by 50%."
+  ],
+  "imageSrc": "achievements/volunteer.png"
+},
+  {
     "role": "Volunteer",
     "organisation": "LNCT College Fest",
     "experiences": [

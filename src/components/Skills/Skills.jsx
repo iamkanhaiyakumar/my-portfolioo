@@ -53,22 +53,22 @@ export const Skills = () => {
 
         {/* ====================== ROW 3 (Left → Right OR opposite) ====================== */}
         {/* <div className={`${styles.skills} ${styles.row3}`}>
-  {[...secondHalf, ...secondHalf].map((skill, id) => (
-    <div key={id} className={styles.skill}>
-      <a
-        href={skill.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.skillLink}
-      >
-        <div className={styles.skillImageContainer}>
-          <img src={getImageUrl(skill.imageSrc)} alt={skill.title} />
-        </div>
-      </a>
-      <p>{skill.title}</p>
-    </div>
-  ))}
-</div> */}
+        {[...secondHalf, ...secondHalf].map((skill, id) => (
+          <div key={id} className={styles.skill}>
+            <a
+              href={skill.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.skillLink}
+            >
+              <div className={styles.skillImageContainer}>
+                <img src={getImageUrl(skill.imageSrc)} alt={skill.title} />
+              </div>
+            </a>
+            <p>{skill.title}</p>
+          </div>
+        ))}
+      </div> */}
       </div>
     </section>
   );

@@ -77,12 +77,12 @@
 
 /* Direction Animations */
 .row1 {
-  animation: scrollRight 11s linear infinite;
+  animation: scrollRight 10s linear infinite;
   opacity: 0.95;
 }
 
 .row2 {
-  animation: scrollLeft 11s linear infinite;
+  animation: scrollLeft 10s linear infinite;
   opacity: 0.95;
 }
 /* .row3 {

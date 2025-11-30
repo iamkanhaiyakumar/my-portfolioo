@@ -14,7 +14,20 @@ export const Hero = () => {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <h1 className={styles.title}>
-          Hi, I'm <span className={styles.highlight}>Kanhaiya 👋</span>
+          Hi, I'm Kanhaiya{" "}
+          <motion.span
+            className={styles.highlight}
+            initial={{ rotate: 0 }}
+            animate={{ rotate: [0, 20, 0, 20, 0] }}
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ display: "inline-block", transformOrigin: "bottom right" }}
+          >
+            👋
+          </motion.span>
         </h1>
 
         <p className={styles.subtitle}>
