@@ -6,6 +6,7 @@
   margin: 80px 10%;
   text-align: center;
   animation: fadeIn 0.8s ease-in-out;
+  position: relative;
 }
 
 /* ===== Title ===== */
@@ -29,35 +30,103 @@
   border-radius: 4px;
 }
 
-/* ===== Skills Grid ===== */
+/* ===== Skills Container ===== */
 .skillsContainer {
   width: 100%;
   margin-top: 20px;
+  overflow: hidden;
+  position: relative;
 }
 
+/* ========== FADE EDGE EFFECT (Premium look) ========== */
+.skillsContainer::before,
+.skillsContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.skillsContainer::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg), transparent);
+}
+
+.skillsContainer::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg), transparent);
+}
+
+/* ===== Two Scrolling Rows ===== */
 .skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 40px;
-  justify-items: center;
-  align-items: center;
-  margin-top: 30px;
-  width: 100%;
-  margin-bottom: 80px;
+  display: flex;
+  gap: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 10px 0;
+  width: max-content;
+}
+
+/* Optional: Pause on Hover */
+.skills:hover {
+  animation-play-state: paused;
+}
+
+/* Direction Animations */
+.row1 {
+  animation: scrollRight 11s linear infinite;
+  opacity: 0.95;
+}
+
+.row2 {
+  animation: scrollLeft 11s linear infinite;
+  opacity: 0.95;
+}
+/* .row3 {
+  animation: scrollRight 11s linear infinite; /* same or opposite */
+  /* opacity: 0.92; */
+/* } */ 
+
+
+/* Smooth Infinite Loop */
+@keyframes scrollRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes scrollLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* ===== Skill Card ===== */
 .skill {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 12px;
+  transition: 0.3s ease;
+  padding-bottom: 12px;  /* ⭐ important */
+  transform: none !important;
+}
+.skill p {
+  transition: none !important;
+  transform: none !important;
 }
 
+
+/* Subtle Lift + Glow */
 .skill:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-12px) scale(79) rotateX(12deg);
+  filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.3));
+}
+.skill:hover p {
+  color: var(--color-primary);
+  text-shadow: 0 0 10px var(--color-primary);
 }
 
 /* ===== Skill Icon ===== */
@@ -69,7 +138,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: 0.3s ease;
+  border: 2px solid transparent;
+  
+}
+
+.skillImageContainer:hover {
+  background-color: var(--color-primary);
+ transform: scale(.85) rotate(8deg);
+  background-color: var(--color-primary);
+  box-shadow: 0 0 25px var(--color-primary);
 }
 
 .skillImageContainer img {
@@ -78,65 +156,50 @@
   object-fit: contain;
 }
 
-.skillImageContainer:hover {
-  background-color: var(--color-primary);
-  transform: scale(1.15);
-  cursor: pointer;
-}
-
-/* ===== Title under icon ===== */
+/* ===== Text Under Icon ===== */
 .skill p {
   font-size: 20px;
-  font-family: var(--font-roboto);
   font-weight: 500;
+  font-family: var(--font-roboto);
   color: var(--color-text);
+  transition: 0.3s ease;
 }
 
-/* ===== Skill Link Hover ===== */
+.skill:hover p {
+  color: var(--color-primary);
+}
+
+/* ===== Skill Link ===== */
 .skillLink {
   display: inline-block;
-  transition: transform 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .skillLink:hover {
   transform: scale(1.1);
-  cursor: pointer;
 }
 
-/* ===== Responsive: Medium Screens ===== */
+/* ===== Responsive ===== */
 @media screen and (max-width: 768px) {
-  .skills {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
+  .skills { gap: 20px; }
 
   .skillImageContainer {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
 
   .skillImageContainer img {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
   }
 }
 
-/* ===== Responsive: Small Screens ===== */
 @media screen and (max-width: 300px) {
-  .skills {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
+  .skills { gap: 15px; }
 }
 
-/* ===== Animation ===== */
+/* ===== Fade In Page ===== */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
