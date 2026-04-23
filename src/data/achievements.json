@@ -1,93 +1,62 @@
 [
   {
-    "role": "Patent Published – Seizure Detector and Monitor",
-    "organisation": "Indian Patent Office",
-    "startDate": "June, 2025",
-    "endDate": "",
-    "imageSrc": "achievements/patent1.png",
-    "experiences": [
-      "Published patent for a wearable EMG-based seizure detection system.",
-      "Developed real-time monitoring with Bluetooth alert functionality.",
-      "Filed under Application No. 202541047220 A in Patent Office Journal 23/2025."
-    ],
+    "role": "NCC Cadet (Rank - LCPL)",
+    "organisation": "12 MP BN Bhopal",
+    "experiences": ["Completed NCC training with leadership and discipline excellence."],
+    "imageSrc": "achievements/ncc.png",
     "links": [
       {
-        "label": "View Patent",
-        "url": "https://ipindia.gov.in"
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/1TVKjD-6ZGUAujO9pbUmYANf9qZB3vUan/view?usp=sharing"
       }
     ]
   },
-
   {
-    "role": "Patent Published – AI-Powered Diagnosis of Erythemato-Squamous Diseases",
-    "organisation": "Indian Patent Office",
-    "startDate": "March, 2025",
-    "endDate": "",
-    "imageSrc": "achievements/patent2.png",
+  "role": "Research Paper Author",
+  "organisation": "IEEE Conference 2025",
+  "experiences": [
+    "Presented paper titled 'AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones for Safety Compliance' (DOI: 10.1109/11211593)."
+  ],
+  "imageSrc": "achievements/research.png",
+  "links": [
+    {
+      "label": "View Paper",
+      "url": "https://ieeexplore.ieee.org/document/11211593"
+    },
+    {
+      "label": "View Certificate",
+      "url": "https://drive.google.com/file/d/1KF6pUX46g72Ct8BKegha3jO0-4Yp48uK/view?usp=drive_link"
+    }
+  ]
+},
+{
+    "role": "Young Turks Finalist",
+    "organisation": "Naukri Campus",
     "experiences": [
-      "Published patent for an AI-based diagnostic system using ML/DL models.",
-      "Integrated MATLAB GUI for interactive disease classification.",
-      "Filed under Application No. 202541026351 A."
+      "Secured 16th rank in Naukri Campus Young Turks Final Round and received ₹10,000 award."
     ],
-    "links": [
-      {
-        "label": "View Patent",
-        "url": "https://ipindia.gov.in"
-      }
-    ]
-  },
-
-  {
-    "role": "First Prize Winner",
-    "organisation": "Tronix Trivia – Medhanvesh 2024",
-    "startDate": "",
-    "endDate": "",
-    "imageSrc": "achievements/trophy1.png",
-    "experiences": [
-      "Won 1st place in a technical electronics quiz competition.",
-      "Demonstrated strong analytical & circuit-level knowledge."
-    ],
+    "imageSrc": "achievements/award.png",
      "links": [
       {
-        "label": "Event Details",
-        "url": "https://www.saeaindia.org/e-baja"
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/1em3haNyAVQupborNMe4FuWwCWkOEHo00/view?usp=drive_link"
       }
     ]
   },
-
   {
-    "role": "Second Prize Winner",
-    "organisation": "Hack4SDG – Synergia 2025",
-    "startDate": "",
-    "endDate": "",
-    "imageSrc": "achievements/trophy2.png",
-    "experiences": [
-      "Secured 2nd place in engineering-focused hackathon.",
-      "Built innovative solutions addressing UN SDG themes."
-    ],
-     "links": [
-      {
-        "label": "Event Details",
-        "url": "https://www.saeaindia.org/e-baja"
-      }
-    ]
-  },
-
+  "role": "Mentor",
+  "organisation": "LNCTE GDSC Chapter",
+  "experiences": [
+    "Mentor at GDSC LNCTE, guided 150+ students in the Google Gen AI Study Program and helped them increase productivity by 50%."
+  ],
+  "imageSrc": "achievements/volunteer.png"
+},
   {
     "role": "Volunteer",
-    "organisation": "SAE E-BAJA Event",
-    "startDate": "",
-    "endDate": "",
-    "imageSrc": "achievements/volunteer.png",
+    "organisation": "LNCT College Fest",
     "experiences": [
-      "Assisted braking system operations in national-level motorsport event.",
-      "Collaborated with engineering teams ensuring event readiness."
+      "Volunteered in the college fest, managing 10 teams and over 60 participants."
     ],
-    "links": [
-      {
-        "label": "Event Details",
-        "url": "https://www.saeaindia.org/e-baja"
-      }
-    ]
+    "imageSrc": "achievements/volunteer.png"
   }
 ]

@@ -14,7 +14,7 @@ export const Contact = () => {
         {/* Email */}
         <li>
           <a
-            href="mailto:anumallasarayu@gmail.com"
+            href="mailto:kanhaiyak0104@gmail.com"
             className={styles.link}
             target="_blank"
             rel="noopener noreferrer"
@@ -27,7 +27,7 @@ export const Contact = () => {
         {/* LinkedIn */}
         <li>
           <a
-            href="https://www.linkedin.com/in/sarayu-anumalla-9580b9259"
+            href="https://www.linkedin.com/in/kanhaiyakumar01"
             className={styles.link}
             target="_blank"
             rel="noopener noreferrer"
@@ -43,7 +43,7 @@ export const Contact = () => {
         {/* GitHub */}
         <li>
           <a
-            href="https://github.com/Anumallasarayu123"
+            href="https://github.com/iamkanhaiyakumar"
             className={styles.link}
             target="_blank"
             rel="noopener noreferrer"
@@ -57,10 +57,10 @@ export const Contact = () => {
         </li>
       </ul>
 
-      {/* Copyright Section */}
+      {/* ✅ Copyright Section */}
       <div className={styles.copyRight}>
         <p>
-          © {new Date().getFullYear()} <span>Anumalla Sarayu</span> • All rights
+          © {new Date().getFullYear()} <span>Kanhaiya Kumar</span> • All rights
           reserved.
         </p>
       </div>

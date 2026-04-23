@@ -14,7 +14,7 @@ export const Hero = () => {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <h1 className={styles.title}>
-          Hi, I'm Sarayu{" "}
+          Hi, I'm Kanhaiya{" "}
           <motion.span
             className={styles.highlight}
             initial={{ rotate: 0 }}
@@ -32,16 +32,15 @@ export const Hero = () => {
 
         <p className={styles.subtitle}>
           <span className={styles.gradientText}>
-            Electronics & Communication Engineering Student
+            AI & Machine Learning Enthusiast
           </span>
         </p>
 
         <p className={styles.description}>
-          Passionate about developing innovative ML-powered systems and embedded
-          solutions. Experienced in building EMG-based seizure detectors, facial
-          recognition attendance systems, and full-stack web applications.
-          Skilled in <b>Python</b>, <b>MATLAB</b>, <b>MySQL</b>, <b>OpenCV</b>,
-          and <b>Arduino</b>.
+          Passionate about building scalable AI solutions and real-time computer
+          vision systems. Experienced in YOLO-based object detection, full-stack
+          web development, and data-driven model optimization. Skilled in{" "}
+          <b>Python</b>, <b>C++</b>, and <b>MySQL</b>.
         </p>
 
         {/* === Buttons === */}
@@ -50,7 +49,7 @@ export const Hero = () => {
             📩 Contact Me
           </a>
           <a
-            href="https://drive.google.com/file/d/18AWtZOts2QMcRMPiZmu8DpRtdQk3p-TB/view?usp=sharing"
+            href="https://drive.google.com/file/d/1li4Sca2cabe92whgVI4L2hQFZ43haJ3C/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.resumeBtn}
@@ -66,7 +65,7 @@ export const Hero = () => {
         alt="Hero illustration"
         className={styles.heroImg}
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: [0, -15, 0] }}
+        animate={{ opacity: 1, y: [0, -15, 0] }} // Floating effect
         transition={{
           duration: 10,
           repeat: Infinity,

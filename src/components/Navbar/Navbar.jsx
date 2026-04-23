@@ -21,10 +21,10 @@ export const Navbar = () => {
       <a className={styles.logo} href="/">
         <img
           src={getImageUrl("nav/logo.png")}
-          alt="Sarayu Logo"
+          alt="Logo"
           className={styles.logoImg}
         />
-        <span className={styles.my}>Sarayu Portfolio</span>
+        <span className={styles.my}>My Portfolio</span>
       </a>
 
       <div className={styles.menu}>
@@ -53,36 +53,24 @@ export const Navbar = () => {
           )}
 
           <li>
-            <a href="#about" onClick={() => setMenuOpen(false)}>
-              About
-            </a>
+            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
           </li>
           <li>
-            <a href="#skills" onClick={() => setMenuOpen(false)}>
-              Skills
-            </a>
+            <a href="#experience" onClick={() => setMenuOpen(false)}>Skills</a>
           </li>
           <li>
-            <a href="#projects" onClick={() => setMenuOpen(false)}>
-              Projects
-            </a>
+            <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
           </li>
           <li>
-            <a href="#achievements" onClick={() => setMenuOpen(false)}>
-              Achievements
-            </a>
+            <a href="#achievements" onClick={() => setMenuOpen(false)}>Achievements</a>
           </li>
           <li>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>
-              Contact
-            </a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
           </li>
         </ul>
 
         {/* Optional overlay behind mobile menu */}
-        {menuOpen && (
-          <div className={styles.overlay} onClick={() => setMenuOpen(false)} />
-        )}
+        {menuOpen && <div className={styles.overlay} onClick={() => setMenuOpen(false)} />}
       </div>
     </nav>
   );

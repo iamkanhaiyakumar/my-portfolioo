@@ -1,28 +1,13 @@
 [
   {
-    "title": "Python",
-    "imageSrc": "skills/python.png",
-    "link": "https://www.w3schools.com/python/"
-  },
-  {
-    "title": "C",
-    "imageSrc": "skills/c.png",
-    "link": "https://www.w3schools.com/c/"
-  },
-  {
     "title": "C++",
-    "imageSrc": "skills/cpp.png",
+    "imageSrc": "skills/figma.png",
     "link": "https://www.w3schools.com/cpp/"
   },
   {
-    "title": "Java",
-    "imageSrc": "skills/java.png",
-    "link": "https://www.w3schools.com/java/"
-  },
-  {
-    "title": "SQL",
-    "imageSrc": "skills/sql.png",
-    "link": "https://www.w3schools.com/sql/"
+    "title": "Python",
+    "imageSrc": "skills/python.png",
+    "link": "https://www.w3schools.com/python/"
   },
   {
     "title": "HTML",
@@ -35,24 +20,25 @@
     "link": "https://www.w3schools.com/css/"
   },
   {
-    "title": "Tailwind CSS",
-    "imageSrc": "skills/tailwind.png",
+    "title": "TailWind CSS",
+    "imageSrc": "skills/graphql.png",
     "link": "https://tailwindcss.com/docs"
   },
   {
     "title": "JavaScript",
-    "imageSrc": "skills/javascript.png",
+    "imageSrc": "skills/mongodb.png",
     "link": "https://www.w3schools.com/js/"
+  },
+  
+  {
+    "title": "MySQL",
+    "imageSrc": "skills/MYSQL.png",
+    "link": "https://www.w3schools.com/mysql/"
   },
   {
     "title": "Machine Learning",
-    "imageSrc": "skills/ml.png",
+    "imageSrc": "skills/ML.png",
     "link": "https://scikit-learn.org/stable/"
-  },
-  {
-    "title": "Pandas",
-    "imageSrc": "skills/pandas.png",
-    "link": "https://pandas.pydata.org/docs/"
   },
   {
     "title": "OpenCV",
@@ -60,68 +46,43 @@
     "link": "https://docs.opencv.org/"
   },
   {
-    "title": "MATLAB",
-    "imageSrc": "skills/matlab.png",
-    "link": "https://www.mathworks.com/help/matlab/"
+    "title": "Pandas",
+    "imageSrc": "skills/pandas.png",
+    "link": "https://pandas.pydata.org/docs/"
   },
   {
-    "title": "Arduino",
-    "imageSrc": "skills/arduino.png",
-    "link": "https://www.arduino.cc/"
+    "title": "NumPy",
+    "imageSrc": "skills/NumPy.png",
+    "link": "https://numpy.org/doc/"
   },
   {
-    "title": "Git & GitHub",
-    "imageSrc": "skills/git.png",
-    "link": "https://docs.github.com/"
-  },
-  {
-    "title": "AWS (EC2, S3)",
-    "imageSrc": "skills/aws.png",
-    "link": "https://aws.amazon.com/"
-  },
-  {
-    "title": "Azure Fundamentals",
-    "imageSrc": "skills/azure.png",
-    "link": "https://azure.microsoft.com/"
-  },
-  {
-    "title": "Verilog",
-    "imageSrc": "skills/verilog.png",
-    "link": "https://www.chipverify.com/verilog/verilog-tutorial"
-  },
-  {
-    "title": "Synopsys",
-    "imageSrc": "skills/synopsys.png",
-    "link": "https://www.synopsys.com/"
-  },
-  {
-    "title": "Cadence",
-    "imageSrc": "skills/cadence.png",
-    "link": "https://www.cadence.com/"
-  },
-  {
-    "title": "VS Code",
-    "imageSrc": "skills/vscode.png",
-    "link": "https://code.visualstudio.com/docs"
-  },
-  {
-    "title": "IntelliJ",
-    "imageSrc": "skills/intellij.png",
-    "link": "https://www.jetbrains.com/idea/documentation/"
-  },
-  {
-    "title": "Linux",
-    "imageSrc": "skills/linux.png",
-    "link": "https://www.linux.org/"
+    "title": "Matplotlib",
+    "imageSrc": "skills/Matplotlib.png",
+    "link": "https://matplotlib.org/stable/contents.html"
   },
   {
     "title": "Jupyter Notebook",
-    "imageSrc": "skills/jupyter.png",
-    "link": "https://docs.jupyter.org/"
+    "imageSrc": "skills/JupyterNotebook.png",
+    "link": "https://docs.jupyter.org/en/latest/"
   },
   {
     "title": "Google Colab",
-    "imageSrc": "skills/colab.png",
+    "imageSrc": "skills/GoogleColab.png",
     "link": "https://colab.research.google.com/"
+  },
+  {
+    "title": "VS Code",
+    "imageSrc": "skills/VSCode.png",
+    "link": "https://code.visualstudio.com/docs"
+  },
+  {
+    "title": "Git & GitHub",
+    "imageSrc": "skills/Git&GitHub.png",
+    "link": "https://docs.github.com/"
+  },
+  {
+    "title": "Cloud Computing",
+    "imageSrc": "skills/cloud.png",
+    "link": "https://aws.amazon.com/what-is-cloud-computing/"
   }
 ]

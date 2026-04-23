@@ -1,60 +1,63 @@
 [
-  {
-    "role": "Patent Author – Seizure Detector and Monitor",
-    "organisation": "Indian Patent Office",
-    "startDate": "June, 2025",
-    "endDate": "Present",
+   {
+    "role": "Python Project Intern",
+    "organisation": "Infosys Springboard Internship",
+    "startDate": "Aug, 2025",
+    "endDate": "Oct, 2025",
     "experiences": [
-      "Developed a low-cost wearable seizure detection system using EMG sensors and ESP32.",
-      "Implemented real-time EMG signal processing for seizure classification.",
-      "Integrated Bluetooth-based alert alerts for caregivers.",
-      "Published under Application No. 202541047220 A in The Patent Office Journal (23/2025)."
+      "Worked on Machine Learning models",
+      "Developed AI solutions",
+      "Collaborated with cross-functional teams",
+      "Presented findings to stakeholders"
     ],
-    "imageSrc": "history/patent1.png",
+    "imageSrc": "history/google.png",
     "links": [
       {
-        "label": "View Patent",
-        "url": "https://ipindia.gov.in" 
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/18vOrcYdFcEGG5g8jrkEyGpbp3wdjkBZB/view?usp=drive_link"
       }
     ]
   },
-
   {
-    "role": "Patent Author – AI-Powered Diagnosis of Erythemato-Squamous Diseases",
-    "organisation": "Indian Patent Office",
-    "startDate": "March, 2025",
-    "endDate": "Present",
+    "role": "AI Project Intern",
+    "organisation": "Infosys Springboard Internship",
+    "startDate": "Oct, 2024",
+    "endDate": "Dec, 2024",
     "experiences": [
-      "Developed an ML/DL-based diagnostic model for skin disease classification.",
-      "Integrated MATLAB GUI for clinical decision support.",
-      "Performed dataset preprocessing, model training, and accuracy optimization.",
-      "Published under Application No. 202541026351 A by the Indian Patent Office."
+      "Worked on Machine Learning models",
+      "Developed AI solutions",
+      "Collaborated with cross-functional teams",
+      "Presented findings to stakeholders"
     ],
-    "imageSrc": "history/patent2.png",
+    "imageSrc": "history/google.png",
     "links": [
       {
-        "label": "View Patent",
-        "url": "https://ipindia.gov.in"
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/1Mw2kp41jncZkQfyzLJPhA8-8LYcmh6ZP/view?usp=sharing"
       }
     ]
   },
-
+   
   {
-    "role": "Event Volunteer",
-    "organisation": "SAE E-BAJA National Motorsports Event",
-    "startDate": "",
-    "endDate": "",
+    "role": "Research Paper Author",
+    "organisation": "IEEE Conference Publication",
+    "startDate": "May, 2024",
+    "endDate": "Present",
     "experiences": [
-      "Assisted technical teams in the brakes system domain.",
-      "Supported operations and safety workflows during the national motorsports event.",
-      "Collaborated closely with engineering teams for event execution."
+      "Published a research paper on PPE detection using YOLO models",
+      "Implemented YOLO-based deep learning models for enhanced detection accuracy",
+      "Performed extensive dataset preprocessing and model evaluation",
+      "Presented paper findings in IEEE International Conference 2024"
     ],
-    "imageSrc": "history/volunteer.png",
+    "imageSrc": "history/research.png",
     "links": [
       {
-        "label": "Event Overview",
-        "url": "https://www.saeaindia.org/e-baja"
+        "label": "View Paper",
+        "url": "https://ieeexplore.ieee.org/document/11211593"
       }
     ]
   }
 ]
+
+
+
