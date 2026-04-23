@@ -30,13 +30,13 @@
   right: 20px;
   /* 🔥 fixed alignment */
 
-  width: 380px;
+  width: 480px;
   /* 🔥 reduced */
   height: 450px;
 
   max-width: calc(100vw - 40px);
   /* 🔥 FIX: prevents overflow */
-  max-height: 80vh;
+  max-height: 70vh;
 
   backdrop-filter: blur(14px);
   background: rgba(255, 255, 255, 0.95);
