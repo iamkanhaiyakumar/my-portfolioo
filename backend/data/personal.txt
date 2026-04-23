@@ -1,0 +1,147 @@
+Kanhaiya Kumar - AI/ML Engineer Portfolio Knowledge Base
+
+Basic Information:
+Name: Kanhaiya Kumar
+Location: Bhopal, Madhya Pradesh, India
+Phone: +91 6206686966
+Email: kanhaiyak0104@gmail.com
+
+Professional Summary:
+Kanhaiya Kumar is an aspiring AI/ML Engineer with hands-on experience in computer vision, YOLO-based object detection, and machine learning applications. He is proficient in Python and C++ and has strong foundations in Data Structures, Algorithms, and Object-Oriented Programming. He has experience building real-time vision systems and ML-powered web applications. He is currently working with Generative AI using LangChain and Retrieval-Augmented Generation (RAG).
+
+Education:
+- B.Tech in Computer Science (AI/ML)
+  Lakshmi Narain College of Technology Excellence, Bhopal
+  Duration: 2022 - 2026
+  CGPA: 7.43/10
+
+- Senior Secondary Education (BSEB)
+  S.B.S.S, Begusarai, Bihar
+  Percentage: 67%
+  Duration: 2019 - 2021
+
+  Data of birth: 01-06-2004
+
+Internship Experience:
+Infosys Springboard Internship (Oct 2024 – Dec 2024)
+Role: AI Project Intern (Virtual)
+- Built a YOLO-based PPE detection system
+- Achieved 92% detection accuracy
+- Performed data preprocessing and annotation
+- Used metrics: accuracy, precision, recall, F1-score
+- Integrated OpenCV for real-time detection
+- Added audio and visual alerts
+- Worked in collaborative agile environment
+
+Technical Skills:
+Programming Languages:
+- Python
+- C++
+
+Machine Learning & AI:
+- PyTorch
+- TensorFlow
+- scikit-learn
+- OpenCV
+
+Generative AI:
+- LangChain
+- Retrieval-Augmented Generation (RAG)
+- Prompt Engineering
+- LLM Applications
+
+Data Analysis:
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+
+Backend & Web:
+- FastAPI
+- HTML
+- CSS
+- Tailwind CSS
+
+Databases:
+- MySQL
+- SQLite
+
+Tools:
+- Git
+- GitHub
+- VS Code
+- Jupyter Notebook
+- Google Colab
+
+Core Concepts:
+- Data Structures & Algorithms
+- Object-Oriented Programming
+- DBMS
+- Operating Systems
+- Machine Learning
+
+Projects:
+
+1. PPE Detection System
+Technologies: YOLOv8, OpenCV, Computer Vision
+- Built real-time PPE detection system
+- Achieved 92% accuracy
+- Trained on 3000+ annotated images
+- Reduced false positives by 15%
+- Achieved 25+ FPS real-time performance
+
+2. AI Blog Content Assistant
+Technologies: LangChain, Hugging Face, Streamlit
+- Built AI-based blog generator
+- Used prompt engineering for structured output
+- Developed Streamlit UI with real-time response
+- Added PDF export feature
+- Used environment variables for API security
+
+3. Job Role Prediction Web App
+Technologies: Python, Machine Learning, MySQL
+- Built ML model using Random Forest
+- Achieved 88% accuracy
+- Processed 500+ user profiles
+- Designed responsive UI with Tailwind CSS
+- Improved performance by 30%
+
+Research & Publication:
+- Title: AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones
+- Published in IEEE Conference
+- DOI: 10.1109/11211593
+- Focus: Real-time industrial safety using AI
+
+Achievements:
+- Secured 16th rank in Naukri Campus Young Turks 2024
+- Won ₹10,000 award
+- 3-star rating in C++ and Python on HackerRank
+- Mentor at GDSC LNCTE (guided 150+ students)
+- NCC Cadet (Rank LCPL), 12 MP BN Bhopal
+
+Coding Profiles:
+- LeetCode
+- HackerRank
+
+Behavioral Traits:
+- Strong problem-solving skills
+- Good communication skills
+- Quick learner
+- Adaptable to new technologies
+
+Use Cases for AI Assistant:
+- Answer questions about Kanhaiya Kumar
+- Explain his projects
+- Describe his skills
+- Evaluate suitability for AI/ML roles
+- Provide summary of experience
+
+Kanhaiya Kumar is a B.Tech CSE (AI/ML) student from Bhopal, India.
+
+GitHub: https://github.com/iamkanhaiyakumar  
+LinkedIn: https://www.linkedin.com/in/your-linkedin-id  
+Portfolio: https://kanhaiya-kr-portfolio.vercel.app  
+
+Resume: https://your-domain.com/Kanhaiya_Resume.pdf
+
+He is an aspiring AI/ML Engineer skilled in Python, Machine Learning, Computer Vision, and Generative AI.

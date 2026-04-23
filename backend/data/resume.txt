@@ -1,0 +1,24 @@
+Kanhaiya Kumar is a B.Tech CSE AIML student.
+He is skilled in Python, C++, Machine Learning.
+He completed Infosys Springboard Internship.
+Kanhaiya Kumar is a B.Tech Computer Science (AI/ML) student from Bhopal, Madhya Pradesh, India.
+
+He is an aspiring AI/ML Engineer with skills in Python, C++, Machine Learning, Computer Vision, and Generative AI.
+
+He has completed an AI internship at Infosys Springboard.
+
+He has built projects like:
+- YOLO PPE Detection System (92% accuracy)
+- AI Blog Content Assistant (LangChain + HuggingFace)
+- Job Role Prediction Web App
+
+He is actively exploring AI agents, RAG systems, and real-time AI applications.
+
+Contact:
+Email: kanhaiyak0104@gmail.com
+Phone: +91 6206686966
+Contact: +91 6206686966
+whatsapp: +91 620668696
+whatsapp number: +91 620668696
+
+Location: Bhopal, Madhya Pradesh, India

@@ -1,0 +1,2 @@
+YOLO PPE detection system with 92% accuracy.
+AI Blog Content Assistant using LangChain and HuggingFace.

@@ -7,6 +7,8 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Projects } from "./components/Projects/Projects";
 import { Achievements } from "./components/Achievements/Achievements";
 import { Skills } from "./components/Skills/Skills";
+import Chatbot from "./components/Chatbot/Chatbot";
+
 // import { Toggle } from "./components/Toggle/Toggle";
 
 import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop";
@@ -24,6 +26,7 @@ function App() {
       <Contact />
       <ScrollToTop />
       <WhatsAppButton />
+      <Chatbot />
       {/* <Toggle /> */}
     </div>
   );

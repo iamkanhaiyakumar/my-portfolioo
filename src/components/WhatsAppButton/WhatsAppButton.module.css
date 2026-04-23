@@ -1,7 +1,7 @@
 .whatsappBtn {
   position: fixed;
   bottom: 25px;
-  right: 10px;
+  left: 10px;   /* ✅ changed */
   background-color: #25d366;
   border: none;
   border-radius: 50%;
@@ -16,22 +16,22 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
 .whatsappBtn:hover {
   transform: scale(1.15);
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
 }
-/* ✅ Responsive Fix - Mobile alignment */
+
+/* ✅ Mobile Fix */
 @media screen and (max-width: 800px) {
   .whatsappBtn {
     bottom: 80px;
-    right: 10px;
+    left: 10px;   /* ✅ changed */
   }
 }
 
 @media screen and (max-height: 600px) {
   .whatsappBtn {
-    bottom: 80px; /* adds more vertical space for shorter screens */
+    bottom: 80px;
   }
 }
 

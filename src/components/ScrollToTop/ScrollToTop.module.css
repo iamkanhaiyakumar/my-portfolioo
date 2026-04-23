@@ -1,9 +1,10 @@
 @import "../../vars.css";
+
 /* ===== Scroll To Top Button ===== */
 .scrollToTop {
   position: fixed;
-  bottom: 110px; /* 👈 Increased gap above WhatsApp */
-  right: 10px;
+  bottom: 110px; /* above WhatsApp */
+  left: 10px;   /* ✅ moved to left */
   background-color: var(--color-primary);
   border: none;
   border-radius: 50%;
@@ -19,23 +20,9 @@
 }
 
 .scrollToTop:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-/* ✅ Responsive Fix - Mobile Spacing */
-@media screen and (max-width: 800px) {
-  .scrollToTop {
-    bottom: 100px; /* slightly higher above WhatsApp */
-    right: 10px;
-  }
-}
-
-@media screen and (max-height: 500px) {
-  .scrollToTop {
-    bottom: 100px; /* adds more gap if viewport is short */
-    right: 10px;
-  }
+  background: linear-gradient(135deg, #0df159 0%, #e80505 100%);
 }
 
 .scrollToTop img {
@@ -45,16 +32,11 @@
   transition: transform 0.3s ease;
 }
 
-.scrollToTop:hover {
-  transform: scale(1.15);
-  background: linear-gradient(135deg, #0df159 0%, #e80505 100%);
-}
-
 .scrollToTop:hover img {
   transform: translateY(-3px);
 }
 
-/* Smooth Fade-In Animation */
+/* Smooth Fade-In */
 .scrollToTop {
   animation: fadeIn 0.4s ease-in;
 }
@@ -70,13 +52,28 @@
   }
 }
 
-/* Responsive */
+/* ✅ Responsive Fix */
+@media screen and (max-width: 800px) {
+  .scrollToTop {
+    bottom: 100px;
+    left: 10px;   /* ✅ fixed */
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .scrollToTop {
+    bottom: 100px;
+    left: 10px;   /* ✅ fixed */
+  }
+}
+
+/* 📱 Mobile Final Adjustment */
 @media screen and (max-width: 768px) {
   .scrollToTop {
     width: 45px;
     height: 45px;
-    right: 20px;
-    bottom: 25px;
+    left: 15px;   /* ✅ fixed */
+    bottom: 90px; /* above WhatsApp properly */
   }
 
   .scrollToTop img {
