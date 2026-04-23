@@ -32,7 +32,7 @@
 
   width: 380px;
   /* 🔥 reduced */
-  height: 600px;
+  height: 450px;
 
   max-width: calc(100vw - 40px);
   /* 🔥 FIX: prevents overflow */
