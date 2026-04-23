@@ -193,9 +193,10 @@ class Query(BaseModel):
 def chat(q: Query):
     try:
         history = get_history()
+        question = q.question.lower()
 
-        # 🔗 structured quick responses
-        if "resume" in q.question.lower():
+        # 🔗 BUTTON RESPONSES (ADDED ONLY)
+        if "resume" in question:
             return {
                 "type": "resume",
                 "answer": "Here is his resume",
@@ -204,9 +205,25 @@ def chat(q: Query):
                 }
             }
 
-        # =========================
+        if any(word in question for word in ["github", "repo", "repository"]):
+            return {
+                "type": "github",
+                "answer": "Here is his GitHub profile",
+                "links": {
+                    "github": "https://github.com/iamkanhaiyakumar"
+                }
+            }
+
+        if any(word in question for word in ["linkedin", "linked in"]):
+            return {
+                "type": "linkedin",
+                "answer": "Here is his LinkedIn profile",
+                "links": {
+                    "linkedin": "https://www.linkedin.com/in/kanhaiyak0104"
+                }
+            }
+
         # 🧠 TOOL SELECTION
-        # =========================
         tool = (
             tool_selector_prompt
             | chat_model
@@ -216,9 +233,7 @@ def chat(q: Query):
             "history": history
         }).strip().lower()
 
-        # =========================
         # 🔥 TOOL EXECUTION
-        # =========================
         if tool == "github":
             data = github_tool()
         elif tool == "portfolio":
@@ -226,7 +241,7 @@ def chat(q: Query):
         else:
             data = rag_tool(q.question)
 
-        # combine everything
+        # 🔄 COMBINED DATA
         combined = f"""
 {data}
 
@@ -237,6 +252,7 @@ GitHub Count:
 {github_tool().get("total_projects")}
 """
 
+        # 🤖 FINAL RESPONSE
         response = (
             answer_prompt
             | chat_model
@@ -247,10 +263,14 @@ GitHub Count:
             "history": history
         })
 
+        # 💬 MEMORY
         chat_history.append(HumanMessage(content=q.question))
         chat_history.append(AIMessage(content=response))
 
-        return {"type": "text", "answer": response.strip()}
+        return {
+            "type": "text",
+            "answer": response.strip()
+        }
 
     except Exception as e:
         return {"error": str(e)}
