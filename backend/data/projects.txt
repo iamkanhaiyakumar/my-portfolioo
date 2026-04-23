@@ -1,2 +1,59 @@
-YOLO PPE detection system with 92% accuracy.
-AI Blog Content Assistant using LangChain and HuggingFace.
+[PERSON]
+Name: Kanhaiya Kumar
+Location: Bhopal, Madhya Pradesh
+Role: AI/ML Engineer (Fresher)
+
+[SUMMARY]
+Aspiring AI/ML Engineer with experience in computer vision, YOLO-based detection, and machine learning applications. Skilled in Python, C++, and building real-time AI systems. Currently working on Generative AI using LangChain and RAG.
+
+[SKILLS]
+Programming: Python, C++
+AI/ML: PyTorch, TensorFlow, scikit-learn, OpenCV
+Generative AI: LangChain, RAG, Prompt Engineering
+Data: Pandas, NumPy, Matplotlib
+Web: HTML, CSS, Tailwind
+Database: MySQL, SQLite
+
+[INTERNSHIP]
+Company: Infosys Springboard
+Role: AI Project Intern
+Duration: Oct 2024 – Dec 2024
+Work:
+- Built PPE detection system using YOLO
+- Achieved 92% accuracy
+- Implemented real-time alerts using OpenCV
+
+[PROJECT_1]
+Name: PPE Detection System
+Tech: YOLOv8, OpenCV
+Details:
+- 92% accuracy
+- 3000+ images trained
+- 25+ FPS real-time system
+- Reduced false positives by 15%
+
+[PROJECT_2]
+Name: AI Blog Content Assistant
+Tech: LangChain, HuggingFace, Streamlit
+Details:
+- Generates blog content using LLM
+- Prompt engineering for structured output
+- PDF export + real-time UI
+
+[PROJECT_3]
+Name: Job Role Prediction System
+Tech: Python, ML, MySQL
+Details:
+- 88% accuracy
+- 500+ profiles
+- Secure login system
+
+[ACHIEVEMENTS]
+- Rank 16 in Naukri Campus Young Turks
+- Mentor at GDSC (150+ students)
+- 3-star in HackerRank (Python, C++)
+
+[LINKS]
+GitHub: https://github.com/iamkanhaiyakumar
+LinkedIn: https://www.linkedin.com/in/kanhaiyak0104
+Resume: https://kanhaiya-kr-portfolio.vercel.app/Kanhaiya-Kumar-Resume.pdf

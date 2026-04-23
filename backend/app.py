@@ -305,7 +305,6 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
-
 from groq import Groq
 
 # =========================
@@ -317,85 +316,93 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # change in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # =========================
-# 📁 LOAD DATA (LIGHTWEIGHT RAG)
+# 📁 LOAD MULTIPLE DATA FILES
 # =========================
-def load_data():
+def load_all_data():
     data = ""
 
-    try:
-        with open("data/resume.txt", "r", encoding="utf-8") as f:
-            data += f.read() + "\n"
+    files = [
+        "data/resume.txt",
+        "data/projects.txt",
+        "data/personal.txt"
+    ]
 
-        with open("data/projects.txt", "r", encoding="utf-8") as f:
-            data += f.read() + "\n"
-
-        with open("data/personal.txt", "r", encoding="utf-8") as f:
-            data += f.read() + "\n"
-
-    except Exception as e:
-        data = "No data available"
+    for file in files:
+        try:
+            with open(file, "r", encoding="utf-8") as f:
+                data += f.read() + "\n"
+        except:
+            pass
 
     return data
 
-DOCUMENT_DATA = load_data()
+DOCUMENT_DATA = load_all_data()
 
 # =========================
-# 🧠 SIMPLE RAG FUNCTION
+# ✂️ CHUNKING
 # =========================
-def get_context(question: str):
-    # very simple keyword filter (lightweight)
-    q = question.lower()
+def create_chunks(text):
+    return [text[i:i+500] for i in range(0, len(text), 500)]
 
-    if "project" in q:
-        return DOCUMENT_DATA[:1500]
-
-    if "skill" in q:
-        return DOCUMENT_DATA[:1200]
-
-    return DOCUMENT_DATA[:1000]
-
+CHUNKS = create_chunks(DOCUMENT_DATA)
 
 # =========================
-# 💬 MEMORY (LAST 3 CHATS)
+# 🔍 RETRIEVAL (REAL RAG)
+# =========================
+def retrieve_context(question):
+    q_words = set(question.lower().split())
+    scored = []
+
+    for chunk in CHUNKS:
+        chunk_words = set(chunk.lower().split())
+        score = len(q_words.intersection(chunk_words))
+        scored.append((score, chunk))
+
+    scored.sort(reverse=True, key=lambda x: x[0])
+
+    top_chunks = [chunk for score, chunk in scored[:2]]
+
+    return "\n".join(top_chunks) if top_chunks else "Basic info about Kanhaiya"
+
+# =========================
+# 💬 MEMORY
 # =========================
 chat_history = []
 
 def get_history():
-    return "\n".join(chat_history[-3:])
-
+    return "\n".join(chat_history[-4:])
 
 # =========================
-# 🤖 GROQ (FAST LLM)
+# 🤖 GROQ LLM
 # =========================
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-def groq_chat(prompt):
+def generate_answer(prompt):
     try:
         res = groq_client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[
-                {"role": "system", "content": "Reply in 1-2 short sentences."},
+                {"role": "system", "content": "Reply in 1–2 short sentences."},
                 {"role": "user", "content": prompt}
             ],
             max_tokens=80
         )
         return res.choices[0].message.content.strip()
-    except Exception as e:
-        return "Error generating response"
+    except:
+        return "⚠️ Error generating response"
 
-
-def groq_stream(prompt):
+def stream_answer(prompt):
     completion = groq_client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
-            {"role": "system", "content": "Reply in 1-2 short sentences."},
+            {"role": "system", "content": "Reply in 1–2 short sentences."},
             {"role": "user", "content": prompt}
         ],
         stream=True
@@ -405,16 +412,14 @@ def groq_stream(prompt):
         if chunk.choices[0].delta.content:
             yield chunk.choices[0].delta.content
 
-
 # =========================
 # 📥 REQUEST MODEL
 # =========================
 class Query(BaseModel):
     question: str
 
-
 # =========================
-# 🧠 FINAL PROMPT BUILDER
+# 🧠 PROMPT BUILDER
 # =========================
 def build_prompt(question, context, history):
     return f"""
@@ -423,8 +428,8 @@ You are Kanhaiya's AI assistant.
 Rules:
 - Answer in 1–2 short sentences
 - Be natural and human-like
-- Do not say "not available"
-- Use context if needed
+- Use context strictly
+- If asked about projects, mention project names
 
 Conversation:
 {history}
@@ -436,17 +441,16 @@ Question:
 {question}
 """
 
-
 # =========================
-# 🌐 NORMAL CHAT API
+# 🌐 CHAT API
 # =========================
 @app.post("/chat")
 def chat(q: Query):
     question = q.question.lower()
     history = get_history()
 
-    # 🔗 Quick Links
-    if "resume" in question:
+    # 🔗 RESUME BUTTON
+    if any(word in question for word in ["resume", "cv", "download resume"]):
         return {
             "type": "resume",
             "answer": "Here is his resume",
@@ -455,47 +459,48 @@ def chat(q: Query):
             }
         }
 
-    if "github" in question:
+    # 🔗 GITHUB BUTTON
+    if any(word in question for word in ["github", "repo", "repository"]):
         return {
             "type": "github",
-            "answer": "Here is his GitHub",
+            "answer": "Here is his GitHub profile",
             "links": {
                 "github": "https://github.com/iamkanhaiyakumar"
             }
         }
 
-    if "linkedin" in question:
+    # 🔗 LINKEDIN BUTTON
+    if any(word in question for word in ["linkedin", "linked in"]):
         return {
             "type": "linkedin",
-            "answer": "Here is his LinkedIn",
+            "answer": "Here is his LinkedIn profile",
             "links": {
                 "linkedin": "https://www.linkedin.com/in/kanhaiyak0104"
             }
         }
 
-    # 🔥 RAG + LLM
-    context = get_context(q.question)
+    # 🔥 RAG FLOW
+    context = retrieve_context(q.question)
     prompt = build_prompt(q.question, context, history)
 
-    answer = groq_chat(prompt)
+    answer = generate_answer(prompt)
 
-    # save memory
+    # 💬 SAVE HISTORY
     chat_history.append(f"User: {q.question}")
     chat_history.append(f"AI: {answer}")
 
     return {"type": "text", "answer": answer}
 
-
 # =========================
-# ⚡ STREAMING API
+# ⚡ STREAM API
 # =========================
 @app.post("/chat-stream")
 def chat_stream(q: Query):
     history = get_history()
-    context = get_context(q.question)
+    context = retrieve_context(q.question)
     prompt = build_prompt(q.question, context, history)
 
     return StreamingResponse(
-        groq_stream(prompt),
+        stream_answer(prompt),
         media_type="text/plain"
     )
