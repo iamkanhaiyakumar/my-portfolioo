@@ -38,44 +38,71 @@ export default function Chatbot() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
-  // 🤖 Ask AI
+  // 🤖 Ask AI (FINAL FIXED)
   const askAI = async () => {
     if (!question.trim()) return;
 
-    const userMsg = { type: "user", text: question };
+    const currentQuestion = question;
+
+    // ✅ clear instantly
+    setQuestion("");
+
+    const userMsg = { type: "user", text: currentQuestion };
     setMessages((prev) => [...prev, userMsg]);
 
     setLoading(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/chat", {
+      const res = await fetch("http://127.0.0.1:8000/chat-stream", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ question: currentQuestion }),
       });
 
-      const data = await res.json();
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
 
-      const botMsg = {
-        type: "bot",
-        text: data.answer,
-        uiType: data.type,      // 🔥 IMPORTANT
-        links: data.links || {}
-      };
+      let fullText = "";
 
-      setMessages((prev) => [...prev, botMsg]);
+      // ✅ add empty bot message
+      setMessages((prev) => [...prev, { type: "bot", text: "" }]);
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        fullText += decoder.decode(value);
+      }
+
+      // =========================
+      // 🔥 TYPEWRITER EFFECT (ADDED ONLY)
+      // =========================
+      let i = 0;
+
+      const typingInterval = setInterval(() => {
+        i++;
+
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1].text = fullText.slice(0, i);
+          return updated;
+        });
+
+        if (i >= fullText.length) {
+          clearInterval(typingInterval);
+          setLoading(false);
+        }
+      }, 15);
 
     } catch {
       setMessages((prev) => [
         ...prev,
         { type: "bot", text: "⚠️ Server error" },
       ]);
+      setLoading(false);
     }
-
-    setLoading(false);
-    setQuestion("");
   };
 
   return (
@@ -163,6 +190,7 @@ export default function Chatbot() {
               </div>
             ))}
 
+            {/* 🔄 Loading dots (UNCHANGED) */}
             {loading && (
               <div className={styles.typing}>
                 <span></span>
@@ -181,6 +209,7 @@ export default function Chatbot() {
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="Ask about me..."
               onKeyDown={(e) => e.key === "Enter" && askAI()}
+              autoFocus
             />
             <button onClick={askAI}>➤</button>
           </div>

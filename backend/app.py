@@ -5,6 +5,9 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
 import requests
+import gc
+
+from groq import Groq
 
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader, WebBaseLoader
@@ -43,24 +46,30 @@ portfolio_loader = WebBaseLoader("https://kanhaiya-kr-portfolio.vercel.app/")
 docs.extend(portfolio_loader.load())
 
 # =========================
-# ✂️ SPLIT
+# ✂️ SPLIT (OPTIMIZED)
 # =========================
-splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=300,
+    chunk_overlap=30
+)
 chunks = splitter.split_documents(docs)
 
 # =========================
-# 🔎 EMBEDDINGS
+# 🧠 LAZY VECTORSTORE (FIX)
 # =========================
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
+embeddings = None
+db = None
 
-db = FAISS.from_documents(chunks, embeddings)
+def get_vectorstore():
+    global embeddings, db
 
-retriever = db.as_retriever(
-    search_type="mmr",
-    search_kwargs={"k": 4, "fetch_k": 10}
-)
+    if db is None:
+        embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/paraphrase-MiniLM-L3-v2"
+        )
+        db = FAISS.from_documents(chunks, embeddings)
+
+    return db
 
 # =========================
 # 💬 MEMORY
@@ -74,7 +83,16 @@ def get_history():
 # 🔧 TOOLS
 # =========================
 def rag_tool(question):
+    db = get_vectorstore()
+
+    retriever = db.as_retriever(
+        search_type="mmr",
+        search_kwargs={"k": 3}
+    )
+
     docs = retriever.invoke(question)
+    gc.collect()
+
     return "\n".join([d.page_content for d in docs])
 
 
@@ -87,6 +105,7 @@ def github_tool():
         repos = res.json()
 
         repos = sorted(repos, key=lambda x: x.get("stargazers_count", 0), reverse=True)
+        repos = repos[:10]
 
         return {
             "total_projects": len(repos),
@@ -106,7 +125,41 @@ def portfolio_tool():
         return "Portfolio data not available"
 
 # =========================
-# 🤖 MODEL
+# 🤖 GROQ (FAST + STREAM)
+# =========================
+groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+def groq_chat(question):
+    try:
+        res = groq_client.chat.completions.create(
+            model="llama3-70b-8192",
+            messages=[
+                {"role": "system", "content": "Reply in 1–2 short sentences."},
+                {"role": "user", "content": question}
+            ],
+            max_tokens=80
+        )
+        return res.choices[0].message.content.strip()
+    except:
+        return None
+
+
+def groq_stream(question):
+    completion = groq_client.chat.completions.create(
+        model="llama3-70b-8192",
+        messages=[
+            {"role": "system", "content": "Reply in 1–2 short sentences."},
+            {"role": "user", "content": question}
+        ],
+        stream=True
+    )
+
+    for chunk in completion:
+        if chunk.choices[0].delta.content:
+            yield chunk.choices[0].delta.content
+
+# =========================
+# 🤖 HUGGING FACE
 # =========================
 llm = HuggingFaceEndpoint(
     repo_id="meta-llama/Llama-3.1-8B-Instruct",
@@ -118,7 +171,7 @@ chat_model = ChatHuggingFace(llm=llm)
 parser = StrOutputParser()
 
 # =========================
-# 🧠 TOOL SELECTOR
+# 🧠 TOOL SELECTOR (UNCHANGED)
 # =========================
 tool_selector_prompt = ChatPromptTemplate.from_template("""
 You are a decision system.
@@ -140,7 +193,7 @@ Question: {question}
 """)
 
 # =========================
-# 🧾 FINAL PROMPT
+# 🧾 FINAL PROMPT (UNCHANGED)
 # =========================
 answer_prompt = ChatPromptTemplate.from_template("""
 You are Kanhaiya’s AI assistant.
@@ -181,6 +234,23 @@ Answer:
 """)
 
 # =========================
+# 🧠 AUTO ROUTER
+# =========================
+def decide_route(question):
+    q = question.lower()
+
+    if any(x in q for x in ["hi", "hello", "hey", "how are you"]):
+        return "groq"
+
+    if any(x in q for x in ["project", "skills", "experience", "about"]):
+        return "rag"
+
+    if any(x in q for x in ["count", "how many"]):
+        return "rag"
+
+    return "groq"
+
+# =========================
 # 📥 REQUEST
 # =========================
 class Query(BaseModel):
@@ -195,7 +265,7 @@ def chat(q: Query):
         history = get_history()
         question = q.question.lower()
 
-        # 🔗 BUTTON RESPONSES (ADDED ONLY)
+        # 🔗 BUTTON RESPONSES
         if "resume" in question:
             return {
                 "type": "resume",
@@ -223,36 +293,28 @@ def chat(q: Query):
                 }
             }
 
-        # 🧠 TOOL SELECTION
-        tool = (
-            tool_selector_prompt
-            | chat_model
-            | parser
-        ).invoke({
-            "question": q.question,
-            "history": history
-        }).strip().lower()
+        # ⚡ FAST ROUTE
+        route = decide_route(q.question)
 
-        # 🔥 TOOL EXECUTION
-        if tool == "github":
-            data = github_tool()
-        elif tool == "portfolio":
-            data = portfolio_tool()
-        else:
-            data = rag_tool(q.question)
+        if route == "groq":
+            fast = groq_chat(q.question)
+            if fast:
+                return {"type": "text", "answer": fast}
 
-        # 🔄 COMBINED DATA
+        # 🔥 RAG FLOW
+        rag_data = rag_tool(q.question)
+        github_data = github_tool()
+
         combined = f"""
-{data}
+{rag_data}
 
 Extra:
 {rag_tool(q.question)}
 
 GitHub Count:
-{github_tool().get("total_projects")}
+{github_data.get("total_projects")}
 """
 
-        # 🤖 FINAL RESPONSE
         response = (
             answer_prompt
             | chat_model
@@ -263,14 +325,10 @@ GitHub Count:
             "history": history
         })
 
-        # 💬 MEMORY
         chat_history.append(HumanMessage(content=q.question))
         chat_history.append(AIMessage(content=response))
 
-        return {
-            "type": "text",
-            "answer": response.strip()
-        }
+        return {"type": "text", "answer": response.strip()}
 
     except Exception as e:
         return {"error": str(e)}
@@ -278,38 +336,40 @@ GitHub Count:
 # =========================
 # ⚡ STREAMING API
 # =========================
-def stream_text(text):
-    for word in text.split():
-        yield word + " "
-
 @app.post("/chat-stream")
 def chat_stream(q: Query):
-    try:
-        history = get_history()
 
-        rag_data = rag_tool(q.question)
-        github_data = github_tool()
+    route = decide_route(q.question)
 
-        combined = f"""
+    if route == "groq":
+        return StreamingResponse(
+            groq_stream(q.question),
+            media_type="text/plain"
+        )
+
+    history = get_history()
+
+    rag_data = rag_tool(q.question)
+    github_data = github_tool()
+
+    combined = f"""
 {rag_data}
 
 Total Projects: {github_data.get("total_projects")}
 """
 
-        response = (
-            answer_prompt
-            | chat_model
-            | parser
-        ).invoke({
-            "data": combined,
-            "question": q.question,
-            "history": history
-        })
+    response = (
+        answer_prompt
+        | chat_model
+        | parser
+    ).invoke({
+        "data": combined,
+        "question": q.question,
+        "history": history
+    })
 
-        return StreamingResponse(
-            stream_text(response),
-            media_type="text/plain"
-        )
+    def stream_text():
+        for word in response.split():
+            yield word + " "
 
-    except Exception as e:
-        return {"error": str(e)}
+    return StreamingResponse(stream_text(), media_type="text/plain")
