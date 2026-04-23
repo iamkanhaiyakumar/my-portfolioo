@@ -316,18 +316,17 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # change in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # =========================
-# 📁 LOAD MULTIPLE DATA FILES
+# 📁 LOAD DATA
 # =========================
 def load_all_data():
     data = ""
-
     files = [
         "data/resume.txt",
         "data/projects.txt",
@@ -354,7 +353,7 @@ def create_chunks(text):
 CHUNKS = create_chunks(DOCUMENT_DATA)
 
 # =========================
-# 🔍 RETRIEVAL (REAL RAG)
+# 🔍 RAG RETRIEVAL
 # =========================
 def retrieve_context(question):
     q_words = set(question.lower().split())
@@ -380,7 +379,7 @@ def get_history():
     return "\n".join(chat_history[-4:])
 
 # =========================
-# 🤖 GROQ LLM
+# 🤖 GROQ
 # =========================
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -419,7 +418,7 @@ class Query(BaseModel):
     question: str
 
 # =========================
-# 🧠 PROMPT BUILDER
+# 🧠 PROMPT
 # =========================
 def build_prompt(question, context, history):
     return f"""
@@ -446,11 +445,15 @@ Question:
 # =========================
 @app.post("/chat")
 def chat(q: Query):
-    question = q.question.lower()
+    question = q.question.lower().strip()
     history = get_history()
 
-    # 🔗 RESUME BUTTON
-    if any(word in question for word in ["resume", "cv", "download resume"]):
+    # =========================
+    # 🔗 BUTTON HANDLERS (FIXED)
+    # =========================
+
+    # RESUME
+    if "resume" in question or "cv" in question:
         return {
             "type": "resume",
             "answer": "Here is his resume",
@@ -459,8 +462,8 @@ def chat(q: Query):
             }
         }
 
-    # 🔗 GITHUB BUTTON
-    if any(word in question for word in ["github", "repo", "repository"]):
+    # GITHUB (FIXED)
+    if "github" in question:
         return {
             "type": "github",
             "answer": "Here is his GitHub profile",
@@ -469,8 +472,8 @@ def chat(q: Query):
             }
         }
 
-    # 🔗 LINKEDIN BUTTON
-    if any(word in question for word in ["linkedin", "linked in"]):
+    # LINKEDIN
+    if "linkedin" in question or "linked in" in question:
         return {
             "type": "linkedin",
             "answer": "Here is his LinkedIn profile",
@@ -479,17 +482,22 @@ def chat(q: Query):
             }
         }
 
+    # =========================
     # 🔥 RAG FLOW
+    # =========================
     context = retrieve_context(q.question)
     prompt = build_prompt(q.question, context, history)
 
     answer = generate_answer(prompt)
 
-    # 💬 SAVE HISTORY
+    # SAVE HISTORY
     chat_history.append(f"User: {q.question}")
     chat_history.append(f"AI: {answer}")
 
-    return {"type": "text", "answer": answer}
+    return {
+        "type": "text",
+        "answer": answer
+    }
 
 # =========================
 # ⚡ STREAM API
