@@ -61,6 +61,17 @@ export default function Chatbot() {
         body: JSON.stringify({ question: currentQuestion }),
       });
 
+
+      //  try {
+      // const res = await fetch("https://my-portfolioo-hs8y.onrender.com/chat", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ question: currentQuestion }),
+      // });
+
+
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
 

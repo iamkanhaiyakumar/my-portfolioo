@@ -5,9 +5,6 @@
 # from dotenv import load_dotenv
 # import os
 # import requests
-# import gc
-
-# from groq import Groq
 
 # from langchain_community.vectorstores import FAISS
 # from langchain_community.document_loaders import TextLoader, WebBaseLoader
@@ -48,23 +45,22 @@
 # # =========================
 # # ✂️ SPLIT
 # # =========================
-# splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=30)
+# splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 # chunks = splitter.split_documents(docs)
 
 # # =========================
-# # 🧠 LAZY VECTORSTORE
+# # 🔎 EMBEDDINGS
 # # =========================
-# embeddings = None
-# db = None
+# embeddings = HuggingFaceEmbeddings(
+#     model_name="sentence-transformers/all-MiniLM-L6-v2"
+# )
 
-# def get_vectorstore():
-#     global embeddings, db
-#     if db is None:
-#         embeddings = HuggingFaceEmbeddings(
-#             model_name="sentence-transformers/paraphrase-MiniLM-L3-v2"
-#         )
-#         db = FAISS.from_documents(chunks, embeddings)
-#     return db
+# db = FAISS.from_documents(chunks, embeddings)
+
+# retriever = db.as_retriever(
+#     search_type="mmr",
+#     search_kwargs={"k": 4, "fetch_k": 10}
+# )
 
 # # =========================
 # # 💬 MEMORY
@@ -78,10 +74,7 @@
 # # 🔧 TOOLS
 # # =========================
 # def rag_tool(question):
-#     db = get_vectorstore()
-#     retriever = db.as_retriever(search_type="mmr", search_kwargs={"k": 3})
 #     docs = retriever.invoke(question)
-#     gc.collect()
 #     return "\n".join([d.page_content for d in docs])
 
 
@@ -89,16 +82,17 @@
 #     try:
 #         url = "https://api.github.com/users/iamkanhaiyakumar/repos"
 #         headers = {"Authorization": f"Bearer {os.getenv('GITHUB_TOKEN')}"}
+
 #         res = requests.get(url, headers=headers, timeout=5)
 #         repos = res.json()
 
 #         repos = sorted(repos, key=lambda x: x.get("stargazers_count", 0), reverse=True)
-#         repos = repos[:10]
 
 #         return {
 #             "total_projects": len(repos),
 #             "top_projects": [r["name"] for r in repos[:3]]
 #         }
+
 #     except:
 #         return {"total_projects": 0, "top_projects": []}
 
@@ -112,41 +106,7 @@
 #         return "Portfolio data not available"
 
 # # =========================
-# # 🤖 GROQ
-# # =========================
-# groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-
-# def groq_chat(question):
-#     try:
-#         res = groq_client.chat.completions.create(
-#             model="llama-3.3-70b-versatile",
-#             messages=[
-#                 {"role": "system", "content": "Reply in 1–2 short sentences."},
-#                 {"role": "user", "content": question}
-#             ],
-#             max_tokens=80
-#         )
-#         return res.choices[0].message.content.strip()
-#     except:
-#         return None
-
-
-# def groq_stream(question):
-#     completion = groq_client.chat.completions.create(
-#         model="llama-3.3-70b-versatile",
-#         messages=[
-#             {"role": "system", "content": "Reply in 1–2 short sentences."},
-#             {"role": "user", "content": question}
-#         ],
-#         stream=True
-#     )
-
-#     for chunk in completion:
-#         if chunk.choices[0].delta.content:
-#             yield chunk.choices[0].delta.content
-
-# # =========================
-# # 🤖 HUGGING FACE
+# # 🤖 MODEL
 # # =========================
 # llm = HuggingFaceEndpoint(
 #     repo_id="meta-llama/Llama-3.1-8B-Instruct",
@@ -158,23 +118,29 @@
 # parser = StrOutputParser()
 
 # # =========================
-# # 🧠 TOOL SELECTOR (KEPT)
+# # 🧠 TOOL SELECTOR
 # # =========================
 # tool_selector_prompt = ChatPromptTemplate.from_template("""
 # You are a decision system.
 
-# Rules:
-# - resume, skills, projects → rag
-# - latest work → github
-# - website → portfolio
+# Use conversation to understand context.
 
-# Return ONLY: rag / github / portfolio
+# Rules:
+# - If question refers to previous topic → use same tool
+# - If about person, skills, projects → rag
+# - If about latest work → github
+# - If about website → portfolio
+
+# Return ONLY: rag OR github OR portfolio
+
+# Conversation:
+# {history}
 
 # Question: {question}
 # """)
 
 # # =========================
-# # 🧾 FINAL PROMPT (YOUR RULES KEPT)
+# # 🧾 FINAL PROMPT
 # # =========================
 # answer_prompt = ChatPromptTemplate.from_template("""
 # You are Kanhaiya’s AI assistant.
@@ -182,15 +148,28 @@
 # STRICT RULES:
 # - Answer in 1–2 short sentences
 # - Be human-like and natural
+# - Understand follow-up questions
 # - Never say "not found"
-# - NEVER hallucinate
-# - ALWAYS use provided data
+# - Never repeat answers
+# - Never mention source
+# - If question asks LIST of projects → use github
+# - If "any other" → give different info
+# - If no more → say: "That's all the major projects"
+# - NEVER say "not available" if info exists
 # - ALWAYS return links EXACTLY if asked
+# - If user asks for resume → return resume link
+# - If user asks for GitHub → return GitHub link
+# - If user asks for LinkedIn → return LinkedIn link
+# - Do NOT modify or shorten links
 
-# # IMPORTANT:
-# - COUNT → use GitHub total_projects
-# - Include top project names
-# - Prefer RAG over guessing
+# # 🔥 ADDED RULES (KEEP THESE)
+# - If question asks COUNT → use GitHub total_projects
+# - Always combine BOTH RAG and GitHub data
+# - Include 1–2 top project names in answers
+# - Always highlight top 3 projects if available
+
+# Conversation:
+# {history}
 
 # Data:
 # {data}
@@ -208,35 +187,51 @@
 #     question: str
 
 # # =========================
-# # 🌐 CHAT API
+# # 🌐 NORMAL CHAT API
 # # =========================
 # @app.post("/chat")
 # def chat(q: Query):
 #     try:
+#         history = get_history()
 #         question = q.question.lower()
 
-#         # 🔗 DIRECT LINKS (STRICT)
+#         # 🔗 BUTTON RESPONSES (ADDED ONLY)
 #         if "resume" in question:
-#             return {"type": "resume", "links": {"resume": "https://kanhaiya-kr-portfolio.vercel.app/Kanhaiya-Kumar-Resume.pdf"}}
+#             return {
+#                 "type": "resume",
+#                 "answer": "Here is his resume",
+#                 "links": {
+#                     "resume": "https://kanhaiya-kr-portfolio.vercel.app/Kanhaiya-Kumar-Resume.pdf"
+#                 }
+#             }
 
-#         if "github" in question:
-#             return {"type": "github", "links": {"github": "https://github.com/iamkanhaiyakumar"}}
+#         if any(word in question for word in ["github", "repo", "repository"]):
+#             return {
+#                 "type": "github",
+#                 "answer": "Here is his GitHub profile",
+#                 "links": {
+#                     "github": "https://github.com/iamkanhaiyakumar"
+#                 }
+#             }
 
-#         if "linkedin" in question:
-#             return {"type": "linkedin", "links": {"linkedin": "https://www.linkedin.com/in/kanhaiyak0104"}}
+#         if any(word in question for word in ["linkedin", "linked in"]):
+#             return {
+#                 "type": "linkedin",
+#                 "answer": "Here is his LinkedIn profile",
+#                 "links": {
+#                     "linkedin": "https://www.linkedin.com/in/kanhaiyak0104"
+#                 }
+#             }
 
-#         # 🧠 TOOL SELECTOR
+#         # 🧠 TOOL SELECTION
 #         tool = (
 #             tool_selector_prompt
 #             | chat_model
 #             | parser
-#         ).invoke({"question": q.question}).strip()
-
-#         # ⚡ SMALL TALK → GROQ
-#         if len(q.question.split()) <= 3:
-#             fast = groq_chat(q.question)
-#             if fast:
-#                 return {"type": "text", "answer": fast}
+#         ).invoke({
+#             "question": q.question,
+#             "history": history
+#         }).strip().lower()
 
 #         # 🔥 TOOL EXECUTION
 #         if tool == "github":
@@ -246,14 +241,59 @@
 #         else:
 #             data = rag_tool(q.question)
 
-#         # 🔥 MERGED DATA (FIXED)
+#         # 🔄 COMBINED DATA
 #         combined = f"""
-# RAG DATA:
+# {data}
+
+# Extra:
 # {rag_tool(q.question)}
 
-# GITHUB DATA:
-# Total Projects: {github_tool().get("total_projects")}
-# Top Projects: {github_tool().get("top_projects")}
+# GitHub Count:
+# {github_tool().get("total_projects")}
+# """
+
+#         # 🤖 FINAL RESPONSE
+#         response = (
+#             answer_prompt
+#             | chat_model
+#             | parser
+#         ).invoke({
+#             "data": combined,
+#             "question": q.question,
+#             "history": history
+#         })
+
+#         # 💬 MEMORY
+#         chat_history.append(HumanMessage(content=q.question))
+#         chat_history.append(AIMessage(content=response))
+
+#         return {
+#             "type": "text",
+#             "answer": response.strip()
+#         }
+
+#     except Exception as e:
+#         return {"error": str(e)}
+
+# # =========================
+# # ⚡ STREAMING API
+# # =========================
+# def stream_text(text):
+#     for word in text.split():
+#         yield word + " "
+
+# @app.post("/chat-stream")
+# def chat_stream(q: Query):
+#     try:
+#         history = get_history()
+
+#         rag_data = rag_tool(q.question)
+#         github_data = github_tool()
+
+#         combined = f"""
+# {rag_data}
+
+# Total Projects: {github_data.get("total_projects")}
 # """
 
 #         response = (
@@ -262,39 +302,31 @@
 #             | parser
 #         ).invoke({
 #             "data": combined,
-#             "question": q.question
+#             "question": q.question,
+#             "history": history
 #         })
 
-#         return {"type": "text", "answer": response.strip()}
+#         return StreamingResponse(
+#             stream_text(response),
+#             media_type="text/plain"
+#         )
 
 #     except Exception as e:
 #         return {"error": str(e)}
 
-# # =========================
-# # ⚡ STREAM
-# # =========================
-# @app.post("/chat-stream")
-# def chat_stream(q: Query):
 
-#     if len(q.question.split()) <= 3:
-#         return StreamingResponse(groq_stream(q.question), media_type="text/plain")
 
-#     rag_data = rag_tool(q.question)
 
-#     response = (
-#         answer_prompt
-#         | chat_model
-#         | parser
-#     ).invoke({
-#         "data": rag_data,
-#         "question": q.question
-#     })
 
-#     def stream():
-#         for word in response.split():
-#             yield word + " "
 
-#     return StreamingResponse(stream(), media_type="text/plain")
+
+
+
+
+
+
+
+
 
 
 
