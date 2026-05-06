@@ -150,7 +150,7 @@ export const Contact = () => {
               </div>
               <div>
                 <span className={styles.socialLabel}>WhatsApp</span>
-                <span className={styles.socialValue}>+91 6206686966</span>
+                <span className={styles.socialValue}>+91 XXXXXXXXXX</span>
               </div>
             </a>
           </div>
