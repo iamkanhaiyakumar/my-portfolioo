@@ -1,231 +1,179 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./Chatbot.module.css";
 
-export default function Chatbot() {
-  const [open, setOpen] = useState(false);
-  const [question, setQuestion] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [typingText, setTypingText] = useState("");
-  const [showNotif, setShowNotif] = useState(true);
+const SUGGESTIONS = [
+  "Tell me about his projects",
+  "What are his skills?",
+  "Show resume",
+  "Work experience",
+  "GitHub profile",
+];
 
-  const chatEndRef = useRef(null);
+const Chatbot = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      sender: "bot",
+      text: "Hey! 👋 I'm Kanhaiya's AI assistant. Ask me anything about his projects, skills, or experience!",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
-  // 🔔 Notification auto-hide
   useEffect(() => {
-    const timer = setTimeout(() => setShowNotif(false), 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // 🤖 Intro typing
-  const introMessage = "Hey 👋 I'm Kanhaiya’s AI assistant.";
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isTyping]);
 
   useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setTypingText((prev) => prev + introMessage.charAt(i));
-      i++;
-      if (i >= introMessage.length) {
-        clearInterval(interval);
-        setMessages([{ type: "bot", text: introMessage }]);
-      }
-    }, 25);
-    return () => clearInterval(interval);
-  }, []);
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
 
-  // 🔽 Auto scroll
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, loading]);
-
-  // 🤖 Ask AI (FINAL FIXED)
-  const askAI = async () => {
-    if (!question.trim()) return;
-
-    const currentQuestion = question;
-
-    // ✅ clear instantly
-    setQuestion("");
-
-    const userMsg = { type: "user", text: currentQuestion };
-    setMessages((prev) => [...prev, userMsg]);
-
-    setLoading(true);
+  const askAI = async (question) => {
+    setMessages((prev) => [...prev, { sender: "user", text: question }]);
+    setInput("");
+    setIsTyping(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/chat-stream", {
+      const res = await fetch("http://localhost:8000/chat-stream", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ question: currentQuestion }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question }),
       });
 
-
-      //  try {
-      // const res = await fetch("https://my-portfolioo-hs8y.onrender.com/chat", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ question: currentQuestion }),
-      // });
-
+      if (!res.ok) throw new Error("Server error");
 
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
+      let botText = "";
 
-      let fullText = "";
-
-      // ✅ add empty bot message
-      setMessages((prev) => [...prev, { type: "bot", text: "" }]);
+      setMessages((prev) => [...prev, { sender: "bot", text: "" }]);
+      setIsTyping(false);
 
       while (true) {
-        const { value, done } = await reader.read();
+        const { done, value } = await reader.read();
         if (done) break;
-
-        fullText += decoder.decode(value);
-      }
-
-      // =========================
-      // 🔥 TYPEWRITER EFFECT (ADDED ONLY)
-      // =========================
-      let i = 0;
-
-      const typingInterval = setInterval(() => {
-        i++;
-
+        const chunk = decoder.decode(value);
+        botText += chunk;
         setMessages((prev) => {
           const updated = [...prev];
-          updated[updated.length - 1].text = fullText.slice(0, i);
+          updated[updated.length - 1] = { sender: "bot", text: botText };
           return updated;
         });
-
-        if (i >= fullText.length) {
-          clearInterval(typingInterval);
-          setLoading(false);
-        }
-      }, 15);
-
-    } catch {
+      }
+    } catch (err) {
+      setIsTyping(false);
       setMessages((prev) => [
         ...prev,
-        { type: "bot", text: "⚠️ Server error" },
+        {
+          sender: "bot",
+          text: "I'm having trouble connecting to the AI backend. Please make sure the backend server is running on port 8000. 🔄",
+        },
       ]);
-      setLoading(false);
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (input.trim()) askAI(input.trim());
+  };
+
+  const toggleChat = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsOpen((prev) => !prev);
+  };
+
   return (
-    <div>
-      {/* 🔔 Notification */}
-      {showNotif && (
-        <div
-          className={styles.notification}
-          onClick={() => {
-            setOpen(true);
-            setShowNotif(false);
-          }}
-        >
-          👋 Kanhaiya’s AI Assistant <br />
-          Ask me anything about him!
-        </div>
-      )}
-
-      {/* 🤖 Floating Button */}
-      <div
-        className={styles.floatingBtn}
-        onClick={() => setOpen(!open)}
+    <div className={styles.wrapper}>
+      {/* Chat Toggle */}
+      <button
+        id="chatbot-toggle"
+        className={`${styles.toggleBtn} ${isOpen ? styles.toggleOpen : ""}`}
+        onClick={toggleChat}
+        type="button"
+        aria-label="Toggle AI Chat"
       >
-        🤖
-      </div>
+        {isOpen ? (
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        ) : (
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        )}
+        {!isOpen && <span className={styles.togglePulse}></span>}
+      </button>
 
-      {/* 💬 Chatbox */}
-      {open && (
-        <div className={styles.chatbox}>
+      {/* Chat Window */}
+      {isOpen && (
+        <div className={styles.chatWindow}>
           {/* Header */}
           <div className={styles.header}>
-            <span>AI Assistant</span>
-            <button onClick={() => setOpen(false)}>✖</button>
+            <div className={styles.headerLeft}>
+              <div className={styles.avatar}>
+                <span>🤖</span>
+                <span className={styles.onlineDot}></span>
+              </div>
+              <div>
+                <h4 className={styles.headerTitle}>Kanhaiya's AI</h4>
+                <span className={styles.headerStatus}>Online • Ask anything</span>
+              </div>
+            </div>
+            <button className={styles.headerClose} onClick={toggleChat} type="button">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
           </div>
 
           {/* Messages */}
           <div className={styles.messages}>
-            {messages.length === 0 && (
-              <div className={styles.botMsg}>{typingText}</div>
-            )}
-
-            {messages.map((msg, i) => (
-              <div
-                key={i}
-                className={
-                  msg.type === "user"
-                    ? styles.userMsg
-                    : styles.botMsg
-                }
-              >
-                {msg.text}
-
-                {/* 📄 Resume */}
-                {msg.uiType === "resume" && (
-                  <div className={styles.buttonWrapper}>
-                    <a href={msg.links.resume} target="_blank">
-                      <button className={styles.downloadBtn}>
-                        📄 Download Resume
-                      </button>
-                    </a>
-                  </div>
-                )}
-
-                {/* 💻 GitHub */}
-                {msg.uiType === "github" && (
-                  <div className={styles.buttonWrapper}>
-                    <a href={msg.links.github} target="_blank">
-                      <button className={styles.downloadBtn}>
-                        💻 View GitHub
-                      </button>
-                    </a>
-                  </div>
-                )}
-
-                {/* 🔗 LinkedIn */}
-                {msg.uiType === "linkedin" && (
-                  <div className={styles.buttonWrapper}>
-                    <a href={msg.links.linkedin} target="_blank">
-                      <button className={styles.downloadBtn}>
-                        🔗 View LinkedIn
-                      </button>
-                    </a>
-                  </div>
-                )}
+            {messages.map((msg, idx) => (
+              <div key={idx} className={`${styles.msg} ${msg.sender === "user" ? styles.msgUser : styles.msgBot}`}>
+                {msg.sender === "bot" && <span className={styles.msgAvi}>🤖</span>}
+                <div className={styles.bubble}>
+                  {msg.text}
+                </div>
               </div>
             ))}
-
-            {/* 🔄 Loading dots (UNCHANGED) */}
-            {loading && (
-              <div className={styles.typing}>
-                <span></span>
-                <span></span>
-                <span></span>
+            {isTyping && (
+              <div className={`${styles.msg} ${styles.msgBot}`}>
+                <span className={styles.msgAvi}>🤖</span>
+                <div className={styles.bubble}>
+                  <div className={styles.dots}><span/><span/><span/></div>
+                </div>
               </div>
             )}
-
-            <div ref={chatEndRef} />
+            <div ref={messagesEndRef} />
           </div>
+
+          {/* Quick Chips */}
+          {messages.length <= 2 && (
+            <div className={styles.chips}>
+              {SUGGESTIONS.map((s, i) => (
+                <button key={i} className={styles.chip} onClick={() => askAI(s)} type="button">{s}</button>
+              ))}
+            </div>
+          )}
 
           {/* Input */}
-          <div className={styles.inputArea}>
+          <form className={styles.inputBar} onSubmit={handleSubmit}>
             <input
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Ask about me..."
-              onKeyDown={(e) => e.key === "Enter" && askAI()}
-              autoFocus
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type a message..."
+              className={styles.textInput}
+              id="chatbot-input"
             />
-            <button onClick={askAI}>➤</button>
-          </div>
+            <button type="submit" className={styles.sendBtn} disabled={!input.trim()}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default Chatbot;

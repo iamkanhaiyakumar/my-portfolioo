@@ -1,59 +1,88 @@
 import React from "react";
-
 import styles from "./About.module.css";
 import { getImageUrl } from "../../utils";
+import { motion } from "framer-motion";
+
+const ABOUT_CARDS = [
+  {
+    icon: "🎓",
+    title: "B.Tech CSE (AI & ML)",
+    description:
+      "Final year student at LNCT Excellence, Bhopal. Specializing in Artificial Intelligence & Machine Learning with CGPA 7.43.",
+  },
+  {
+    icon: "🤖",
+    title: "AI & ML Engineer",
+    description:
+      "Building intelligent systems with deep learning, computer vision (YOLO), and NLP. Experienced with PyTorch, TensorFlow, and LangChain.",
+  },
+  {
+    icon: "📄",
+    title: "IEEE Published Researcher",
+    description:
+      'Published research on "AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones" at IEEE Conference.',
+  },
+  {
+    icon: "🏅",
+    title: "NCC Cadet & Mentor",
+    description:
+      "Dedicated NCC cadet. Mentored 150+ students as GDSC mentor, conducted workshops on Python, Git, and web development.",
+  },
+];
 
 export const About = () => {
   return (
     <section className={styles.container} id="about">
-  <h2 className={styles.title}>About</h2>
-  <div className={styles.content}>
-    <img
-      src={getImageUrl("about/aboutImage.png")}
-      alt="Me sitting with a laptop"
-      className={styles.aboutImage}
-    />
+      <motion.div
+        className={styles.sectionHeader}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <span className={styles.sectionTag}>👤 About Me</span>
+        <h2 className={styles.title}>Know Who I Am</h2>
+      </motion.div>
 
-    <ul className={styles.aboutItems}>
+      <div className={styles.content}>
+        {/* Image */}
+        <motion.div
+          className={styles.imageCol}
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className={styles.imageWrapper}>
+            <img
+              src={getImageUrl("about/aboutImage.png")}
+              alt="Kanhaiya Kumar"
+              className={styles.aboutImage}
+            />
+            <div className={styles.imageGlow}></div>
+          </div>
+        </motion.div>
 
-      <li className={styles.aboutItem}>
-        <img src={getImageUrl("about/serverIcon.png")} alt="Server icon" />
-        <div className={styles.aboutItemText}>
-          <h3>Computer Science Engineering (AI & ML)</h3>
-          <p>
-            Pursuing a Bachelor's in Computer Science Engineering with a
-            specialization in Artificial Intelligence and Machine Learning,
-            focusing on modern AI technologies and real-world applications.
-          </p>
+        {/* Cards Grid */}
+        <div className={styles.cardsCol}>
+          {ABOUT_CARDS.map((card, idx) => (
+            <motion.div
+              key={idx}
+              className={styles.card}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+            >
+              <span className={styles.cardIcon}>{card.icon}</span>
+              <div>
+                <h3 className={styles.cardTitle}>{card.title}</h3>
+                <p className={styles.cardDesc}>{card.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </li>
-
-      <li className={styles.aboutItem}>
-        <img src={getImageUrl("about/cursorIcon.png")} alt="Cursor icon" />
-        <div className={styles.aboutItemText}>
-           <h3>AI & ML Enthusiast </h3>
-          <p>
-            Skilled in developing intelligent systems using deep learning,
-            machine learning, and computer vision. Experienced with Python,
-            TensorFlow, and YOLO-based models for real-world AI solutions.
-          </p>
-        </div>
-      </li>
-
-      <li className={styles.aboutItem}>
-        <img src={getImageUrl("about/ncc1.jpg")} alt="NCC icon" />
-        <div className={styles.aboutItemText}>
-          <h3>NCC Cadet</h3>
-          <p>
-            Dedicated NCC cadet committed to discipline, leadership, and
-            community service through national-level training and volunteer
-            initiatives.
-          </p>
-        </div>
-      </li>
-
-    </ul>
-  </div>
-</section>
+      </div>
+    </section>
   );
 };

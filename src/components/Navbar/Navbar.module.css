@@ -5,100 +5,80 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 18px 10%;
+  padding: 16px 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(10, 25, 47, 0.4);
+  background: rgba(3, 7, 18, 0.5);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
   z-index: 1000;
-  transition: all 0.4s ease;
+  transition: all var(--transition-base);
 }
 
-/* ===== Gradient Logo Text ===== */
-.my {
-  font-size: 26px;
-  font-weight: 800;
-  background: linear-gradient(
-    90deg,
-    #ff007f 0%,
-    #ff6600 20%,
-    #ffee00 40%,
-    #00ff99 60%,
-    #00a3ff 80%,
-    #ff00ff 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(0, 255, 255, 0.25);
-  background-size: 200% auto;
-  transition: background-position 2s ease, transform 0.3s ease;
-}
-
-.my:hover {
-  background-position: right center;
-  transform: scale(1.05);
-  text-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-}
-
-
-/* ===== Add Shadow & Background on Scroll ===== */
 .scrolled {
-  background: rgba(10, 25, 47, 0.95);
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(25px);
+  background: rgba(3, 7, 18, 0.92);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* ===== Logo Section ===== */
+/* ===== Logo ===== */
 .logo {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--color-text);
   text-decoration: none;
-  letter-spacing: 1.2px;
 }
 
 .logoImg {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   object-fit: contain;
+}
+
+.my {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  background: var(--gradient-text);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-base);
+}
+
+.my:hover {
+  background-position: right center;
+  transform: scale(1.02);
 }
 
 /* ===== Desktop Menu ===== */
 .menuItems {
   display: flex;
   list-style: none;
-  gap: 40px;
-  font-size: 20px;
-  font-weight: 600;
+  gap: 36px;
+  font-size: 15px;
+  font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
 
 .menuItems li a {
-  color: var(--color-text);
+  color: var(--color-text-muted);
   text-decoration: none;
   position: relative;
-  padding-bottom: 5px;
-  transition: color 0.3s ease;
+  padding-bottom: 4px;
+  transition: color var(--transition-fast);
+  font-family: var(--font-body);
 }
 
-/* ===== Hover Underline Animation ===== */
 .menuItems li a:hover {
-  /* color: var(--color-primary); */
-  background: linear-gradient(90deg, #0df159 0%, #e80505 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-primary-light);
 }
+
 .menuItems li a::after {
   content: "";
   position: absolute;
@@ -106,64 +86,49 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background: var(--color-primary);
-  transition: width 0.3s ease;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  transition: width var(--transition-base);
 }
+
 .menuItems li a:hover::after {
   width: 100%;
 }
 
-/* ===== Menu Button (Hamburger) ===== */
+/* ===== Hamburger ===== */
 .menuBtn {
   display: none;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  filter: invert(1);
-  transition: transform 0.3s ease;
-}
-
-.menuBtn:hover {
-  transform: rotate(90deg) scale(1.1);
-  filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.8));
-}
-
-/* ===== Close Button (Hidden by Default) ===== */
-.closeBtn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
   width: 28px;
   height: 28px;
   cursor: pointer;
   filter: invert(1);
-  transition: transform 0.3s ease;
-  /* opacity: 0; */
-  display: none; /* ✅ Hidden initially */
+  transition: transform var(--transition-base);
+}
+
+.menuBtn:hover {
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* ===== Close Button ===== */
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  filter: invert(1);
+  transition: transform var(--transition-base);
+  display: none;
 }
 
 .menuOpen .closeBtn {
-  display: block; /* ✅ Only show when menu is open */
+  display: block;
 }
 
 .closeBtn:hover {
   transform: rotate(90deg) scale(1.1);
-  filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.8));
 }
-
-/* ===== Overlay (Background Blur when menu opens) ===== */
-/* .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(3px);
-  z-index: 900;
-  animation: fadeIn 0.3s ease;
-} */
-
 
 /* ===== Mobile Menu ===== */
 @media screen and (max-width: 950px) {
@@ -171,17 +136,18 @@
     position: fixed;
     top: 0;
     right: -100%;
-    height: 50vh; /* ✅ reduced from 100vh */
-    width: 30%; /* ✅ reduced width for smaller look */
-    background: rgba(10, 25, 47, 0.97);
-    backdrop-filter: blur(15px);
+    height: 100vh;
+    width: 75%;
+    max-width: 320px;
+    background: rgba(3, 7, 18, 0.97);
+    backdrop-filter: blur(25px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-    border-radius: 0 0 0 20px; /* ✅ smooth edge */
-    transition: right 0.4s ease;
-    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4);
+    gap: 45px;
+    border-left: 1px solid var(--glass-border);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.4);
   }
 
   .menuOpen {
@@ -193,30 +159,15 @@
   }
 
   .menuItems li a {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
+    color: var(--color-text);
   }
 }
 
-/* ===== Mobile (Very Small Screens) ===== */
 @media screen and (max-width: 600px) {
   .menuItems {
-    width: 85%; /* ✅ narrow container for tiny screens */
-    height: 75vh;
+    width: 85%;
     gap: 35px;
-  }
-
-  .menuItems li a {
-    font-size: 20px;
-  }
-}
-
-/* ===== Animations ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

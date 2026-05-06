@@ -7,50 +7,50 @@
     "links": [
       {
         "label": "View Certificate",
-        "url": "https://drive.google.com/file/d/1TVKjD-6ZGUAujO9pbUmYANf9qZB3vUan/view?usp=sharing"
+        "url": "https://drive.google.com/file/d/1TVKjD-6ZGUAujO9pbUmYANf9qZB3vUan/view"
       }
     ]
   },
   {
-  "role": "Research Paper Author",
-  "organisation": "IEEE Conference 2025",
-  "experiences": [
-    "Presented paper titled 'AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones for Safety Compliance' (DOI: 10.1109/11211593)."
-  ],
-  "imageSrc": "achievements/research.png",
-  "links": [
-    {
-      "label": "View Paper",
-      "url": "https://ieeexplore.ieee.org/document/11211593"
-    },
-    {
-      "label": "View Certificate",
-      "url": "https://drive.google.com/file/d/1KF6pUX46g72Ct8BKegha3jO0-4Yp48uK/view?usp=drive_link"
-    }
-  ]
-},
-{
+    "role": "Research Paper Author",
+    "organisation": "IEEE Conference 2025",
+    "experiences": [
+      "Presented paper titled 'AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones for Safety Compliance' (DOI: 10.1109/11211593)."
+    ],
+    "imageSrc": "achievements/research.png",
+    "links": [
+      {
+        "label": "View Paper",
+        "url": "https://ieeexplore.ieee.org/document/11211593"
+      },
+      {
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/1KF6pUX46g72Ct8BKegha3jO0-4Yp48uK/view"
+      }
+    ]
+  },
+  {
     "role": "Young Turks Finalist",
     "organisation": "Naukri Campus",
     "experiences": [
       "Secured 16th rank in Naukri Campus Young Turks Final Round and received ₹10,000 award."
     ],
     "imageSrc": "achievements/award.png",
-     "links": [
+    "links": [
       {
         "label": "View Certificate",
-        "url": "https://drive.google.com/file/d/1em3haNyAVQupborNMe4FuWwCWkOEHo00/view?usp=drive_link"
+        "url": "https://drive.google.com/file/d/1em3haNyAVQupborNMe4FuWwCWkOEHo00/view"
       }
     ]
   },
   {
-  "role": "Mentor",
-  "organisation": "LNCTE GDSC Chapter",
-  "experiences": [
-    "Mentor at GDSC LNCTE, guided 150+ students in the Google Gen AI Study Program and helped them increase productivity by 50%."
-  ],
-  "imageSrc": "achievements/volunteer.png"
-},
+    "role": "Mentor",
+    "organisation": "LNCTE GDSC Chapter",
+    "experiences": [
+      "Mentor at GDSC LNCTE, guided 150+ students in the Google Gen AI Study Program and helped them increase productivity by 50%."
+    ],
+    "imageSrc": "achievements/volunteer.png"
+  },
   {
     "role": "Volunteer",
     "organisation": "LNCT College Fest",

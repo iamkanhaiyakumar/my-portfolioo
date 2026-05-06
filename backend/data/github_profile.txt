@@ -1,0 +1,60 @@
+[GITHUB PROFILE]
+Username: iamkanhaiyakumar
+Name: Kanhaiya Kumar
+Bio: Frontend Web Developer || Final Year CSE AIML Student at LNCT Bhopal
+Company: Lakshmi Narain College of Technology Excellence
+Location: Bhopal, India
+Twitter: @Kanhaiyakr01
+Total Public Repositories: 49
+Followers: 5
+GitHub Profile URL: https://github.com/iamkanhaiyakumar
+Account Created: December 2022
+
+[TOP REPOSITORIES BY STARS]
+1. ai-content-generator (⭐9, 31 forks) — AI Content Generator built using Next.js and TypeScript for AI-driven content creation. Live: https://ai--content-generator.vercel.app
+2. Weather-app (⭐3) — API-based weather app with real-time data, minimalist UI, fully responsive. Live: https://iamkanhaiyakumar.github.io/Weather-app/
+3. iamkanhaiyakumar (⭐2) — GitHub profile README
+4. PPE_detection_Kit (⭐1, 1 fork) — PPE detection system for automobile manufacturing using computer vision. Live: https://ppe-detection-kit-4.onrender.com/
+5. my-portfolioo (⭐1) — Personal portfolio website. Live: https://kanhaiya-k-portfolioo.vercel.app
+6. Code-Help-C-- (⭐1) — C++ DSA practice repository
+7. weather-app-0.1 (⭐1) — Enhanced weather app with API integration
+8. Book_Recommender_System (⭐1) — Book recommendation system. Live: https://book-recommender-system-l1dw.onrender.com/
+9. Python (⭐1) — Python programming practice
+10. 100xDev-Cohort2.0 (⭐1) — Full-stack development coursework
+11. git-github (⭐1) — Git and GitHub learning repository
+
+[ALL REPOSITORIES]
+Gen-AI — Generative AI projects and experiments (HTML)
+my-portfolioo — Personal portfolio website (CSS, React)
+anu-portfolio — Portfolio project for client (CSS)
+ai-content-generator — AI Content Generator (TypeScript, Next.js)
+seaborn — Data visualization with Seaborn (Jupyter Notebook)
+Relu_Assignment — Neural network assignments (Jupyter Notebook)
+VisDrone-Dataset — Drone-based detection and tracking dataset (forked)
+AI_Blog_Content_Assistant — AI blog generator using LangChain + HuggingFace + Streamlit. Live: https://iamkanhaiyakumar-ai-blog-content-assistant-app.streamlit.app/
+jobrush — Job search application (JavaScript)
+PPE_detection_Kit — YOLO-based PPE detection system (Python)
+core-python — Core Python programming (Jupyter Notebook)
+job_role_prediction — ML-based job role prediction system (Jupyter Notebook)
+Weather-app — Real-time weather application (CSS, JavaScript)
+AI-powered-Resume-Analyzer — AI resume analysis tool (JavaScript). Live: https://ai-powered-resume-analyzer-psi.vercel.app
+PPE_detection_YOLO — Extended PPE detection with YOLO (Jupyter Notebook)
+Wipro_TalentNext_Python — Wipro training Python exercises
+ai_mock_interview — AI Mock Interview platform (TypeScript). Live: https://ai-mock-interview-one-iota.vercel.app
+Code-Help-C-- — C++ DSA solutions
+100xDev-Cohort2.0 — Full-stack development (JavaScript)
+Bank-Management-System — Banking system (Python)
+Quiz-app — Interactive quiz application (Python)
+Book_Recommender_System — ML book recommendation (Python)
+Netflix-Shows-Recommendation-System — Netflix recommendation system
+skills-introduction-to-github — GitHub skills practice
+
+[LANGUAGES USED ACROSS REPOS]
+Python, JavaScript, TypeScript, C++, CSS, HTML, Jupyter Notebook
+
+[KEY HIGHLIGHTS]
+- 49 public repositories covering AI/ML, Web Development, and DSA
+- Most popular: ai-content-generator (9 stars, 31 forks)
+- Active contributor since December 2022
+- Projects span: Computer Vision, NLP, Generative AI, Full-Stack Web Dev
+- Multiple live deployed projects on Vercel, Render, and Streamlit

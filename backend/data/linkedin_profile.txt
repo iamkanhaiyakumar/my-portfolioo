@@ -1,0 +1,66 @@
+[LINKEDIN PROFILE]
+Name: Kanhaiya Kumar
+Headline: AI/ML Engineer | Final Year B.Tech CSE (AI/ML) | Python | Computer Vision | Generative AI | LangChain | RAG Systems
+LinkedIn URL: https://www.linkedin.com/in/kanhaiyak0104
+Location: Bhopal, Madhya Pradesh, India
+
+[ABOUT / SUMMARY]
+Passionate AI/ML Engineer with hands-on experience in building intelligent systems using deep learning, computer vision, and generative AI technologies. Currently pursuing B.Tech in Computer Science Engineering with specialization in Artificial Intelligence and Machine Learning from LNCT Excellence, Bhopal.
+
+Strong foundation in Python, C++, and modern AI frameworks including PyTorch, TensorFlow, LangChain, and YOLO. Experienced in developing real-time computer vision systems, AI-powered web applications, and RAG-based conversational AI. Published IEEE research paper on AI-driven PPE detection systems.
+
+Actively seeking opportunities in AI/ML engineering roles where I can contribute to building impactful AI solutions.
+
+[EXPERIENCE]
+1. AI Project Intern — Infosys Springboard (Virtual)
+   Duration: October 2024 – December 2024
+   - Built a YOLO-based Personal Protective Equipment (PPE) detection system
+   - Achieved 92% detection accuracy on custom dataset
+   - Performed data preprocessing and annotation on 3000+ images
+   - Integrated OpenCV for real-time detection with audio/visual alerts
+   - Used accuracy, precision, recall, F1-score for model evaluation
+   - Worked in collaborative agile development environment
+
+2. Mentor — Google Developer Student Club (GDSC) LNCTE
+   - Guided 150+ students in programming and tech workshops
+   - Conducted sessions on Python, Git, and web development fundamentals
+   - Organized coding competitions and hackathons
+
+[EDUCATION]
+1. B.Tech in Computer Science Engineering (AI & ML)
+   Lakshmi Narain College of Technology Excellence, Bhopal
+   Duration: 2022 – 2026
+   CGPA: 7.43/10
+
+2. Senior Secondary (12th) — BSEB
+   S.B.S.S, Begusarai, Bihar
+   Percentage: 67%
+   Duration: 2019 – 2021
+
+[CERTIFICATIONS & COURSES]
+- Infosys Springboard AI Internship Certificate
+- Wipro TalentNext Python Training
+- 100xDevs Cohort 2.0 (Full-Stack Development)
+
+[SKILLS ENDORSED]
+Programming: Python, C++, JavaScript, TypeScript
+AI/ML: PyTorch, TensorFlow, scikit-learn, OpenCV, YOLO
+Generative AI: LangChain, RAG, Prompt Engineering, LLM Applications
+Data Science: Pandas, NumPy, Matplotlib, Seaborn
+Web Development: React.js, Next.js, HTML, CSS, Tailwind CSS, FastAPI
+Databases: MySQL, SQLite
+Tools: Git, GitHub, VS Code, Jupyter Notebook, Google Colab, Streamlit
+
+[PUBLICATIONS]
+Title: "AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones"
+Published in: IEEE Conference
+DOI: 10.1109/11211593
+Focus: Real-time industrial safety using AI and computer vision
+
+[INTERESTS]
+- Artificial Intelligence and Machine Learning
+- Computer Vision and Object Detection
+- Generative AI and Large Language Models
+- Full-Stack Web Development
+- Open Source Contributing
+- Competitive Programming

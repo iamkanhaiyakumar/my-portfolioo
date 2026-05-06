@@ -1,20 +1,12 @@
 @import "../../vars.css";
 
 /* ===== Container ===== */
-/* .container {
-  color: var(--color-text);
-  margin: 80px 10%;
-  animation: fadeIn 0.8s ease-in-out;
-  text-align: center;
-} */
 .container {
   color: var(--color-text);
-  margin: 50px auto;        /* reduced the height spacing */
-  width: 75%;               /* shrink overall width */
-  animation: fadeIn 0.8s ease-in-out;
+  margin: 50px auto;
+  width: 75%;
   text-align: center;
 }
-
 
 /* ===== Title ===== */
 .title {
@@ -22,100 +14,130 @@
   font-size: 38px;
   font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 1px;
   margin-bottom: 40px;
   position: relative;
+  font-family: var(--font-heading);
 }
 
 .title::after {
   content: "";
-  width: 80px;
-  height: 4px;
-  background: var(--color-primary);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-primary);
   display: block;
   margin: 14px auto 0;
   border-radius: 4px;
 }
 
-/* ===== Grid Layout ===== */
+/* ===== Grid ===== */
 .grid {
   display: grid;
-  gap: 40px;
+  gap: 28px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   justify-items: center;
 }
 
-/* ===== Certificate Card ===== */
+/* ===== Card ===== */
 .card {
-  background: linear-gradient(90deg, #19376d 0%, rgba(25, 55, 109, 0.6) 100%);
-  border-radius: 15px;
-  padding: 30px 35px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius);
+  padding: 28px 30px;
   width: 100%;
   max-width: 400px;
   text-align: left;
   color: #ffffff;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeIn 0.8s ease-in-out;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  padding: 1px;
+  background: var(--gradient-primary);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md), 0 0 25px rgba(99, 102, 241, 0.1);
 }
 
 /* ===== Icon ===== */
 .icon {
-  width: 70px;
-  height: 70px;
-  background: #fff;
-  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
   padding: 8px;
   object-fit: contain;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base);
+}
+
+.card:hover .icon {
+  transform: rotate(3deg) scale(1.05);
 }
 
 /* ===== Text ===== */
 .card h3 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #fff;
+  font-family: var(--font-heading);
 }
 
 .card p {
-  font-size: 17px;
-  opacity: 0.9;
-  color: #fff;
+  font-size: 15px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
 }
 
 /* ===== Button ===== */
 .button {
   display: inline-block;
-  margin-top: 12px;
-  padding: 8px 20px;
-  background: linear-gradient(90deg, #0df159 0%, #e80505 100%);
+  margin-top: 14px;
+  padding: 8px 22px;
+  background: var(--gradient-primary);
   color: white;
   border-radius: 50px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
 }
 
 .button:hover {
-  background: linear-gradient(90deg, #e80505 0%, #0df159 100%);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(13, 241, 89, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
 }
 
-/* ===== Animation ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+/* ===== Responsive ===== */
+@media screen and (max-width: 800px) {
+  .container {
+    width: 90%;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .grid {
+    grid-template-columns: 1fr;
   }
 }

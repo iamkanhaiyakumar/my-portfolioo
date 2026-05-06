@@ -1,119 +1,64 @@
 @import "../../vars.css";
 
-/* ===== Projects Section Container ===== */
+/* ===== Container ===== */
 .container {
-  margin: 100px 10%;
+  margin: 100px 8%;
   color: var(--color-text);
-  text-align: center;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-/* ===== Title Styling ===== */
-.title {
-  font-size: 40px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 60px;
   position: relative;
 }
 
-.title::after {
-  content: "";
-  display: block;
-  width: 100px;
-  height: 4px;
-  background: var(--color-primary);
-  margin: 14px auto 0;
-  border-radius: 4px;
+/* ===== Section Header ===== */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTag {
+  display: inline-block;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent-amber);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 900;
+  font-family: var(--font-heading);
+  background: var(--gradient-text);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* ===== Projects Grid ===== */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  justify-items: center;
-  align-items: stretch; /* ✅ ensures equal height for all cards */
-  gap: 50px;
-  padding: 0 10px;
-  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
-/* ===== Individual Project Card ===== */
-/* === Projects Grid Layout === */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 45px;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
-  margin: 70px auto;
-  padding: 0 5%;
-}
-
-/* === Responsive Tweaks === */
+/* ===== Responsive ===== */
 @media screen and (max-width: 1200px) {
   .projects {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 per row for tablets */
-    gap: 35px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 per row on phones */
-    gap: 25px;
-  }
-}
-
-/* Optional: Single column on very tiny screens */
-@media screen and (max-width: 400px) {
-  .projects {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-.projectCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-/* ===== Fade In Animation ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== Responsive Design ===== */
-@media screen and (max-width: 1024px) {
-  .container {
-    margin: 80px 6%;
-  }
-
-  .title {
-    font-size: 32px;
-  }
-
-  .projects {
-    gap: 40px;
-  }
-
-  .projectCard {
-    min-height: 460px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 
@@ -123,15 +68,22 @@
   }
 
   .projects {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .title {
-    font-size: 28px;
+    font-size: 32px;
   }
 
-  .projectCard {
-    min-height: 420px;
+  .subtitle {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 }

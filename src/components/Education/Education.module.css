@@ -2,88 +2,116 @@
 
 .container {
   color: var(--color-text);
-  margin: 50px auto;        /* reduced the height spacing */
-  width: 75%;               /* shrink overall width */
-  animation: fadeIn 0.8s ease-in-out;
+  margin: 50px auto;
+  width: 75%;
 }
-
 
 .title {
   font-size: 38px;
   font-weight: 800;
   text-align: center;
   text-transform: uppercase;
+  letter-spacing: 1px;
   margin-bottom: 40px;
   position: relative;
+  font-family: var(--font-heading);
 }
 
 .title::after {
   content: "";
-  width: 80px;
-  height: 4px;
-  background: var(--color-primary);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-primary);
   display: block;
   margin: 14px auto 0;
   border-radius: 4px;
 }
 
-/* ========== Cards ========== */
+/* ===== Cards ===== */
 .items {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 28px;
 }
 
 .card {
-  background: linear-gradient(90deg, #19376d 0%, rgba(25, 55, 109, 0.6) 100%);
-  border-radius: 15px;
-  padding: 30px 35px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius);
+  padding: 28px 32px;
   color: #fff;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  padding: 1px;
+  background: var(--gradient-primary);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md), 0 0 25px rgba(99, 102, 241, 0.1);
 }
 
-/* ========== ROWS: Resume Style Layout ========== */
+/* ===== Rows ===== */
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-/* Left side */
 .college {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
+  font-family: var(--font-heading);
 }
 
 .degree {
-  font-size: 18px;
-  opacity: 0.9;
+  font-size: 16px;
+  color: var(--color-text-muted);
 }
 
-/* Right side */
 .duration, .location {
-  font-size: 18px;
-  opacity: 0.9;
+  font-size: 15px;
+  color: var(--color-text-muted);
   text-align: right;
 }
 
-/* Score row */
 .score {
   margin-top: 12px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--color-primary);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* ========== Responsive ========== */
+/* ===== Responsive ===== */
 @media screen and (max-width: 800px) {
+  .container {
+    width: 90%;
+  }
+
   .row {
     flex-direction: column;
     align-items: flex-start;
@@ -95,16 +123,6 @@
   }
 
   .college {
-    font-size: 22px;
+    font-size: 20px;
   }
-
-  .degree {
-    font-size: 16px;
-  }
-}
-
-/* Smooth Fade Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
 }
