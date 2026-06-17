@@ -2,13 +2,7 @@ fastapi
 uvicorn
 python-dotenv
 requests
-langchain
-langchain-community
-langchain-core
-langchain-huggingface
-sentence-transformers
-faiss-cpu
+numpy
 groq
 beautifulsoup4
-requests
 lxml

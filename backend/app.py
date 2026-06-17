@@ -1,3 +1,7 @@
+import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -7,7 +11,9 @@ import os
 import re
 import math
 import json
+import time
 import requests
+import numpy as np
 from collections import Counter
 from groq import Groq
 
@@ -26,6 +32,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+JINA_API_KEY = os.getenv("JINA_API_KEY")
+
 # =========================
 # 📁 LOAD ALL DATA SOURCES
 # =========================
@@ -36,7 +45,6 @@ def load_file(path):
     except:
         return ""
 
-# Load all knowledge base files
 KNOWLEDGE_FILES = [
     "data/resume.txt",
     "data/projects.txt",
@@ -51,55 +59,80 @@ for f in KNOWLEDGE_FILES:
     if content:
         RAW_DATA += content + "\n\n"
 
-print(f"✅ Loaded {len(RAW_DATA)} characters from {len(KNOWLEDGE_FILES)} knowledge files")
+print(f"[OK] Loaded {len(RAW_DATA)} characters from knowledge files")
+
+# =========================
+# 📄 LOAD STATIC ANSWERS
+# =========================
+try:
+    with open("static_answers.json", "r", encoding="utf-8") as f:
+        STATIC_ANSWERS = json.load(f)
+    print("✅ Static answers loaded")
+except:
+    STATIC_ANSWERS = {
+        "default": "I'm Kanhaiya's AI assistant! Ask me about his skills, projects, or experience. 😊"
+    }
+
+STATIC_KEYWORDS = {
+    "skills":      ["skill", "technology", "tech", "know", "language", "tool", "proficient", "expertise"],
+    "projects":    ["project", "built", "developed", "created", "made", "repo", "github projects"],
+    "education":   ["education", "college", "university", "degree", "study", "btech", "cgpa", "marks"],
+    "experience":  ["experience", "intern", "work", "job", "role", "infosys", "springboard"],
+    "achievements":["achievement", "award", "rank", "win", "accomplish", "naukri", "gdsc", "hackerrank"],
+    "contact":     ["contact", "email", "phone", "reach", "whatsapp", "call", "message"],
+    "github":      ["github", "repositories", "repo", "code", "open source"],
+    "linkedin":    ["linkedin", "linked in", "connect", "profile"],
+    "resume":      ["resume", "cv", "curriculum"],
+    "publication": ["publication", "ieee", "research", "paper", "journal"],
+    "about":       ["who", "about", "kanhaiya", "introduce", "tell me about"],
+    "ppe":         ["ppe", "safety", "helmet", "detection", "yolo", "opencv"],
+    "langchain":   ["langchain", "rag", "generative", "llm", "gpt", "chatgpt", "ai model"],
+}
+
+def get_static_answer(question):
+    """Keyword-based static answer matching"""
+    q = question.lower()
+    for category, keywords in STATIC_KEYWORDS.items():
+        if any(kw in q for kw in keywords):
+            return STATIC_ANSWERS.get(category, STATIC_ANSWERS["default"])
+    return STATIC_ANSWERS["default"]
 
 # =========================
 # ✂️ SMART CHUNKING
 # =========================
 def smart_chunk(text, max_size=400, overlap=80):
     """Sentence-boundary aware chunking with overlap"""
-    # Split by section markers first
     sections = re.split(r'\n\[([A-Z_]+)\]\n', text)
-    
     chunks = []
     for section in sections:
-        # Split into sentences
         sentences = re.split(r'(?<=[.!?\n])\s+', section.strip())
-        
         current_chunk = ""
         for sentence in sentences:
             if len(current_chunk) + len(sentence) > max_size and current_chunk:
                 chunks.append(current_chunk.strip())
-                # Keep overlap from end of previous chunk
                 words = current_chunk.split()
                 overlap_text = " ".join(words[-15:]) if len(words) > 15 else ""
                 current_chunk = overlap_text + " " + sentence
             else:
                 current_chunk += " " + sentence
-        
         if current_chunk.strip():
             chunks.append(current_chunk.strip())
-    
-    # Remove very short chunks (less than 30 chars)
+
     chunks = [c for c in chunks if len(c) > 30]
-    
-    print(f"✅ Created {len(chunks)} semantic chunks")
+    print(f"[OK] Created {len(chunks)} semantic chunks")
     return chunks
 
 CHUNKS = smart_chunk(RAW_DATA)
 
 # =========================
-# 🔍 TF-IDF RETRIEVAL
+# 🔍 TF-IDF (OFFLINE FALLBACK)
 # =========================
 def tokenize(text):
-    """Simple tokenizer: lowercase, alphanumeric only"""
     return re.findall(r'[a-z0-9]+', text.lower())
 
-# Pre-compute IDF
 all_tokens = [tokenize(chunk) for chunk in CHUNKS]
 doc_count = len(CHUNKS)
 
-# Document frequency for each term
 df = Counter()
 for tokens in all_tokens:
     unique_tokens = set(tokens)
@@ -107,70 +140,164 @@ for tokens in all_tokens:
         df[token] += 1
 
 def compute_idf(term):
-    """Inverse Document Frequency"""
     return math.log((doc_count + 1) / (df.get(term, 0) + 1)) + 1
 
 def tfidf_score(query_tokens, chunk_tokens):
-    """Compute TF-IDF similarity between query and chunk"""
     if not chunk_tokens:
         return 0
-    
     chunk_tf = Counter(chunk_tokens)
     chunk_len = len(chunk_tokens)
-    
     score = 0
     for token in query_tokens:
         tf = chunk_tf.get(token, 0) / chunk_len
         idf = compute_idf(token)
         score += tf * idf
-    
     return score
 
-def retrieve_context(question, top_k=4):
-    """TF-IDF based retrieval — much better than keyword matching"""
+def tfidf_retrieve(question, top_k=4):
+    """TF-IDF fallback retrieval"""
     query_tokens = tokenize(question)
-    
-    # Also add expanded query terms for common synonyms
     expansions = {
-        "project": ["projects", "built", "developed", "created"],
-        "skill": ["skills", "proficient", "experienced", "knowledge"],
-        "experience": ["internship", "work", "role", "job"],
-        "contact": ["email", "phone", "whatsapp", "reach"],
-        "education": ["college", "university", "degree", "btech"],
+        "project":     ["projects", "built", "developed", "created"],
+        "skill":       ["skills", "proficient", "experienced", "knowledge"],
+        "experience":  ["internship", "work", "role", "job"],
+        "contact":     ["email", "phone", "whatsapp", "reach"],
+        "education":   ["college", "university", "degree", "btech"],
         "achievement": ["achievements", "award", "rank", "competition"],
-        "who": ["name", "kanhaiya", "about", "person"],
-        "what": ["does", "work", "skills", "projects"],
+        "who":         ["name", "kanhaiya", "about", "person"],
     }
-    
     expanded = list(query_tokens)
     for token in query_tokens:
         if token in expansions:
             expanded.extend(expansions[token])
-    
+
     scored = []
     for i, chunk in enumerate(CHUNKS):
         score = tfidf_score(expanded, all_tokens[i])
-        
-        # Boost chunks that contain exact query words
         chunk_lower = chunk.lower()
         exact_bonus = sum(1 for t in query_tokens if t in chunk_lower) * 0.3
         score += exact_bonus
-        
         scored.append((score, chunk))
-    
+
     scored.sort(reverse=True, key=lambda x: x[0])
-    
-    # Only return chunks with meaningful scores
-    top_chunks = []
-    for score, chunk in scored[:top_k]:
-        if score > 0.1:  # Minimum relevance threshold
-            top_chunks.append(chunk)
-    
+    top_chunks = [chunk for score, chunk in scored[:top_k] if score > 0.1]
+
     if not top_chunks:
-        # Fallback: return first chunk which usually has basic info
         top_chunks = [CHUNKS[0]] if CHUNKS else ["Kanhaiya Kumar is an AI/ML Engineer from Bhopal, India."]
-    
+
     return "\n---\n".join(top_chunks)
+
+# =========================
+# 🌐 JINA AI EMBEDDINGS (ONLINE PRIMARY)
+# =========================
+JINA_EMBED_URL = "https://api.jina.ai/v1/embeddings"
+JINA_HEADERS = {
+    "Authorization": f"Bearer {JINA_API_KEY}",
+    "Content-Type": "application/json"
+}
+
+# In-memory vector store
+CHUNK_VECTORS = []  # list of numpy arrays
+FAISS_READY = False
+
+def jina_embed(texts: list, retries=2):
+    """Get embeddings from Jina AI API"""
+    for attempt in range(retries):
+        try:
+            res = requests.post(
+                JINA_EMBED_URL,
+                headers=JINA_HEADERS,
+                json={
+                    "input": texts,
+                    "model": "jina-embeddings-v2-base-en"
+                },
+                timeout=15
+            )
+            if res.status_code == 200:
+                data = res.json()
+                return [item["embedding"] for item in data["data"]]
+            else:
+                print(f"[WARN] Jina API error {res.status_code}: {res.text}")
+        except Exception as e:
+            print(f"[WARN] Jina embed attempt {attempt+1} failed: {e}")
+            if attempt < retries - 1:
+                time.sleep(1)
+    return None
+
+def cosine_similarity(vec_a, vec_b):
+    """Compute cosine similarity between two vectors"""
+    a = np.array(vec_a)
+    b = np.array(vec_b)
+    norm_a = np.linalg.norm(a)
+    norm_b = np.linalg.norm(b)
+    if norm_a == 0 or norm_b == 0:
+        return 0.0
+    return float(np.dot(a, b) / (norm_a * norm_b))
+
+def build_vector_index():
+    """Build in-memory vector index from all chunks using Jina AI"""
+    global CHUNK_VECTORS, FAISS_READY
+    print("🔄 Building vector index with Jina AI embeddings...")
+
+    # Embed in batches of 10 to avoid rate limits
+    batch_size = 10
+    all_vectors = []
+
+    for i in range(0, len(CHUNKS), batch_size):
+        batch = CHUNKS[i:i + batch_size]
+        vectors = jina_embed(batch)
+        if vectors:
+            all_vectors.extend(vectors)
+            print(f"  [OK] Embedded batch {i//batch_size + 1}/{math.ceil(len(CHUNKS)/batch_size)}")
+        else:
+            print(f"  [WARN] Batch {i//batch_size + 1} failed - will use TF-IDF fallback")
+            FAISS_READY = False
+            return
+
+    CHUNK_VECTORS = all_vectors
+    FAISS_READY = True
+    print(f"[OK] Vector index ready! {len(CHUNK_VECTORS)} chunk vectors stored")
+
+def vector_retrieve(question, top_k=4):
+    """Semantic retrieval using Jina AI embeddings + cosine similarity"""
+    query_vectors = jina_embed([question])
+    if not query_vectors:
+        raise Exception("Jina embed failed for query")
+
+    query_vec = query_vectors[0]
+    scores = [cosine_similarity(query_vec, cv) for cv in CHUNK_VECTORS]
+    top_indices = np.argsort(scores)[::-1][:top_k]
+    top_chunks = [CHUNKS[i] for i in top_indices if scores[i] > 0.3]
+
+    if not top_chunks:
+        top_chunks = [CHUNKS[i] for i in top_indices[:2]]
+
+    return "\n---\n".join(top_chunks)
+
+# Build the vector index at startup
+build_vector_index()
+
+# =========================
+# 🎯 SMART RETRIEVAL (3 LAYERS)
+# =========================
+def retrieve_context(question):
+    """
+    Layer 1: Jina AI semantic search (online)
+    Layer 2: TF-IDF keyword search (offline fallback)
+    """
+    # Layer 1 — Semantic (online)
+    if FAISS_READY:
+        try:
+            context = vector_retrieve(question)
+            print("[OK] [Layer 1] Semantic retrieval used")
+            return context, "semantic"
+        except Exception as e:
+            print(f"[WARN] [Layer 1] Semantic failed: {e} - falling back to TF-IDF")
+
+    # Layer 2 — TF-IDF (offline)
+    context = tfidf_retrieve(question)
+    print("⚡ [Layer 2] TF-IDF retrieval used")
+    return context, "tfidf"
 
 # =========================
 # 💬 CONVERSATION MEMORY
@@ -178,11 +305,9 @@ def retrieve_context(question, top_k=4):
 chat_history = []
 
 def get_history_messages():
-    """Return last 8 messages as structured conversation"""
     return chat_history[-8:]
 
 def get_history_text():
-    """Return history as formatted text"""
     messages = get_history_messages()
     if not messages:
         return "No previous conversation."
@@ -192,15 +317,12 @@ def get_history_text():
 # 🧠 INTENT CLASSIFICATION
 # =========================
 def classify_intent(question):
-    """Classify user intent for smart routing"""
     q = question.lower().strip()
-    
-    # Greeting
+
     if any(w in q for w in ["hi", "hello", "hey", "hii", "howdy", "sup", "namaste", "good morning", "good evening"]):
         if len(q.split()) <= 4:
             return "greeting"
-    
-    # Link requests
+
     if "resume" in q or "cv" in q:
         return "resume"
     if "github" in q and ("link" in q or "profile" in q or "show" in q or len(q.split()) <= 3):
@@ -213,17 +335,15 @@ def classify_intent(question):
         return "email"
     if "portfolio" in q and ("link" in q or "website" in q or "url" in q):
         return "portfolio_link"
-    
-    # Farewell
     if any(w in q for w in ["bye", "goodbye", "thanks", "thank you", "see you"]):
         return "farewell"
-    
+
     return "general"
 
 # =========================
-# 🤖 GROQ LLM (FAST)
+# 🤖 GROQ LLM
 # =========================
-groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+groq_client = Groq(api_key=GROQ_API_KEY)
 
 SYSTEM_PROMPT = """You are Kanhaiya's intelligent AI portfolio assistant. You represent Kanhaiya Kumar — an aspiring AI/ML Engineer from Bhopal, India.
 
@@ -244,30 +364,67 @@ STRICT RULES:
 8. For follow-up questions, use conversation history to maintain context
 9. Use emojis sparingly to keep it professional but warm (max 1-2 per response)
 10. Highlight key achievements: IEEE publication, 16th rank Naukri Campus, 92% PPE detection accuracy
-11. If asked "how many projects" — mention he has 49 public repositories on GitHub with key ones being PPE Detection, AI Content Generator, Book Recommender, Job Role Prediction
+11. If asked "how many projects" — mention he has 49 public repositories on GitHub
 12. Always be ready to mention his key differentiators: IEEE publication, real-world AI deployments, mentoring 150+ students"""
 
-def generate_answer(question, context, history_text):
-    """Generate answer using Groq with rich context"""
+def stream_answer(question, context):
+    """Stream answer using Groq LLM"""
     try:
-        messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
-        ]
-        
-        # Add conversation history as separate messages for better context
+        messages = [{"role": "system", "content": SYSTEM_PROMPT}]
         for msg in get_history_messages():
             messages.append(msg)
-        
-        # Build the user message with context
+
         user_prompt = f"""Context about Kanhaiya:
 {context}
 
 User's Question: {question}
 
 Respond naturally and concisely (2-3 sentences max). Use the context above to give an accurate, helpful answer."""
-        
+
         messages.append({"role": "user", "content": user_prompt})
-        
+
+        completion = groq_client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=messages,
+            max_tokens=200,
+            temperature=0.7,
+            stream=True
+        )
+
+        full_response = ""
+        for chunk in completion:
+            if chunk.choices[0].delta.content:
+                content = chunk.choices[0].delta.content
+                full_response += content
+                yield content
+
+        chat_history.append({"role": "user", "content": question})
+        chat_history.append({"role": "assistant", "content": full_response})
+
+    except Exception as e:
+        print(f"[ERROR] Groq stream error: {e}")
+        # Layer 3 fallback: static answer
+        static = get_static_answer(question)
+        yield static
+        chat_history.append({"role": "user", "content": question})
+        chat_history.append({"role": "assistant", "content": static})
+
+def generate_answer(question, context):
+    """Non-streaming answer using Groq LLM"""
+    try:
+        messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+        for msg in get_history_messages():
+            messages.append(msg)
+
+        user_prompt = f"""Context about Kanhaiya:
+{context}
+
+User's Question: {question}
+
+Respond naturally and concisely (2-3 sentences max)."""
+
+        messages.append({"role": "user", "content": user_prompt})
+
         res = groq_client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=messages,
@@ -276,50 +433,9 @@ Respond naturally and concisely (2-3 sentences max). Use the context above to gi
         )
         return res.choices[0].message.content.strip()
     except Exception as e:
-        print(f"❌ Groq error: {e}")
-        return "I'm having trouble connecting right now. Please try again in a moment! 🔄"
-
-def stream_answer(question, context, history_text):
-    """Stream answer using Groq"""
-    try:
-        messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
-        ]
-        
-        for msg in get_history_messages():
-            messages.append(msg)
-        
-        user_prompt = f"""Context about Kanhaiya:
-{context}
-
-User's Question: {question}
-
-Respond naturally and concisely (2-3 sentences max). Use the context above to give an accurate, helpful answer."""
-        
-        messages.append({"role": "user", "content": user_prompt})
-        
-        completion = groq_client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=messages,
-            max_tokens=200,
-            temperature=0.7,
-            stream=True
-        )
-        
-        full_response = ""
-        for chunk in completion:
-            if chunk.choices[0].delta.content:
-                content = chunk.choices[0].delta.content
-                full_response += content
-                yield content
-        
-        # Save to history after streaming completes
-        chat_history.append({"role": "user", "content": question})
-        chat_history.append({"role": "assistant", "content": full_response})
-        
-    except Exception as e:
-        print(f"❌ Stream error: {e}")
-        yield "I'm having trouble connecting right now. Please try again! 🔄"
+        print(f"[ERROR] Groq error: {e}")
+        # Layer 3 fallback: static answer
+        return get_static_answer(question)
 
 # =========================
 # 🔗 QUICK RESPONSES
@@ -382,35 +498,33 @@ def chat(q: Query):
     try:
         question = q.question.strip()
         intent = classify_intent(question)
-        
-        # Quick responses for specific intents
+
+        # Quick responses (always available, no API needed)
         if intent in QUICK_RESPONSES:
             response = QUICK_RESPONSES[intent]
-            # Still save to history
             chat_history.append({"role": "user", "content": question})
             chat_history.append({"role": "assistant", "content": response["answer"]})
             return response
-        
-        # RAG flow for general questions
-        history_text = get_history_text()
-        context = retrieve_context(question)
-        answer = generate_answer(question, context, history_text)
-        
-        # Save to history
+
+        # Layer 1 & 2: Semantic or TF-IDF retrieval
+        context, retrieval_type = retrieve_context(question)
+
+        # Layer 3 fallback handled inside generate_answer if Groq fails
+        answer = generate_answer(question, context)
+
         chat_history.append({"role": "user", "content": question})
         chat_history.append({"role": "assistant", "content": answer})
-        
+
         return {
             "type": "text",
-            "answer": answer
+            "answer": answer,
+            "retrieval": retrieval_type  # for debugging
         }
-    
+
     except Exception as e:
-        print(f"❌ Chat error: {e}")
-        return {
-            "type": "text",
-            "answer": "I'm having a brief hiccup. Please try asking again! 🔄"
-        }
+        print(f"[ERROR] Chat error: {e}")
+        static = get_static_answer(q.question)
+        return {"type": "text", "answer": static}
 
 # =========================
 # ⚡ STREAMING CHAT API
@@ -420,33 +534,58 @@ def chat_stream(q: Query):
     try:
         question = q.question.strip()
         intent = classify_intent(question)
-        
-        # Quick responses — stream them word by word for consistent UX
+
+        # Quick responses — stream word by word
         if intent in QUICK_RESPONSES:
             response = QUICK_RESPONSES[intent]
             chat_history.append({"role": "user", "content": question})
             chat_history.append({"role": "assistant", "content": response["answer"]})
-            
+
             def stream_quick():
                 for word in response["answer"].split():
                     yield word + " "
-            
+
             return StreamingResponse(stream_quick(), media_type="text/plain")
-        
-        # RAG streaming flow
-        history_text = get_history_text()
-        context = retrieve_context(question)
-        
+
+        # Layer 1 & 2: Retrieval
+        try:
+            context, retrieval_type = retrieve_context(question)
+            print(f"[INFO] Retrieval: {retrieval_type}")
+        except Exception as e:
+            print(f"[WARN] All retrieval failed: {e} - using static answer")
+            static = get_static_answer(question)
+            def static_stream():
+                for word in static.split():
+                    yield word + " "
+            return StreamingResponse(static_stream(), media_type="text/plain")
+
+        # Stream from Groq (Layer 3 fallback inside stream_answer)
         return StreamingResponse(
-            stream_answer(question, context, history_text),
+            stream_answer(question, context),
             media_type="text/plain"
         )
-    
+
     except Exception as e:
-        print(f"❌ Stream error: {e}")
+        print(f"[ERROR] Stream error: {e}")
+        static = get_static_answer(q.question)
         def error_stream():
-            yield "I'm having trouble right now. Please try again! 🔄"
+            for word in static.split():
+                yield word + " "
         return StreamingResponse(error_stream(), media_type="text/plain")
+
+# =========================
+# 🔄 REBUILD INDEX ENDPOINT
+# =========================
+@app.post("/rebuild-index")
+def rebuild_index():
+    """Manually rebuild the vector index"""
+    build_vector_index()
+    return {
+        "status": "ok",
+        "chunks": len(CHUNKS),
+        "vectors": len(CHUNK_VECTORS),
+        "faiss_ready": FAISS_READY
+    }
 
 # =========================
 # 🏥 HEALTH CHECK
@@ -457,8 +596,13 @@ def health():
         "status": "ok",
         "chunks": len(CHUNKS),
         "data_size": len(RAW_DATA),
-        "history_length": len(chat_history)
+        "vectors_built": FAISS_READY,
+        "vector_count": len(CHUNK_VECTORS),
+        "history_length": len(chat_history),
+        "retrieval_mode": "semantic (Jina AI)" if FAISS_READY else "tfidf (offline fallback)"
     }
 
-print("🚀 Portfolio RAG Backend Ready!")
-print(f"📊 {len(CHUNKS)} chunks | {len(RAW_DATA)} chars of knowledge")
+print("[READY] Portfolio Hybrid RAG Backend Ready!")
+print(f"[INFO] {len(CHUNKS)} chunks | {len(RAW_DATA)} chars of knowledge")
+print(f"[INFO] Jina AI: {'Ready' if JINA_API_KEY else 'No API key - TF-IDF fallback will be used'}")
+print(f"[INFO] Groq: {'Ready' if GROQ_API_KEY else 'No API key - static fallback will be used'}")
