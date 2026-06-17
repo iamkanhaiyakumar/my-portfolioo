@@ -200,8 +200,8 @@ JINA_HEADERS = {
 CHUNK_VECTORS = []  # list of numpy arrays
 FAISS_READY = False
 
-def jina_embed(texts: list, retries=2):
-    """Get embeddings from Jina AI API"""
+def jina_embed(texts: list, retries=3):
+    """Get embeddings from Jina AI API with exponential backoff"""
     for attempt in range(retries):
         try:
             res = requests.post(
@@ -211,17 +211,23 @@ def jina_embed(texts: list, retries=2):
                     "input": texts,
                     "model": "jina-embeddings-v2-base-en"
                 },
-                timeout=15
+                timeout=20
             )
             if res.status_code == 200:
                 data = res.json()
                 return [item["embedding"] for item in data["data"]]
+            elif res.status_code == 429:  # Rate limit
+                wait = 2 ** attempt * 2  # 2s, 4s, 8s
+                print(f"[WARN] Jina rate limit hit - waiting {wait}s before retry {attempt+1}")
+                time.sleep(wait)
             else:
-                print(f"[WARN] Jina API error {res.status_code}: {res.text}")
+                print(f"[WARN] Jina API error {res.status_code}: {res.text[:200]}")
+                if attempt < retries - 1:
+                    time.sleep(2 ** attempt)
         except Exception as e:
             print(f"[WARN] Jina embed attempt {attempt+1} failed: {e}")
             if attempt < retries - 1:
-                time.sleep(1)
+                time.sleep(2 ** attempt)
     return None
 
 def cosine_similarity(vec_a, vec_b):
@@ -237,28 +243,36 @@ def cosine_similarity(vec_a, vec_b):
 def build_vector_index():
     """Build in-memory vector index from all chunks using Jina AI"""
     global CHUNK_VECTORS, FAISS_READY
-    print("🔄 Building vector index with Jina AI embeddings...")
+    print("[INFO] Building vector index with Jina AI embeddings...")
 
-    # Embed in batches of 10 to avoid rate limits
-    batch_size = 10
+    # Embed in smaller batches with delay to avoid rate limits
+    batch_size = 8
     all_vectors = []
+    total_batches = math.ceil(len(CHUNKS) / batch_size)
 
     for i in range(0, len(CHUNKS), batch_size):
         batch = CHUNKS[i:i + batch_size]
+        batch_num = i // batch_size + 1
         vectors = jina_embed(batch)
         if vectors:
             all_vectors.extend(vectors)
-            print(f"  [OK] Embedded batch {i//batch_size + 1}/{math.ceil(len(CHUNKS)/batch_size)}")
+            print(f"  [OK] Embedded batch {batch_num}/{total_batches}")
+            # Small delay between batches to respect rate limits
+            if batch_num < total_batches:
+                time.sleep(0.5)
         else:
-            print(f"  [WARN] Batch {i//batch_size + 1} failed - will use TF-IDF fallback")
+            print(f"  [WARN] Batch {batch_num}/{total_batches} failed - switching to TF-IDF fallback")
             FAISS_READY = False
             return
 
     CHUNK_VECTORS = all_vectors
     FAISS_READY = True
     print(f"[OK] Vector index ready! {len(CHUNK_VECTORS)} chunk vectors stored")
+    # Cooldown after index build so query calls don't hit rate limit
+    print("[INFO] Cooling down 3s after index build...")
+    time.sleep(3)
 
-def vector_retrieve(question, top_k=4):
+def vector_retrieve(question, top_k=5):
     """Semantic retrieval using Jina AI embeddings + cosine similarity"""
     query_vectors = jina_embed([question])
     if not query_vectors:
@@ -267,10 +281,9 @@ def vector_retrieve(question, top_k=4):
     query_vec = query_vectors[0]
     scores = [cosine_similarity(query_vec, cv) for cv in CHUNK_VECTORS]
     top_indices = np.argsort(scores)[::-1][:top_k]
-    top_chunks = [CHUNKS[i] for i in top_indices if scores[i] > 0.3]
 
-    if not top_chunks:
-        top_chunks = [CHUNKS[i] for i in top_indices[:2]]
+    # Always return top results regardless of score threshold
+    top_chunks = [CHUNKS[i] for i in top_indices]
 
     return "\n---\n".join(top_chunks)
 
@@ -296,7 +309,7 @@ def retrieve_context(question):
 
     # Layer 2 — TF-IDF (offline)
     context = tfidf_retrieve(question)
-    print("⚡ [Layer 2] TF-IDF retrieval used")
+    print("[INFO] [Layer 2] TF-IDF retrieval used")
     return context, "tfidf"
 
 # =========================
@@ -454,7 +467,7 @@ QUICK_RESPONSES = {
     },
     "github_link": {
         "type": "github",
-        "answer": "Here's Kanhaiya's GitHub — he has 49+ repositories covering AI/ML, web development, and more! 💻",
+        "answer": "Here's Kanhaiya's GitHub — he has 10+ repositories covering AI/ML, web development, and more! 💻",
         "links": {
             "github": "https://github.com/iamkanhaiyakumar"
         }
