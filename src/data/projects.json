@@ -1,7 +1,7 @@
 [
   {
     "title": "PPE Kit Detection System",
-    "imageSrc": "projects/PPE.jpg",
+    "imageSrc": "projects/ppe_detection.png",
     "description": "An AI-based system that detects PPE (Personal Protective Equipment) such as helmets and vests using YOLOv8 and OpenCV to ensure workplace safety.",
     "skills": ["Python", "YOLO", "OpenCV", "Machine Learning"],
     "demo": "https://ppe-detection-kit-4.onrender.com/",
@@ -9,7 +9,7 @@
   },
   {
     "title": "AI Content Generator",
-    "imageSrc": "projects/JobPrediction.jpg",
+    "imageSrc": "projects/ai_content_generator.png",
     "description": "AI-driven content generation platform built with Next.js and TypeScript. Uses LLM APIs to generate blog posts, social media content, and marketing copy.",
     "skills": ["TypeScript", "Next.js", "AI", "API"],
     "demo": "https://ai--content-generator.vercel.app",
@@ -17,7 +17,7 @@
   },
   {
     "title": "AI-powered Resume Analyzer",
-    "imageSrc": "projects/ResumeAnalyzer.jpg",
+    "imageSrc": "projects/resume_analyzer.png",
     "description": "An AI-powered tool that analyzes resumes, extracts key information, and evaluates candidates based on skill relevance using NLP and Machine Learning.",
     "skills": ["Python", "NLP", "Machine Learning", "JavaScript"],
     "demo": "https://ai-powered-resume-analyzer-psi.vercel.app",
@@ -25,7 +25,7 @@
   },
   {
     "title": "Book Recommender System",
-    "imageSrc": "projects/Book.jpg",
+    "imageSrc": "projects/book_recommender.png",
     "description": "A book recommendation system built using machine learning techniques to suggest books based on user interests and reading patterns.",
     "skills": ["Python", "Pandas", "Streamlit", "ML"],
     "demo": "https://book-recommender-system-l1dw.onrender.com/",
@@ -33,7 +33,7 @@
   },
   {
     "title": "AI Mock Interview",
-    "imageSrc": "projects/portfolio.jpg",
+    "imageSrc": "projects/ai_mock_interview.png",
     "description": "AI-powered mock interview platform that simulates real interview scenarios, provides feedback on answers, and helps improve interview skills.",
     "skills": ["TypeScript", "Next.js", "AI", "API"],
     "demo": "https://ai-mock-interview-one-iota.vercel.app",
@@ -41,7 +41,7 @@
   },
   {
     "title": "Weather App",
-    "imageSrc": "projects/WeatherApp.jpg",
+    "imageSrc": "projects/weather_app.png",
     "description": "A weather forecast app that displays real-time temperature, humidity, and conditions using API integration with a clean, minimalist UI.",
     "skills": ["HTML", "CSS", "JavaScript", "API"],
     "demo": "https://iamkanhaiyakumar.github.io/Weather-app/",
@@ -49,7 +49,7 @@
   },
   {
     "title": "AI Blog Content Assistant",
-    "imageSrc": "projects/Calculator.jpg",
+    "imageSrc": "projects/ai_blog_assistant.png",
     "description": "AI blog generator powered by LangChain and HuggingFace that creates high-quality blog content with customizable tone and style.",
     "skills": ["Python", "LangChain", "Streamlit", "AI"],
     "demo": "https://iamkanhaiyakumar-ai-blog-content-assistant-app.streamlit.app/",
@@ -57,7 +57,7 @@
   },
   {
     "title": "Job Role Prediction",
-    "imageSrc": "projects/Tic-tac-toe.jpg",
+    "imageSrc": "projects/job_role_prediction.png",
     "description": "Machine learning-based web app that predicts suitable job roles based on user skills, education, and experience using trained ML models.",
     "skills": ["Python", "Flask", "Machine Learning", "MySQL"],
     "demo": "https://github.com/iamkanhaiyakumar/job_role_prediction",
@@ -65,10 +65,50 @@
   },
   {
     "title": "Password Generator",
-    "imageSrc": "projects/Password.jpg",
+    "imageSrc": "projects/password_generator.png",
     "description": "A secure password generator that creates strong, random passwords with user-defined parameters for length and complexity.",
     "skills": ["HTML", "CSS", "JavaScript"],
     "demo": "https://iamkanhaiyakumar.github.io/Password-Generator/",
     "source": "https://github.com/iamkanhaiyakumar/Password-Generator"
+  },
+  {
+    "title": "Email Validator",
+    "imageSrc": "projects/email_validator.png",
+    "description": "A clean web application for validating email addresses against syntax, typos, domain records, and disposability using third-party verification APIs.",
+    "skills": ["HTML", "CSS", "JavaScript", "API"],
+    "demo": "https://github.com/iamkanhaiyakumar/Email-Validator",
+    "source": "https://github.com/iamkanhaiyakumar/Email-Validator"
+  },
+  {
+    "title": "Bank Management System",
+    "imageSrc": "projects/bank_management.png",
+    "description": "A console-based application built to manage banking records, account registration, deposits, withdrawals, balances, and ledger history using OOP principles.",
+    "skills": ["Python", "MySQL"],
+    "demo": "https://github.com/iamkanhaiyakumar/Bank-Management-System",
+    "source": "https://github.com/iamkanhaiyakumar/Bank-Management-System"
+  },
+  {
+    "title": "Quiz App",
+    "imageSrc": "projects/quiz_app.png",
+    "description": "An interactive, terminal-based trivia and quiz game designed with multiple categories, random question generation, and score tracking.",
+    "skills": ["Python"],
+    "demo": "https://github.com/iamkanhaiyakumar/Quiz-app",
+    "source": "https://github.com/iamkanhaiyakumar/Quiz-app"
+  },
+  {
+    "title": "Relu Neural Network Assignments",
+    "imageSrc": "projects/relu_assignments.png",
+    "description": "A series of deep learning and PyTorch neural network assignments focused on custom implementation of ReLU activation and learning rate schedules.",
+    "skills": ["Python", "PyTorch", "Machine Learning", "Jupyter Notebook"],
+    "demo": "https://github.com/iamkanhaiyakumar/Relu_Assignment",
+    "source": "https://github.com/iamkanhaiyakumar/Relu_Assignment"
+  },
+  {
+    "title": "JobRush Platform",
+    "imageSrc": "projects/jobrush_platform.png",
+    "description": "A job search engine portal that displays job listings, processes applications, and lets candidates filter matching roles by tech stack.",
+    "skills": ["JavaScript", "HTML", "CSS"],
+    "demo": "https://github.com/iamkanhaiyakumar/jobrush",
+    "source": "https://github.com/iamkanhaiyakumar/jobrush"
   }
 ]

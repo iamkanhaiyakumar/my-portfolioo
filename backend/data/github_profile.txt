@@ -48,6 +48,8 @@ Quiz-app — Interactive quiz application (Python)
 Book_Recommender_System — ML book recommendation (Python)
 Netflix-Shows-Recommendation-System — Netflix recommendation system
 skills-introduction-to-github — GitHub skills practice
+Email-Validator — Clean email validation tool checking syntax and domains (HTML, JavaScript)
+
 
 [LANGUAGES USED ACROSS REPOS]
 Python, JavaScript, TypeScript, C++, CSS, HTML, Jupyter Notebook

@@ -83,7 +83,7 @@ export const Hero = () => {
         {/* Stats */}
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <span className={styles.statNum}>10+</span>
+            <span className={styles.statNum}>49+</span>
             <span className={styles.statLabel}>Projects</span>
           </div>
           <div className={styles.statDivider}></div>

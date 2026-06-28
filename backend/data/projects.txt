@@ -7,11 +7,10 @@ Role: AI/ML Engineer (Fresher)
 Aspiring AI/ML Engineer with experience in computer vision, YOLO-based detection, and machine learning applications. Skilled in Python, C++, and building real-time AI systems. Currently working on Generative AI using LangChain and RAG.
 
 [SKILLS]
-Programming: Python, C++
-AI/ML: PyTorch, TensorFlow, scikit-learn, OpenCV
-Generative AI: LangChain, RAG, Prompt Engineering
-Data: Pandas, NumPy, Matplotlib
-Web: HTML, CSS, Tailwind
+Programming: Python, C++, JavaScript, TypeScript
+AI/ML: PyTorch, TensorFlow, scikit-learn, OpenCV, YOLOv8/v9, Pandas, NumPy
+Generative AI: LangChain, RAG, Prompt Engineering, LLM API integration
+Web: HTML, CSS, Tailwind, React, Next.js
 Database: MySQL, SQLite
 
 [INTERNSHIP]
@@ -24,29 +23,102 @@ Work:
 - Implemented real-time alerts using OpenCV
 
 [PROJECT_1]
-Name: PPE Detection System
-Tech: YOLOv8, OpenCV
+Name: PPE Kit Detection System
+Tech: YOLOv8, OpenCV, Python
 Details:
-- 92% accuracy
-- 3000+ images trained
-- 25+ FPS real-time system
-- Reduced false positives by 15%
+- 92% accuracy safety kit compliance detection
+- 3000+ custom annotated safety images trained
+- 25+ FPS real-time detection speed
+- Reduced safety violation false positives by 15%
 
 [PROJECT_2]
-Name: AI Blog Content Assistant
-Tech: LangChain, HuggingFace, Streamlit
+Name: AI Content Generator
+Tech: TypeScript, Next.js, Gemini API, Tailwind CSS
 Details:
-- Generates blog content using LLM
-- Prompt engineering for structured output
-- PDF export + real-time UI
+- High-fidelity UI generator for blogs, tweets, and copy
+- Dynamic AI prompt engineering configuration
+- Real-time text generation response rendering
 
 [PROJECT_3]
-Name: Job Role Prediction System
-Tech: Python, ML, MySQL
+Name: AI-powered Resume Analyzer
+Tech: Python, NLP, Machine Learning, JavaScript, SpaCy
 Details:
-- 88% accuracy
-- 500+ profiles
-- Secure login system
+- Extracts structural information and tags skills from PDFs
+- Computes matching matrix metrics for tech stack relevance
+- Ranks candidate profiles for recruitment pipelines
+
+[PROJECT_4]
+Name: Book Recommender System
+Tech: Python, Pandas, Streamlit, Machine Learning
+Details:
+- Uses collaborative filtering algorithms
+- Custom web interface built with Streamlit
+- Generates book suggestions based on reader patterns
+
+[PROJECT_5]
+Name: AI Mock Interview
+Tech: TypeScript, Next.js, Gemini API, WebRTC
+Details:
+- Dynamic screen recording and audio speech-to-text
+- Evaluates candidate answers and grades core metrics
+- Personalized AI performance feedback
+
+[PROJECT_6]
+Name: Weather App
+Tech: HTML, CSS, JavaScript, OpenWeather API
+Details:
+- Minimalist, responsive UI forecast application
+- Displays real-time temperature, wind, and humidity indicators
+
+[PROJECT_7]
+Name: AI Blog Content Assistant
+Tech: Python, LangChain, HuggingFace, Streamlit
+Details:
+- Generates fully structured blogs using LangChain orchestrations
+- Configurable tone, word count, and style adjustments
+
+[PROJECT_8]
+Name: Job Role Prediction
+Tech: Python, Flask, Random Forest, MySQL
+Details:
+- Predicts optimal software developer career paths
+- 88% model validation accuracy on 500+ student profiles
+
+[PROJECT_9]
+Name: Password Generator
+Tech: HTML, CSS, JavaScript
+Details:
+- Generates strong random passwords with customizable symbols
+
+[PROJECT_10]
+Name: Email Validator
+Tech: HTML, CSS, JavaScript, Hunter/ZeroBounce APIs
+Details:
+- Validates syntax format, MX records, and checks disposable domains
+
+[PROJECT_11]
+Name: Bank Management System
+Tech: Python, MySQL, OOP
+Details:
+- Console application managing accounts, balances, and records ledger
+
+[PROJECT_12]
+Name: Quiz App
+Tech: Python, Terminal CLI
+Details:
+- Interactive multiple choice terminal game with categorized trivia
+
+[PROJECT_13]
+Name: Relu Neural Network Assignments
+Tech: Python, PyTorch, Jupyter Notebooks
+Details:
+- Custom implementations of ReLU activation and learning rate schedules
+
+[PROJECT_14]
+Name: JobRush Platform
+Tech: JavaScript, HTML, CSS
+Details:
+- Clean portal layout for searching and filtering tech vacancies
 
 [ACHIEVEMENTS]
 - Rank 16 in Naukri Campus Young Turks
@@ -54,6 +126,6 @@ Details:
 - 3-star in HackerRank (Python, C++)
 
 [LINKS]
-GitHub: https://github.com/iamkanhaiyakumar
-LinkedIn: https://www.linkedin.com/in/kanhaiyak0104
-Resume: https://kanhaiya-kr-portfolio.vercel.app/Kanhaiya-Kumar-Resume.pdf
+- GitHub: https://github.com/iamkanhaiyakumar
+- LinkedIn: https://www.linkedin.com/in/kanhaiyak0104
+- Resume: https://kanhaiya-kr-portfolio.vercel.app/Kanhaiya-Kumar-Resume.pdf
