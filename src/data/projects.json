@@ -40,9 +40,9 @@
     "source": "https://github.com/iamkanhaiyakumar/AI_Blog_Content_Assistant"
   },
   {
-    "title": "Relu Neural Network Assignments",
-    "imageSrc": "projects/relu_assignments.png",
-    "description": "A series of deep learning and PyTorch neural network assignments focused on custom implementation of ReLU activation and learning rate schedules.",
+    "title": "Relu Consultancy",
+    "imageSrc": "projects/relu_consultancy.png",
+    "description": "Machine learning and neural network solutions developed for Relu Consultancy, focusing on neural network training, data pipeline automation, and model evaluation using PyTorch.",
     "skills": ["Python", "PyTorch", "Machine Learning", "Jupyter Notebook"],
     "demo": "https://github.com/iamkanhaiyakumar/Relu_Assignment",
     "source": "https://github.com/iamkanhaiyakumar/Relu_Assignment"

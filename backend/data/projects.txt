@@ -63,10 +63,11 @@ Details:
 - Configurable tone, word count, and style adjustments
 
 [PROJECT_6]
-Name: Relu Neural Network Assignments
+Name: Relu Consultancy
 Tech: Python, PyTorch, Jupyter Notebooks
 Details:
-- Custom implementations of ReLU activation and learning rate schedules
+- Machine learning and neural network solutions developed for Relu Consultancy
+- Focuses on custom ReLU neural network training and data pipeline automation
 
 [PROJECT_7]
 Name: Job Role Prediction
