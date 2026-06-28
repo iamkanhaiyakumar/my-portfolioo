@@ -8,6 +8,8 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Projects } from "./components/Projects/Projects";
 import { Achievements } from "./components/Achievements/Achievements";
 import { Skills } from "./components/Skills/Skills";
+import { Education } from "./components/Education/Education";
+import { Certificates } from "./components/Certificates/Certificates";
 import Chatbot from "./components/Chatbot/Chatbot";
 import { Modal } from "./components/Modal/Modal";
 
@@ -34,8 +36,10 @@ function App() {
       <About />
       <Skills />
       <Experience />
+      <Education />
       <Projects />
       <Achievements />
+      <Certificates />
       <Contact />
       <ScrollToTop />
       <WhatsAppButton />

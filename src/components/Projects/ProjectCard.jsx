@@ -79,6 +79,7 @@ export const ProjectCard = ({
           </a>
         </div>
         {isFeatured && <span className={styles.featuredBadge}>⭐ Featured</span>}
+        <span className={styles.numberBadge}>#{String(index + 1).padStart(2, "0")}</span>
       </div>
 
       {/* Content */}

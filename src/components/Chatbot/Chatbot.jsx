@@ -19,7 +19,7 @@ const API_BASE =
 // Offline knowledge base for when backend is unavailable
 // Offline knowledge base for when backend is unavailable
 const OFFLINE_RESPONSES = {
-  greeting: "Hey there! 👋 I'm Kanhaiya's AI assistant. He's an aspiring AI/ML Engineer from Bhopal, India — B.Tech CSE (AI & ML) at LNCT Excellence with CGPA 7.43. Ask me about his projects, skills, or experience!",
+  greeting: "Hey there! 👋 I'm Kanhaiya's AI assistant. He's an aspiring AI/ML Engineer from Bhopal, India — B.Tech CSE (AI & ML) at LNCT Excellence with CGPA 7.43 (74.3%). Ask me about his projects, skills, or experience!",
   how_are_you: "I'm doing great, thank you for asking! 😊 I'm Kanhaiya's AI assistant, ready to help you explore his projects, skills, or experience. What can I help you find today?",
   deadline_ai: "🚀 **DeadlineAI** is Kanhaiya's automated academic task scheduler. It scans notice boards or syllabi using OCR (Optical Character Recognition), extracts task deadlines using Generative AI, and automatically schedules calendar timeline reminders on the user's dashboard.",
   ppe_detection: "🛡️ **PPE Kit Detection System** is Kanhaiya's industrial safety project. It uses a custom YOLOv8/v9 deep learning model trained on 3,000+ images to detect protective helmets, safety vests, and boots in manufacturing zones with 92% accuracy, triggering real-time OpenCV alerts. This research was published in an IEEE conference.",
@@ -35,7 +35,7 @@ const OFFLINE_RESPONSES = {
   linkedin: "🔗 Kanhaiya's LinkedIn:\n\n[Open LinkedIn](https://www.linkedin.com/in/kanhaiyak0104)\n\nFeel free to connect with him!",
   contact: "📱 You can reach Kanhaiya via:\n\n📧 Email: [Send Email](mailto:kanhaiyak0104@gmail.com)\n📱 WhatsApp: [Chat on WhatsApp](https://wa.me/916206686966)\n🔗 LinkedIn: [Open LinkedIn](https://www.linkedin.com/in/kanhaiyak0104)\n💻 GitHub: [Open GitHub](https://github.com/iamkanhaiyakumar)",
   achievements: "🏆 Kanhaiya's key achievements:\n\n🌐 **IEEE DECoN 2025 Reviewer** — Selected as a Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks\n🥇 **Accenture iAspire Winner** — Unlocked Gold Level in Accenture's iAspire contest\n\n[View Accenture Certificate](/certificates/accenture.pdf)\n\n📄 **IEEE Research Paper** — Published paper on PPE Detection using YOLO models\n\n[View Research Paper](/certificates/ieee_decon.pdf)\n\n🏅 **Young Turks Finalist** — 16th rank, Naukri Campus (₹10,000 award)\n\n🎖️ **NCC Cadet (LCPL)** — 12 MP BN Bhopal\n\n[View NCC Certificate](/certificates/ncc.pdf)\n\n👨‍🏫 **GDSC Mentor** — Guided 150+ students in Google Gen AI Study Program",
-  education: "🎓 **B.Tech CSE (AI & ML)** — LNCT Excellence, Bhopal\nCGPA: 7.43 | Final year student\nSpecializing in Artificial Intelligence & Machine Learning",
+  education: "🎓 **B.Tech CSE (AI & ML)** — LNCT Excellence, Bhopal\nCGPA: 7.43 (74.3%) | Final year student\nSpecializing in Artificial Intelligence & Machine Learning",
   farewell: "Thanks for visiting! 😊 Feel free to come back anytime. You can also reach Kanhaiya via email or LinkedIn. Have a great day! 👋\n\n[Send Email](mailto:kanhaiyak0104@gmail.com)\n\n[Open LinkedIn](https://www.linkedin.com/in/kanhaiyak0104)",
   fallback: "I'm Kanhaiya's AI assistant! 🤖 I can tell you about his:\n\n• 🚀 Projects (51+ repos)\n• 🛠️ Skills (AI/ML, Web Dev)\n• 💼 Work Experience (Infosys internships)\n• 🏆 Achievements (IEEE paper, awards)\n• 📄 Resume & Contact info\n\nWhat would you like to know?",
 };
@@ -65,6 +65,12 @@ const renderMessageText = (text) => {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.msgLinkButton}
+              onClick={(e) => {
+                if (match[2].endsWith(".pdf") && window.showCertificate) {
+                  e.preventDefault();
+                  window.showCertificate(match[2], match[1]);
+                }
+              }}
             >
               {match[1]}
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: "6px", display: "inline-block", verticalAlign: "middle" }}>
@@ -84,6 +90,12 @@ const renderMessageText = (text) => {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.msgLinkButton}
+            onClick={(e) => {
+              if (token.endsWith(".pdf") && window.showCertificate) {
+                e.preventDefault();
+                window.showCertificate(token, "View PDF");
+              }
+            }}
           >
             {token.startsWith("/") ? "View PDF" : "Open Link"}
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: "6px", display: "inline-block", verticalAlign: "middle" }}>

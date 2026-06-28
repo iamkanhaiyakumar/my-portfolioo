@@ -25,14 +25,12 @@
   box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
 }
 
-.scrollToTop img {
-  width: 24px;
-  height: 24px;
-  filter: invert(1);
+.icon {
+  color: #fff;
   transition: transform var(--transition-base);
 }
 
-.scrollToTop:hover img {
+.scrollToTop:hover .icon {
   transform: translateY(-2px);
 }
 
@@ -50,8 +48,8 @@
     bottom: 90px;
   }
 
-  .scrollToTop img {
-    width: 20px;
-    height: 20px;
+  .icon {
+    width: 16px;
+    height: 16px;
   }
 }

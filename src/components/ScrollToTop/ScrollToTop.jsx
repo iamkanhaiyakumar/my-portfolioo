@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ScrollToTop.module.css";
-import { getImageUrl } from "../../utils"; // ✅ if you're using getImageUrl for assets
 
 export const ScrollToTop = () => {
   const [visible, setVisible] = useState(false);
@@ -29,11 +28,10 @@ export const ScrollToTop = () => {
   return (
     <>
       {visible && (
-        <button className={styles.scrollToTop} onClick={scrollToTop}>
-          <img
-            src={getImageUrl("icons/upArrow.jpg")} // 📁 place your arrow icon here
-            alt="Scroll to top"
-          />
+        <button className={styles.scrollToTop} onClick={scrollToTop} aria-label="Scroll to top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}>
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
         </button>
       )}
     </>

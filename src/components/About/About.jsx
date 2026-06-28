@@ -8,7 +8,7 @@ const ABOUT_CARDS = [
     icon: "🎓",
     title: "B.Tech CSE (AI & ML)",
     description:
-      "Final year student at LNCT Excellence, Bhopal. Specializing in Artificial Intelligence & Machine Learning with CGPA 7.43.",
+      "Final year student at LNCT Excellence, Bhopal. Specializing in Artificial Intelligence & Machine Learning with CGPA 7.43 (74.3%).",
   },
   {
     icon: "🤖",
@@ -42,6 +42,9 @@ export const About = () => {
       >
         <span className={styles.sectionTag}>👤 About Me</span>
         <h2 className={styles.title}>Know Who I Am</h2>
+        <p className={styles.subtitle}>
+          An introduction to my education background, technical focus, research, and mentorship journey
+        </p>
       </motion.div>
 
       <div className={styles.content}>
@@ -73,6 +76,12 @@ export const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
+              whileHover={{
+                y: -6,
+                borderColor: "rgba(99, 102, 241, 0.25)",
+                boxShadow: "0 12px 35px rgba(99, 102, 241, 0.1)",
+                transition: { duration: 0.2 },
+              }}
             >
               <span className={styles.cardIcon}>{card.icon}</span>
               <div>

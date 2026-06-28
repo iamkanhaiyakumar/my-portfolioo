@@ -4,13 +4,20 @@
     "institution": "Lakshmi Narain College of Technology Excellence",
     "duration": "2022 – 2026",
     "location": "Bhopal, Madhya Pradesh",
-    "score": "CGPA: 7.43/10"
+    "score": "CGPA: 7.43 (74.3%)"
   },
   {
-    "degree": "Senior Secondary Education",
+    "degree": "Senior Secondary Education (Class XII)",
     "institution": "S.B.S.S. College",
     "duration": "2019 – 2021",
     "location": "Begusarai, Bihar",
     "score": "Percentage: 67%"
+  },
+  {
+    "degree": "Secondary Education (Class X)",
+    "institution": "B.P.S. Public School",
+    "duration": "2017 – 2019",
+    "location": "Naokothi, Begusarai, Bihar",
+    "score": "Percentage: 77.20%"
   }
 ]
