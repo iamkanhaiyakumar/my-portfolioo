@@ -5,7 +5,7 @@ Bio: Frontend Web Developer || Final Year CSE AIML Student at LNCT Bhopal
 Company: Lakshmi Narain College of Technology Excellence
 Location: Bhopal, India
 Twitter: @Kanhaiyakr01
-Total Public Repositories: 49
+Total Public Repositories: 51
 Followers: 5
 GitHub Profile URL: https://github.com/iamkanhaiyakumar
 Account Created: December 2022
@@ -56,7 +56,7 @@ Email-Validator — Clean email validation tool checking syntax and domains (HTM
 Python, JavaScript, TypeScript, C++, CSS, HTML, Jupyter Notebook
 
 [KEY HIGHLIGHTS]
-- 49 public repositories covering AI/ML, Web Development, and DSA
+- 51 public repositories covering AI/ML, Web Development, and DSA
 - Most popular: ai-content-generator (9 stars, 31 forks)
 - Active contributor since December 2022
 - Projects span: Computer Vision, NLP, Generative AI, Full-Stack Web Dev

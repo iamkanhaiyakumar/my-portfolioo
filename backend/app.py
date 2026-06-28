@@ -377,7 +377,7 @@ STRICT RULES:
 8. For follow-up questions, use conversation history to maintain context
 9. Use emojis sparingly to keep it professional but warm (max 1-2 per response)
 10. Highlight key achievements: IEEE publication, 16th rank Naukri Campus, 92% PPE detection accuracy
-11. If asked "how many projects" — mention he has 49 public repositories on GitHub
+11. If asked "how many projects" — mention he has 51 public repositories on GitHub
 12. Always be ready to mention his key differentiators: IEEE publication, real-world AI deployments, mentoring 150+ students"""
 
 def stream_answer(question, context):
