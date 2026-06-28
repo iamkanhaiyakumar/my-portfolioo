@@ -130,6 +130,8 @@ Details:
 - Generates strong random passwords with customizable symbols
 
 [ACHIEVEMENTS]
+- Selected as Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks (DECoN 2025)
+- Unlocked Gold Level in the Accenture iAspire 'Go for Gold' contest (2025)
 - Rank 16 in Naukri Campus Young Turks
 - Mentor at GDSC (150+ students)
 - 3-star in HackerRank (Python, C++)

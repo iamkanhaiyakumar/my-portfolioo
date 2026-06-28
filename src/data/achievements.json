@@ -1,5 +1,23 @@
 [
   {
+    "role": "Technical Reviewer",
+    "organisation": "IEEE DECoN 2025",
+    "experiences": [
+      "Selected as a Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks (DECoN 2025).",
+      "Evaluated and reviewed research submissions in deep learning, data networks, and AI."
+    ],
+    "imageSrc": "certificates/ieee_decon.png"
+  },
+  {
+    "role": "Gold Level Winner",
+    "organisation": "Accenture iAspire Contest",
+    "experiences": [
+      "Successfully unlocked the prestigious Gold Level during the 'Go for Gold' contest in Accenture's iAspire program.",
+      "Recognized for outstanding technical performance and engineering potential."
+    ],
+    "imageSrc": "certificates/accenture_iaspire.png"
+  },
+  {
     "role": "NCC Cadet (Rank - LCPL)",
     "organisation": "12 MP BN Bhopal",
     "experiences": ["Completed NCC training with leadership and discipline excellence."],

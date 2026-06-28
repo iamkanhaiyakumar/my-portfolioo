@@ -1,5 +1,19 @@
 [
   {
+    "title": "iAspire Gold Level Certificate",
+    "issuer": "Accenture",
+    "year": "2025",
+    "imageSrc": "certificates/accenture_iaspire.png",
+    "link": ""
+  },
+  {
+    "title": "IEEE DECoN 2025 Reviewer",
+    "issuer": "IEEE International Conference",
+    "year": "2025",
+    "imageSrc": "certificates/ieee_decon.png",
+    "link": ""
+  },
+  {
     "title": "5G Introductory-Level Certification",
     "issuer": "Qualcomm Wireless Academy",
     "year": "2025",
