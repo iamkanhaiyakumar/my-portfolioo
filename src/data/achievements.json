@@ -1,35 +1,5 @@
 [
   {
-    "role": "Technical Reviewer",
-    "organisation": "IEEE DECoN 2025",
-    "experiences": [
-      "Selected as a Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks (DECoN 2025).",
-      "Evaluated and reviewed research submissions in deep learning, data networks, and AI."
-    ],
-    "imageSrc": "certificates/ieee_decon.png"
-  },
-  {
-    "role": "Gold Level Winner",
-    "organisation": "Accenture iAspire Contest",
-    "experiences": [
-      "Successfully unlocked the prestigious Gold Level during the 'Go for Gold' contest in Accenture's iAspire program.",
-      "Recognized for outstanding technical performance and engineering potential."
-    ],
-    "imageSrc": "certificates/accenture_iaspire.png"
-  },
-  {
-    "role": "NCC Cadet (Rank - LCPL)",
-    "organisation": "12 MP BN Bhopal",
-    "experiences": ["Completed NCC training with leadership and discipline excellence."],
-    "imageSrc": "achievements/ncc.png",
-    "links": [
-      {
-        "label": "View Certificate",
-        "url": "https://drive.google.com/file/d/1TVKjD-6ZGUAujO9pbUmYANf9qZB3vUan/view"
-      }
-    ]
-  },
-  {
     "role": "Research Paper Author",
     "organisation": "IEEE Conference 2025",
     "experiences": [
@@ -46,6 +16,24 @@
         "url": "https://drive.google.com/file/d/1KF6pUX46g72Ct8BKegha3jO0-4Yp48uK/view"
       }
     ]
+  },
+  {
+    "role": "Technical Reviewer",
+    "organisation": "IEEE DECoN 2025",
+    "experiences": [
+      "Selected as a Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks (DECoN 2025).",
+      "Evaluated and reviewed research submissions in deep learning, data networks, and AI."
+    ],
+    "imageSrc": "certificates/ieee_decon.png"
+  },
+  {
+    "role": "Gold Level Winner",
+    "organisation": "Accenture iAspire Contest",
+    "experiences": [
+      "Successfully unlocked the prestigious Gold Level during the 'Go for Gold' contest in Accenture's iAspire program.",
+      "Recognized for outstanding technical performance and engineering potential."
+    ],
+    "imageSrc": "certificates/accenture_iaspire.png"
   },
   {
     "role": "Young Turks Finalist",
@@ -68,6 +56,18 @@
       "Mentor at GDSC LNCTE, guided 150+ students in the Google Gen AI Study Program and helped them increase productivity by 50%."
     ],
     "imageSrc": "achievements/volunteer.png"
+  },
+  {
+    "role": "NCC Cadet (Rank - LCPL)",
+    "organisation": "12 MP BN Bhopal",
+    "experiences": ["Completed NCC training with leadership and discipline excellence."],
+    "imageSrc": "achievements/ncc.png",
+    "links": [
+      {
+        "label": "View Certificate",
+        "url": "https://drive.google.com/file/d/1TVKjD-6ZGUAujO9pbUmYANf9qZB3vUan/view"
+      }
+    ]
   },
   {
     "role": "Volunteer",

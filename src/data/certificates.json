@@ -1,16 +1,16 @@
 [
   {
-    "title": "iAspire Gold Level Certificate",
-    "issuer": "Accenture",
-    "year": "2025",
-    "imageSrc": "certificates/accenture_iaspire.png",
-    "link": ""
-  },
-  {
     "title": "IEEE DECoN 2025 Reviewer",
     "issuer": "IEEE International Conference",
     "year": "2025",
     "imageSrc": "certificates/ieee_decon.png",
+    "link": ""
+  },
+  {
+    "title": "iAspire Gold Level Certificate",
+    "issuer": "Accenture",
+    "year": "2025",
+    "imageSrc": "certificates/accenture_iaspire.png",
     "link": ""
   },
   {
@@ -21,17 +21,17 @@
     "link": ""
   },
   {
+    "title": "Fundamentals of Cybersecurity (EDU-102)",
+    "issuer": "Zscaler Cyber Academy",
+    "year": "2025",
+    "imageSrc": "certificates/cyber.png",
+    "link": ""
+  },
+  {
     "title": "Responsive Web Design",
     "issuer": "freeCodeCamp",
     "hours": "300+ Hours",
     "imageSrc": "certificates/webdesign.png",
     "link": "https://www.freecodecamp.org/"
-  },
-  {
-    "title": "Fundamentals of Cybersecurity (EDU-102)",
-    "issuer": "Zscaler Cyber Academy",
-    "year": "",
-    "imageSrc": "certificates/cyber.png",
-    "link": ""
   }
 ]
