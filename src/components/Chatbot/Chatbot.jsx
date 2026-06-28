@@ -17,25 +17,94 @@ const API_BASE =
     : "https://my-portfolioo-hs8y.onrender.com");
 
 // Offline knowledge base for when backend is unavailable
+// Offline knowledge base for when backend is unavailable
 const OFFLINE_RESPONSES = {
   greeting: "Hey there! 👋 I'm Kanhaiya's AI assistant. He's an aspiring AI/ML Engineer from Bhopal, India — B.Tech CSE (AI & ML) at LNCT Excellence with CGPA 7.43. Ask me about his projects, skills, or experience!",
+  how_are_you: "I'm doing great, thank you for asking! 😊 I'm Kanhaiya's AI assistant, ready to help you explore his projects, skills, or experience. What can I help you find today?",
   projects: "Kanhaiya has built 51+ projects! Key ones include:\n\n🔹 **PPE Kit Detection** — YOLOv8/v9 based safety detection (92% accuracy), IEEE published\n🔹 **AI Content Generator** — Next.js + TypeScript platform using LLM APIs\n🔹 **AI Resume Analyzer** — NLP-based resume parsing & skill matching\n🔹 **Book Recommender** — ML-based collaborative filtering system\n🔹 **Weather App** — Real-time weather using OpenWeather API\n🔹 **AI Mock Interview** — AI-powered interview simulation platform",
   skills: "Kanhaiya's tech stack:\n\n💻 **Languages**: Python, C++, JavaScript\n🤖 **AI/ML**: Machine Learning, OpenCV, YOLO, Pandas, NumPy, TensorFlow, PyTorch, LangChain\n🌐 **Web**: HTML, CSS, TailwindCSS, React, Next.js\n🔧 **Tools**: Git, GitHub, Jupyter, Google Colab, VS Code, Cloud Computing",
-  experience: "💼 **Python Project Intern** — Infosys Springboard (Aug-Oct 2025)\nWorked on ML models, developed AI solutions, collaborated with cross-functional teams\n\n💼 **AI Project Intern** — Infosys Springboard (Oct-Dec 2024)\nWorked on ML models and AI solutions\n\n📄 **Research Paper Author** — IEEE Conference 2024\nPublished paper on 'AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones' (DOI: 10.1109/11211593)",
-  resume: "📄 You can view Kanhaiya's resume here: https://drive.google.com/file/d/1j3yLGFPMfGRTbqMZlFMOx5Z6e1VnyL-V/view\n\nHe's an AI/ML Engineer with experience in deep learning, computer vision, and full-stack web development.",
-  github: "💻 Kanhaiya's GitHub: https://github.com/iamkanhaiyakumar\n\nHe has 51+ public repositories covering AI/ML, web development, and data science projects!",
-  linkedin: "🔗 Kanhaiya's LinkedIn: https://www.linkedin.com/in/kanhaiyak0104\n\nFeel free to connect with him!",
-  contact: "📱 You can reach Kanhaiya via:\n\n📧 Email: kanhaiyak0104@gmail.com\n📱 WhatsApp: +91 6206686966\n🔗 LinkedIn: linkedin.com/in/kanhaiyak0104\n💻 GitHub: github.com/iamkanhaiyakumar",
+  experience: "💼 **Python Project Intern** — Infosys Springboard (Aug-Oct 2025)\n• Developed modular Python scripts to automate data collection and preprocessing.\n• Implemented OOP patterns to reduce code redundancy by 20%.\n• Performed EDA using Pandas, NumPy, and Matplotlib.\n\n💼 **AI Project Intern** — Infosys Springboard (Oct-Dec 2024)\n• Trained custom YOLO safety kit compliance model on 3,000+ images.\n• Achieved 92% detection accuracy and built OpenCV real-time alerts.\n\n📄 **Research Paper Author** — IEEE Conference 2024\n• Published paper on 'AI-Driven PPE Detection and Human Access Monitoring' (DOI: 10.1109/11211593).",
+  resume: "📄 You can view Kanhaiya's resume here:\n\n[Download Resume](/Kanhaiya-Kumar-Resume.pdf)\n\nHe's an AI/ML Engineer with experience in deep learning, computer vision, and full-stack web development.",
+  github: "💻 Kanhaiya's GitHub:\n\n[Open GitHub](https://github.com/iamkanhaiyakumar)\n\nHe has 51+ public repositories covering AI/ML, web development, and data science projects!",
+  linkedin: "🔗 Kanhaiya's LinkedIn:\n\n[Open LinkedIn](https://www.linkedin.com/in/kanhaiyak0104)\n\nFeel free to connect with him!",
+  contact: "📱 You can reach Kanhaiya via:\n\n📧 Email: [Send Email](mailto:kanhaiyak0104@gmail.com)\n📱 WhatsApp: [Chat on WhatsApp](https://wa.me/916206686966)\n🔗 LinkedIn: [Open LinkedIn](https://www.linkedin.com/in/kanhaiyak0104)\n💻 GitHub: [Open GitHub](https://github.com/iamkanhaiyakumar)",
   achievements: "🏆 Kanhaiya's key achievements:\n\n🌐 **IEEE DECoN 2025 Reviewer** — Selected as a Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks\n🥇 **Accenture iAspire Winner** — Unlocked Gold Level in Accenture's iAspire contest\n📄 **IEEE Research Paper** — Published paper on PPE Detection using YOLO models\n🏅 **Young Turks Finalist** — 16th rank, Naukri Campus (₹10,000 award)\n🎖️ **NCC Cadet (LCPL)** — 12 MP BN Bhopal\n👨‍🏫 **GDSC Mentor** — Guided 150+ students in Google Gen AI Study Program",
   education: "🎓 **B.Tech CSE (AI & ML)** — LNCT Excellence, Bhopal\nCGPA: 7.43 | Final year student\nSpecializing in Artificial Intelligence & Machine Learning",
   farewell: "Thanks for visiting! 😊 Feel free to come back anytime. You can also reach Kanhaiya at kanhaiyak0104@gmail.com or connect on LinkedIn. Have a great day! 👋",
   fallback: "I'm Kanhaiya's AI assistant! 🤖 I can tell you about his:\n\n• 🚀 Projects (51+ repos)\n• 🛠️ Skills (AI/ML, Web Dev)\n• 💼 Work Experience (Infosys internships)\n• 🏆 Achievements (IEEE paper, awards)\n• 📄 Resume & Contact info\n\nWhat would you like to know?",
 };
 
+const renderMessageText = (text) => {
+  if (!text) return "";
+
+  // Split by newlines first
+  const lines = text.split("\n");
+
+  return lines.map((line, lineIdx) => {
+    // Regex to tokenise bold (**text**), markdown links ([label](url)), and plain URLs
+    const regex = /(\*\*.*?\*\*|\[.*?\]\(.*?\)|\bhttps?:\/\/\S+|\b\/[a-zA-Z0-9_\-\.\/]+\.pdf)/g;
+    const tokens = line.split(regex);
+
+    const lineContent = tokens.map((token, tokenIdx) => {
+      if (token.startsWith("**") && token.endsWith("**")) {
+        return <strong key={tokenIdx}>{token.slice(2, -2)}</strong>;
+      }
+      if (token.startsWith("[") && token.includes("](")) {
+        const match = token.match(/\[(.*?)\]\((.*?)\)/);
+        if (match) {
+          return (
+            <a
+              key={tokenIdx}
+              href={match[2]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.msgLinkButton}
+            >
+              {match[1]}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: "6px", display: "inline-block", verticalAlign: "middle" }}>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
+          );
+        }
+      }
+      if (/^https?:\/\/\S+$/.test(token) || (token.startsWith("/") && token.endsWith(".pdf"))) {
+        return (
+          <a
+            key={tokenIdx}
+            href={token}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.msgLinkButton}
+          >
+            {token.startsWith("/") ? "View PDF" : "Open Link"}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: "6px", display: "inline-block", verticalAlign: "middle" }}>
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+        );
+      }
+      return token;
+    });
+
+    return (
+      <React.Fragment key={lineIdx}>
+        {lineContent}
+        {lineIdx < lines.length - 1 && <br />}
+      </React.Fragment>
+    );
+  });
+};
+
 function classifyOffline(question) {
   const q = question.toLowerCase().trim();
 
   if (/^(hi|hello|hey|hii|howdy|namaste|sup|good\s+(morning|evening|afternoon))/.test(q) && q.split(" ").length <= 5) return "greeting";
+  if (/how\s+are\s+you|how\s+r\s+u|how\s+are\s+u|hows\s+it\s+going|how's\s+it\s+going|how\s+do\s+you\s+do/.test(q)) return "how_are_you";
   if (/^(bye|goodbye|see\s+you|take\s+care|thank\s+you|thanks|thank\s+u|thx|ok|okay|alright|sure|got\s+it|noted|cool|great|nice|awesome|perfect)$/.test(q)) return "farewell";
   if (/resume|cv/.test(q)) return "resume";
   if (/github/.test(q)) return "github";
@@ -218,7 +287,7 @@ const Chatbot = () => {
               <div key={idx} className={`${styles.msg} ${msg.sender === "user" ? styles.msgUser : styles.msgBot}`}>
                 {msg.sender === "bot" && <span className={styles.msgAvi}>🤖</span>}
                 <div className={styles.bubble}>
-                  {msg.text}
+                  {renderMessageText(msg.text)}
                 </div>
               </div>
             ))}
