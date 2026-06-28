@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Projects.module.css";
 import projects from "../../data/projects.json";
 import { ProjectCard } from "./ProjectCard";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+const CATEGORIES = [
+  { id: "all", label: "All Projects" },
+  { id: "ai-ml", label: "AI / ML & Vision" },
+  { id: "web", label: "Web Applications" },
+  { id: "utility", label: "Utilities & Tools" }
+];
 
 export const Projects = () => {
+  const [activeTab, setActiveTab] = useState("all");
+
+  const filteredProjects = activeTab === "all"
+    ? projects
+    : projects.filter(project => project.category === activeTab);
+
   return (
     <section className={styles.container} id="projects">
       <motion.div
@@ -22,19 +35,42 @@ export const Projects = () => {
         </p>
       </motion.div>
 
-      <div className={styles.projects}>
-        {projects.map((project, id) => (
-          <motion.div
-            key={id}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: id * 0.08 }}
+      {/* Category Tabs */}
+      <div className={styles.tabsContainer}>
+        {CATEGORIES.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`${styles.tabBtn} ${activeTab === tab.id ? styles.activeTab : ""}`}
           >
-            <ProjectCard project={project} index={id} />
-          </motion.div>
+            {tab.label}
+            {activeTab === tab.id && (
+              <motion.div
+                layoutId="activeTabUnderline"
+                className={styles.activeUnderline}
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+          </button>
         ))}
       </div>
+
+      <motion.div layout className={styles.projects}>
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              layout
+              key={project.title}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+              transition={{ duration: 0.3 }}
+            >
+              <ProjectCard project={project} index={index} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </section>
   );
 };

@@ -1,122 +1,137 @@
 [
   {
     "title": "PPE Kit Detection System",
-    "imageSrc": "projects/ppe_detection.png",
+    "imageSrc": "projects/ppe_detection.webp",
     "description": "An AI-based system that detects PPE (Personal Protective Equipment) such as helmets and vests using YOLOv8 and OpenCV to ensure workplace safety.",
     "skills": ["Python", "YOLO", "OpenCV", "Machine Learning"],
     "demo": "https://ppe-detection-kit-4.onrender.com/",
-    "source": "https://github.com/iamkanhaiyakumar/PPE_detection_Kit"
+    "source": "https://github.com/iamkanhaiyakumar/PPE_detection_Kit",
+    "category": "ai-ml"
   },
   {
     "title": "DeadlineAI",
-    "imageSrc": "projects/deadline_ai.png",
+    "imageSrc": "projects/deadline_ai.webp",
     "description": "An AI-powered productivity tool designed to automatically scan and extract deadlines from uploaded notices, syllabi, or schedules, and organize them into calendars with smart reminders.",
     "skills": ["Python", "OCR", "Generative AI", "Next.js", "API"],
     "demo": "https://github.com/iamkanhaiyakumar/DeadlineAI",
-    "source": "https://github.com/iamkanhaiyakumar/DeadlineAI"
+    "source": "https://github.com/iamkanhaiyakumar/DeadlineAI",
+    "category": "ai-ml"
   },
   {
     "title": "AI Mock Interview",
-    "imageSrc": "projects/ai_mock_interview.png",
+    "imageSrc": "projects/ai_mock_interview.webp",
     "description": "AI-powered mock interview platform that simulates real interview scenarios, provides feedback on answers, and helps improve interview skills.",
     "skills": ["TypeScript", "Next.js", "AI", "API"],
     "demo": "https://ai-mock-interview-one-iota.vercel.app",
-    "source": "https://github.com/iamkanhaiyakumar/ai_mock_interview"
+    "source": "https://github.com/iamkanhaiyakumar/ai_mock_interview",
+    "category": "ai-ml"
   },
   {
     "title": "AI Content Generator",
-    "imageSrc": "projects/ai_content_generator.png",
+    "imageSrc": "projects/ai_content_generator.webp",
     "description": "AI-driven content generation platform built with Next.js and TypeScript. Uses LLM APIs to generate blog posts, social media content, and marketing copy.",
     "skills": ["TypeScript", "Next.js", "AI", "API"],
     "demo": "https://ai--content-generator.vercel.app",
-    "source": "https://github.com/iamkanhaiyakumar/ai-content-generator"
+    "source": "https://github.com/iamkanhaiyakumar/ai-content-generator",
+    "category": "ai-ml"
   },
   {
     "title": "AI-powered Resume Analyzer",
-    "imageSrc": "projects/resume_analyzer.png",
+    "imageSrc": "projects/resume_analyzer.webp",
     "description": "An AI-powered tool that analyzes resumes, extracts key information, and evaluates candidates based on skill relevance using NLP and Machine Learning.",
     "skills": ["Python", "NLP", "Machine Learning", "JavaScript"],
     "demo": "https://ai-powered-resume-analyzer-psi.vercel.app",
-    "source": "https://github.com/iamkanhaiyakumar/AI-powered-Resume-Analyzer"
+    "source": "https://github.com/iamkanhaiyakumar/AI-powered-Resume-Analyzer",
+    "category": "ai-ml"
   },
   {
     "title": "AI Blog Content Assistant",
-    "imageSrc": "projects/ai_blog_assistant.png",
+    "imageSrc": "projects/ai_blog_assistant.webp",
     "description": "AI blog generator powered by LangChain and HuggingFace that creates high-quality blog content with customizable tone and style.",
     "skills": ["Python", "LangChain", "Streamlit", "AI"],
     "demo": "https://iamkanhaiyakumar-ai-blog-content-assistant-app.streamlit.app/",
-    "source": "https://github.com/iamkanhaiyakumar/AI_Blog_Content_Assistant"
+    "source": "https://github.com/iamkanhaiyakumar/AI_Blog_Content_Assistant",
+    "category": "ai-ml"
   },
   {
     "title": "Relu Consultancy",
-    "imageSrc": "projects/relu_consultancy.png",
+    "imageSrc": "projects/relu_consultancy.webp",
     "description": "Machine learning and neural network solutions developed for Relu Consultancy, focusing on neural network training, data pipeline automation, and model evaluation using PyTorch.",
     "skills": ["Python", "PyTorch", "Machine Learning", "Jupyter Notebook"],
     "demo": "https://relu-assignment.onrender.com/",
-    "source": "https://github.com/iamkanhaiyakumar/relu-assignment-"
+    "source": "https://github.com/iamkanhaiyakumar/relu-assignment-",
+    "category": "ai-ml"
   },
   {
     "title": "Job Role Prediction",
-    "imageSrc": "projects/job_role_prediction.png",
+    "imageSrc": "projects/job_role_prediction.webp",
     "description": "Machine learning-based web app that predicts suitable job roles based on user skills, education, and experience using trained ML models.",
     "skills": ["Python", "Flask", "Machine Learning", "MySQL"],
     "demo": "https://github.com/iamkanhaiyakumar/job_role_prediction",
-    "source": "https://github.com/iamkanhaiyakumar/job_role_prediction"
+    "source": "https://github.com/iamkanhaiyakumar/job_role_prediction",
+    "category": "ai-ml"
   },
   {
     "title": "Book Recommender System",
-    "imageSrc": "projects/book_recommender.png",
+    "imageSrc": "projects/book_recommender.webp",
     "description": "A book recommendation system built using machine learning techniques to suggest books based on user interests and reading patterns.",
     "skills": ["Python", "Pandas", "Streamlit", "ML"],
     "demo": "https://book-recommender-system-l1dw.onrender.com/",
-    "source": "https://github.com/iamkanhaiyakumar/Book_Recommender_System"
+    "source": "https://github.com/iamkanhaiyakumar/Book_Recommender_System",
+    "category": "ai-ml"
   },
   {
     "title": "JobRush Platform",
-    "imageSrc": "projects/jobrush_platform.png",
+    "imageSrc": "projects/jobrush_platform.webp",
     "description": "A job search engine portal that displays job listings, processes applications, and lets candidates filter matching roles by tech stack.",
     "skills": ["JavaScript", "HTML", "CSS"],
     "demo": "https://github.com/iamkanhaiyakumar/jobrush",
-    "source": "https://github.com/iamkanhaiyakumar/jobrush"
+    "source": "https://github.com/iamkanhaiyakumar/jobrush",
+    "category": "web"
   },
   {
     "title": "Email Validator",
-    "imageSrc": "projects/email_validator.png",
+    "imageSrc": "projects/email_validator.webp",
     "description": "A clean web application for validating email addresses against syntax, typos, domain records, and disposability using third-party verification APIs.",
     "skills": ["HTML", "CSS", "JavaScript", "API"],
     "demo": "https://github.com/iamkanhaiyakumar/Email-Validator",
-    "source": "https://github.com/iamkanhaiyakumar/Email-Validator"
+    "source": "https://github.com/iamkanhaiyakumar/Email-Validator",
+    "category": "utility"
   },
   {
     "title": "Bank Management System",
-    "imageSrc": "projects/bank_management.png",
+    "imageSrc": "projects/bank_management.webp",
     "description": "A console-based application built to manage banking records, account registration, deposits, withdrawals, balances, and ledger history using OOP principles.",
     "skills": ["Python", "MySQL"],
     "demo": "https://github.com/iamkanhaiyakumar/Bank-Management-System",
-    "source": "https://github.com/iamkanhaiyakumar/Bank-Management-System"
+    "source": "https://github.com/iamkanhaiyakumar/Bank-Management-System",
+    "category": "utility"
   },
   {
     "title": "Weather App",
-    "imageSrc": "projects/weather_app.png",
+    "imageSrc": "projects/weather_app.webp",
     "description": "A weather forecast app that displays real-time temperature, humidity, and conditions using API integration with a clean, minimalist UI.",
     "skills": ["HTML", "CSS", "JavaScript", "API"],
     "demo": "https://iamkanhaiyakumar.github.io/Weather-app/",
-    "source": "https://github.com/iamkanhaiyakumar/Weather-app"
+    "source": "https://github.com/iamkanhaiyakumar/Weather-app",
+    "category": "utility"
   },
   {
     "title": "Quiz App",
-    "imageSrc": "projects/quiz_app.png",
+    "imageSrc": "projects/quiz_app.webp",
     "description": "An interactive, terminal-based trivia and quiz game designed with multiple categories, random question generation, and score tracking.",
     "skills": ["Python"],
     "demo": "https://github.com/iamkanhaiyakumar/Quiz-app",
-    "source": "https://github.com/iamkanhaiyakumar/Quiz-app"
+    "source": "https://github.com/iamkanhaiyakumar/Quiz-app",
+    "category": "utility"
   },
   {
     "title": "Password Generator",
-    "imageSrc": "projects/password_generator.png",
+    "imageSrc": "projects/password_generator.webp",
     "description": "A secure password generator that creates strong, random passwords with user-defined parameters for length and complexity.",
     "skills": ["HTML", "CSS", "JavaScript"],
     "demo": "https://iamkanhaiyakumar.github.io/Password-Generator/",
-    "source": "https://github.com/iamkanhaiyakumar/Password-Generator"
+    "source": "https://github.com/iamkanhaiyakumar/Password-Generator",
+    "category": "utility"
   }
 ]

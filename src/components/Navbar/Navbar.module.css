@@ -95,39 +95,75 @@
   width: 100%;
 }
 
-/* ===== Hamburger ===== */
-.menuBtn {
+/* ===== Pure CSS Morphing Hamburger Button ===== */
+.hamburger {
   display: none;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  filter: invert(1);
-  transition: transform var(--transition-base);
-}
-
-.menuBtn:hover {
-  transform: rotate(90deg) scale(1.1);
-}
-
-/* ===== Close Button ===== */
-.closeBtn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  flex-direction: column;
+  justify-content: space-between;
   width: 26px;
-  height: 26px;
+  height: 18px;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  filter: invert(1);
-  transition: transform var(--transition-base);
-  display: none;
+  padding: 0;
+  z-index: 1001;
+  outline: none;
 }
 
-.menuOpen .closeBtn {
-  display: block;
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.closeBtn:hover {
-  transform: rotate(90deg) scale(1.1);
+.hamburgerActive .line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background-color: #fff;
+}
+
+.hamburgerActive .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerActive .line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  background-color: #fff;
+}
+
+/* ===== Active Link Scrollspy ===== */
+.menuItems li a.activeLink {
+  color: var(--color-primary-light);
+}
+
+.menuItems li a.activeLink::after {
+  width: 100%;
+}
+
+/* ===== Scroll Progress Bar ===== */
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+  transition: width 0.1s ease-out;
+  z-index: 1002;
+}
+
+/* ===== Mobile Menu Overlay ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 7, 18, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 999;
 }
 
 /* ===== Mobile Menu ===== */
@@ -139,8 +175,9 @@
     height: 100vh;
     width: 75%;
     max-width: 320px;
-    background: rgba(3, 7, 18, 0.97);
-    backdrop-filter: blur(25px);
+    background: rgba(3, 7, 18, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -148,14 +185,15 @@
     border-left: 1px solid var(--glass-border);
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -8px 0 30px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
   }
 
   .menuOpen {
     right: 0;
   }
 
-  .menuBtn {
-    display: block;
+  .hamburger {
+    display: flex;
   }
 
   .menuItems li a {

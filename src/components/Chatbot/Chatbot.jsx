@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./Chatbot.module.css";
 
 const SUGGESTIONS = [
-  "Tell me about his projects",
-  "What are his skills?",
-  "Show resume",
-  "Work experience",
-  "GitHub profile",
+  "Tell me about your IEEE paper",
+  "What is DeadlineAI?",
+  "What are your skills?",
+  "Accenture Gold Contest",
+  "Show me your resume",
 ];
 
 // Use environment variable for backend URL, fallback to localhost for dev

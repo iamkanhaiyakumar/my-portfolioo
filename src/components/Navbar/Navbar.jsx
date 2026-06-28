@@ -5,16 +5,61 @@ import { getImageUrl } from "../../utils";
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   // Detect scroll to add shadow and background
   useEffect(() => {
     const handleScroll = () => {
+      // Background scroll check
       if (window.scrollY > 60) setScrolled(true);
       else setScrolled(false);
+
+      // Scroll progress calculation
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        const progress = (window.scrollY / totalScroll) * 100;
+        setScrollProgress(progress);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Scrollspy (Active Section Highlighting)
+  useEffect(() => {
+    const sectionIds = ["about", "skills", "experience", "projects", "achievements", "contact"];
+    
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: "-40% 0px -50% 0px", // Trigger when section occupies the middle of the screen
+      threshold: 0
+    });
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const navLinks = [
+    { id: "about", label: "About" },
+    { id: "skills", label: "Skills" },
+    { id: "experience", label: "Experience" },
+    { id: "projects", label: "Projects" },
+    { id: "achievements", label: "Achievements" },
+    { id: "contact", label: "Contact" }
+  ];
 
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
@@ -28,50 +73,41 @@ export const Navbar = () => {
       </a>
 
       <div className={styles.menu}>
-        {/* Hamburger icon */}
-        {!menuOpen && (
-          <img
-            className={styles.menuBtn}
-            src={getImageUrl("nav/menuIcon1.png")}
-            alt="menu-button"
-            onClick={() => setMenuOpen(true)}
-          />
-        )}
+        {/* Pure CSS Morphing Hamburger Button */}
+        <button
+          className={`${styles.hamburger} ${menuOpen ? styles.hamburgerActive : ""}`}
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label="Toggle Menu"
+        >
+          <span className={styles.line}></span>
+          <span className={styles.line}></span>
+          <span className={styles.line}></span>
+        </button>
 
         {/* Slide-in Menu */}
-        <ul
-          className={`${styles.menuItems} ${menuOpen ? styles.menuOpen : ""}`}
-        >
-          {/* Cross (Close) button inside the menu */}
-          {menuOpen && (
-            <img
-              src={getImageUrl("nav/close.png")}
-              alt="close"
-              className={styles.closeBtn}
-              onClick={() => setMenuOpen(false)}
-            />
-          )}
-
-          <li>
-            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          </li>
-          <li>
-            <a href="#experience" onClick={() => setMenuOpen(false)}>Skills</a>
-          </li>
-          <li>
-            <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
-          </li>
-          <li>
-            <a href="#achievements" onClick={() => setMenuOpen(false)}>Achievements</a>
-          </li>
-          <li>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-          </li>
+        <ul className={`${styles.menuItems} ${menuOpen ? styles.menuOpen : ""}`}>
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                onClick={() => setMenuOpen(false)}
+                className={activeSection === link.id ? styles.activeLink : ""}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
         {/* Optional overlay behind mobile menu */}
         {menuOpen && <div className={styles.overlay} onClick={() => setMenuOpen(false)} />}
       </div>
+
+      {/* Glowing Scroll Progress Bar */}
+      <div 
+        className={styles.progressBar} 
+        style={{ width: `${scrollProgress}%` }}
+      />
     </nav>
   );
 };

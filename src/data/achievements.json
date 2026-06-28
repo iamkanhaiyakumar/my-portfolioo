@@ -13,7 +13,7 @@
       },
       {
         "label": "View Certificate",
-        "url": "https://drive.google.com/file/d/1KF6pUX46g72Ct8BKegha3jO0-4Yp48uK/view"
+        "url": "/certificates/research_paper.pdf"
       }
     ]
   },
@@ -53,11 +53,11 @@
     "experiences": [
       "Secured 16th rank in Naukri Campus Young Turks Final Round and received ₹10,000 award."
     ],
-    "imageSrc": "achievements/award.png",
+    "imageSrc": "achievements/award.webp",
     "links": [
       {
         "label": "View Certificate",
-        "url": "https://drive.google.com/file/d/1em3haNyAVQupborNMe4FuWwCWkOEHo00/view"
+        "url": "/certificates/young_turks.pdf"
       }
     ]
   },
@@ -67,17 +67,17 @@
     "experiences": [
       "Mentor at GDSC LNCTE, guided 150+ students in the Google Gen AI Study Program and helped them increase productivity by 50%."
     ],
-    "imageSrc": "achievements/volunteer.png"
+    "imageSrc": "achievements/volunteer.webp"
   },
   {
     "role": "NCC Cadet (Rank - LCPL)",
     "organisation": "12 MP BN Bhopal",
     "experiences": ["Completed NCC training with leadership and discipline excellence."],
-    "imageSrc": "achievements/ncc.png",
+    "imageSrc": "achievements/ncc.webp",
     "links": [
       {
         "label": "View Certificate",
-        "url": "https://drive.google.com/file/d/1TVKjD-6ZGUAujO9pbUmYANf9qZB3vUan/view"
+        "url": "/certificates/ncc.pdf"
       }
     ]
   },
@@ -87,6 +87,6 @@
     "experiences": [
       "Volunteered in the college fest, managing 10 teams and over 60 participants."
     ],
-    "imageSrc": "achievements/volunteer.png"
+    "imageSrc": "achievements/volunteer.webp"
   }
 ]

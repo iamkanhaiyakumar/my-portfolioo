@@ -1,20 +1,20 @@
 [
-   {
+  {
     "role": "Python Project Intern",
     "organisation": "Infosys Springboard Internship",
     "startDate": "Aug, 2025",
     "endDate": "Oct, 2025",
     "experiences": [
-      "Worked on Machine Learning models",
-      "Developed AI solutions",
-      "Collaborated with cross-functional teams",
-      "Presented findings to stakeholders"
+      "Developed modular Python scripts to automate data collection, ingestion, and preprocessing pipelines.",
+      "Implemented OOP design patterns and clean code practices to reduce code redundancy by 20%.",
+      "Conducted data exploratory analysis (EDA) using Pandas, NumPy, and Matplotlib to extract key data insights.",
+      "Collaborated with senior engineers to deploy Python scripts in local virtual environments."
     ],
-    "imageSrc": "history/google.png",
+    "imageSrc": "history/google.webp",
     "links": [
       {
         "label": "View Certificate",
-        "url": "https://drive.google.com/file/d/18vOrcYdFcEGG5g8jrkEyGpbp3wdjkBZB/view"
+        "url": "/certificates/python_intern.pdf"
       }
     ]
   },
@@ -24,32 +24,31 @@
     "startDate": "Oct, 2024",
     "endDate": "Dec, 2024",
     "experiences": [
-      "Worked on Machine Learning models",
-      "Developed AI solutions",
-      "Collaborated with cross-functional teams",
-      "Presented findings to stakeholders"
+      "Designed and trained a custom YOLO-based object detection model on 3,000+ safety compliance images.",
+      "Achieved a 92% detection accuracy in classifying protective helmets, vests, and safety boots.",
+      "Integrated OpenCV to build a real-time video stream processor delivering instant safety violation alerts.",
+      "Conducted model evaluation using precision, recall, confusion matrices, and F1-score optimization."
     ],
-    "imageSrc": "history/google.png",
+    "imageSrc": "history/google.webp",
     "links": [
       {
         "label": "View Certificate",
-        "url": "https://drive.google.com/file/d/1Mw2kp41jncZkQfyzLJPhA8-8LYcmh6ZP/view"
+        "url": "/certificates/ai_intern.pdf"
       }
     ]
   },
-   
   {
     "role": "Research Paper Author",
     "organisation": "IEEE Conference Publication",
     "startDate": "May, 2024",
     "endDate": "Present",
     "experiences": [
-      "Published a research paper on PPE detection using YOLO models",
-      "Implemented YOLO-based deep learning models for enhanced detection accuracy",
-      "Performed extensive dataset preprocessing and model evaluation",
-      "Presented paper findings in IEEE International Conference 2024"
+      "Authored and presented a research paper titled 'AI-Driven PPE Detection and Human Access Monitoring in Manufacturing Zones' published in an IEEE conference.",
+      "Formulated deep learning model designs using YOLO architectures and OpenCV for real-time safety automation.",
+      "Documented extensive comparative testing datasets, model configurations, and accuracy benchmarks.",
+      "Collaborated with academic mentors to refine manuscript drafts and address reviewer comments."
     ],
-    "imageSrc": "history/research.png",
+    "imageSrc": "history/research.webp",
     "links": [
       {
         "label": "View Paper",
