@@ -8,6 +8,14 @@
     "source": "https://github.com/iamkanhaiyakumar/PPE_detection_Kit"
   },
   {
+    "title": "DeadlineAI",
+    "imageSrc": "projects/deadline_ai.png",
+    "description": "An AI-powered productivity tool designed to automatically scan and extract deadlines from uploaded notices, syllabi, or schedules, and organize them into calendars with smart reminders.",
+    "skills": ["Python", "OCR", "Generative AI", "Next.js", "API"],
+    "demo": "https://github.com/iamkanhaiyakumar/DeadlineAI",
+    "source": "https://github.com/iamkanhaiyakumar/DeadlineAI"
+  },
+  {
     "title": "AI Mock Interview",
     "imageSrc": "projects/ai_mock_interview.png",
     "description": "AI-powered mock interview platform that simulates real interview scenarios, provides feedback on answers, and helps improve interview skills.",
@@ -44,8 +52,8 @@
     "imageSrc": "projects/relu_consultancy.png",
     "description": "Machine learning and neural network solutions developed for Relu Consultancy, focusing on neural network training, data pipeline automation, and model evaluation using PyTorch.",
     "skills": ["Python", "PyTorch", "Machine Learning", "Jupyter Notebook"],
-    "demo": "https://github.com/iamkanhaiyakumar/Relu_Assignment",
-    "source": "https://github.com/iamkanhaiyakumar/Relu_Assignment"
+    "demo": "https://relu-assignment.onrender.com/",
+    "source": "https://github.com/iamkanhaiyakumar/relu-assignment-"
   },
   {
     "title": "Job Role Prediction",

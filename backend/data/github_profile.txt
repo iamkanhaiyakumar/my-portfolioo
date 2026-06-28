@@ -24,12 +24,13 @@ Account Created: December 2022
 11. git-github (⭐1) — Git and GitHub learning repository
 
 [ALL REPOSITORIES]
+DeadlineAI — AI productivity tool extracting deadlines from images using OCR & LLM (Python, Next.js)
 Gen-AI — Generative AI projects and experiments (HTML)
 my-portfolioo — Personal portfolio website (CSS, React)
 anu-portfolio — Portfolio project for client (CSS)
 ai-content-generator — AI Content Generator (TypeScript, Next.js)
 seaborn — Data visualization with Seaborn (Jupyter Notebook)
-Relu_Assignment — Neural network assignments (Jupyter Notebook)
+relu-assignment- — Neural network assignments for Relu Consultancy (Jupyter Notebook)
 VisDrone-Dataset — Drone-based detection and tracking dataset (forked)
 AI_Blog_Content_Assistant — AI blog generator using LangChain + HuggingFace + Streamlit. Live: https://iamkanhaiyakumar-ai-blog-content-assistant-app.streamlit.app/
 jobrush — Job search application (JavaScript)
