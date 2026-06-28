@@ -363,25 +363,68 @@ SYSTEM_PROMPT = """You are Kanhaiya's intelligent AI portfolio assistant. You re
 YOUR PERSONALITY:
 - Friendly, professional, and enthusiastic about Kanhaiya's work
 - Speak in third person about Kanhaiya (e.g., "He has built...", "Kanhaiya is skilled in...")
-- Be concise but informative — aim for 2-3 sentences max
+- Be concise but informative — aim for 2-3 sentences max (can go up to 4 sentences when explaining general technical concepts)
 - Show genuine enthusiasm when talking about his projects and achievements
 
 STRICT RULES:
-1. ONLY answer questions about Kanhaiya Kumar using the provided context
-2. Never say "I don't know" or "information not available" — always find something relevant to share
-3. When asked about projects, always mention specific project names and technologies used
-4. When asked about skills, group them logically (AI/ML, Web Dev, Languages, Tools)
-5. NEVER make up information that isn't in the context
-6. If asked about something unrelated to Kanhaiya, politely redirect: "I'm Kanhaiya's AI assistant! I can tell you about his projects, skills, experience, or achievements."
-7. When returning links, return the EXACT URL without modification
-8. For follow-up questions, use conversation history to maintain context
-9. Use emojis sparingly to keep it professional but warm (max 1-2 per response)
-10. Highlight key achievements: IEEE publication, 16th rank Naukri Campus, 92% PPE detection accuracy
-11. If asked "how many projects" — mention he has 51 public repositories on GitHub
-12. Always be ready to mention his key differentiators: IEEE publication, real-world AI deployments, mentoring 150+ students"""
+1. Primary focus is Kanhaiya Kumar's portfolio, skills, projects, and experiences. Answer portfolio queries using the provided context.
+2. If asked general or external technical questions (e.g., "what is Git", "how does YOLO work", "explain next.js"), you SHOULD answer them clearly and accurately. When possible, elegantly tie the concept back to Kanhaiya's portfolio (e.g., "Kanhaiya uses Git and GitHub to manage his 51+ public repositories").
+3. Never say "I don't know" or "information not available" for portfolio-related queries — always find something relevant to share.
+4. When asked about projects, always mention specific project names and technologies used.
+5. When asked about skills, group them logically (AI/ML, Web Dev, Languages, Tools).
+6. NEVER make up information about Kanhaiya's personal credentials or project metrics that isn't in the context.
+7. When returning links, return the EXACT URL without modification.
+8. For follow-up questions, use conversation history to maintain context.
+9. Use emojis sparingly to keep it professional but warm (max 1-2 per response).
+10. Highlight key achievements: IEEE publication, 16th rank Naukri Campus, 92% PPE detection accuracy.
+11. If asked "how many projects" — mention he has 51 public repositories on GitHub.
+12. Always be ready to mention his key differentiators: IEEE publication, real-world AI deployments, mentoring 150+ students."""
+
+def generate_huggingface_fallback(question, context):
+    """Fallback LLM generation using Hugging Face Serverless Inference API"""
+    hf_key = os.getenv("HF_API_KEY") or os.getenv("HF_TOKEN")
+    if not hf_key:
+        print("[WARN] No Hugging Face API key found in env - skipping LLM fallback")
+        return None
+
+    print("[INFO] Attempting LLM fallback with Hugging Face...")
+    try:
+        model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+        api_url = f"https://api-inference.huggingface.co/models/{model_id}"
+        headers = {
+            "Authorization": f"Bearer {hf_key}",
+            "Content-Type": "application/json"
+        }
+        
+        prompt = f"<|system|>\n{SYSTEM_PROMPT}\n<|user|>\nContext: {context}\nQuestion: {question}\n<|assistant|>\n"
+        
+        payload = {
+            "inputs": prompt,
+            "parameters": {
+                "max_new_tokens": 150,
+                "temperature": 0.7,
+                "return_full_text": False
+            }
+        }
+        
+        res = requests.post(api_url, headers=headers, json=payload, timeout=12)
+        if res.status_code == 200:
+            data = res.json()
+            if isinstance(data, list) and len(data) > 0:
+                answer = data[0].get("generated_text", "").strip()
+                if "<|assistant|>" in answer:
+                    answer = answer.split("<|assistant|>")[-1].strip()
+                print("[OK] Hugging Face fallback generation successful!")
+                return answer
+            elif isinstance(data, dict) and "generated_text" in data:
+                return data["generated_text"].strip()
+        print(f"[WARN] Hugging Face API error: {res.status_code} - {res.text[:200]}")
+    except Exception as e:
+        print(f"[ERROR] Hugging Face generation error: {e}")
+    return None
 
 def stream_answer(question, context):
-    """Stream answer using Groq LLM"""
+    """Stream answer using Groq LLM with HuggingFace fallback"""
     try:
         messages = [{"role": "system", "content": SYSTEM_PROMPT}]
         for msg in get_history_messages():
@@ -416,14 +459,22 @@ Respond naturally and concisely (2-3 sentences max). Use the context above to gi
 
     except Exception as e:
         print(f"[ERROR] Groq stream error: {e}")
-        # Layer 3 fallback: static answer
-        static = get_static_answer(question)
-        yield static
-        chat_history.append({"role": "user", "content": question})
-        chat_history.append({"role": "assistant", "content": static})
+        # LLM Fallback: Hugging Face
+        hf_fallback = generate_huggingface_fallback(question, context)
+        if hf_fallback:
+            for word in hf_fallback.split():
+                yield word + " "
+            chat_history.append({"role": "user", "content": question})
+            chat_history.append({"role": "assistant", "content": hf_fallback})
+        else:
+            # Layer 3 fallback: static answer
+            static = get_static_answer(question)
+            yield static
+            chat_history.append({"role": "user", "content": question})
+            chat_history.append({"role": "assistant", "content": static})
 
 def generate_answer(question, context):
-    """Non-streaming answer using Groq LLM"""
+    """Non-streaming answer using Groq LLM with HuggingFace fallback"""
     try:
         messages = [{"role": "system", "content": SYSTEM_PROMPT}]
         for msg in get_history_messages():
@@ -447,6 +498,10 @@ Respond naturally and concisely (2-3 sentences max)."""
         return res.choices[0].message.content.strip()
     except Exception as e:
         print(f"[ERROR] Groq error: {e}")
+        # LLM Fallback: Hugging Face
+        hf_fallback = generate_huggingface_fallback(question, context)
+        if hf_fallback:
+            return hf_fallback
         # Layer 3 fallback: static answer
         return get_static_answer(question)
 

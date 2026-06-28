@@ -21,16 +21,22 @@ const API_BASE =
 const OFFLINE_RESPONSES = {
   greeting: "Hey there! 👋 I'm Kanhaiya's AI assistant. He's an aspiring AI/ML Engineer from Bhopal, India — B.Tech CSE (AI & ML) at LNCT Excellence with CGPA 7.43. Ask me about his projects, skills, or experience!",
   how_are_you: "I'm doing great, thank you for asking! 😊 I'm Kanhaiya's AI assistant, ready to help you explore his projects, skills, or experience. What can I help you find today?",
-  projects: "Kanhaiya has built 51+ projects! Key ones include:\n\n🔹 **PPE Kit Detection** — YOLOv8/v9 based safety detection (92% accuracy), IEEE published\n🔹 **AI Content Generator** — Next.js + TypeScript platform using LLM APIs\n🔹 **AI Resume Analyzer** — NLP-based resume parsing & skill matching\n🔹 **Book Recommender** — ML-based collaborative filtering system\n🔹 **Weather App** — Real-time weather using OpenWeather API\n🔹 **AI Mock Interview** — AI-powered interview simulation platform",
+  deadline_ai: "🚀 **DeadlineAI** is Kanhaiya's automated academic task scheduler. It scans notice boards or syllabi using OCR (Optical Character Recognition), extracts task deadlines using Generative AI, and automatically schedules calendar timeline reminders on the user's dashboard.",
+  ppe_detection: "🛡️ **PPE Kit Detection System** is Kanhaiya's industrial safety project. It uses a custom YOLOv8/v9 deep learning model trained on 3,000+ images to detect protective helmets, safety vests, and boots in manufacturing zones with 92% accuracy, triggering real-time OpenCV alerts. This research was published in an IEEE conference.",
+  mock_interview: "🗣️ **AI Mock Interview Platform** is a TypeScript and Next.js application that simulates real-world job interviews. It records screen/audio, transcripts speech-to-text, and uses Gemini API to evaluate candidate answers, grading core performance metrics and providing detailed, personalized feedback.",
+  accenture_contest: "🥇 Kanhaiya unlocked the prestigious **Gold Level** in Accenture's **iAspire 'Go for Gold' contest**, recognizing his outstanding technical performance, coding ability, and engineering potential.",
+  git_explain: "📌 **Git** is a distributed version control system that tracks changes in source code during software development. **GitHub** is a cloud-based hosting service that lets developers store, manage, and collaborate on their Git repositories. Kanhaiya uses Git and GitHub to manage all of his 51+ public repositories!\n\nFeel free to explore Kanhaiya's GitHub profile:\n\n[Open GitHub](https://github.com/iamkanhaiyakumar)",
+  current_status: "🎓 Kanhaiya is currently a B.Tech CSE (AI & ML) student in his final year at LNCT Excellence, Bhopal. He is serving as a Technical Reviewer for the IEEE DECoN 2025 conference, building deep learning and generative AI projects, and actively seeking opportunities as an AI/ML Engineer or Python Developer!",
+  projects: "Kanhaiya has built 51+ projects! Key ones include:\n\n🔹 **PPE Kit Detection** — YOLOv8/v9 based safety detection (92% accuracy), IEEE published\n🔹 **AI Content Generator** — Next.js + TypeScript platform using LLM APIs\n🔹 **AI Resume Analyzer** — NLP-based resume parsing & skill matching\n🔹 **Book Recommender** — ML-based collaborative filtering system\n🔹 **Weather App** — Real-time weather using OpenWeather API\n🔹 **AI Mock Interview** — AI-powered interview simulation platform\n\nCheck out all of his repositories:\n\n[Open GitHub](https://github.com/iamkanhaiyakumar)",
   skills: "Kanhaiya's tech stack:\n\n💻 **Languages**: Python, C++, JavaScript\n🤖 **AI/ML**: Machine Learning, OpenCV, YOLO, Pandas, NumPy, TensorFlow, PyTorch, LangChain\n🌐 **Web**: HTML, CSS, TailwindCSS, React, Next.js\n🔧 **Tools**: Git, GitHub, Jupyter, Google Colab, VS Code, Cloud Computing",
-  experience: "💼 **Python Project Intern** — Infosys Springboard (Aug-Oct 2025)\n• Developed modular Python scripts to automate data collection and preprocessing.\n• Implemented OOP patterns to reduce code redundancy by 20%.\n• Performed EDA using Pandas, NumPy, and Matplotlib.\n\n💼 **AI Project Intern** — Infosys Springboard (Oct-Dec 2024)\n• Trained custom YOLO safety kit compliance model on 3,000+ images.\n• Achieved 92% detection accuracy and built OpenCV real-time alerts.\n\n📄 **Research Paper Author** — IEEE Conference 2024\n• Published paper on 'AI-Driven PPE Detection and Human Access Monitoring' (DOI: 10.1109/11211593).",
+  experience: "💼 **Python Project Intern** — Infosys Springboard (Aug-Oct 2025)\n• Developed modular Python scripts to automate data collection and preprocessing.\n• Implemented OOP patterns to reduce code redundancy by 20%.\n• Performed EDA using Pandas, NumPy, and Matplotlib.\n\n[View Python Intern Certificate](/certificates/infosys_python.pdf)\n\n💼 **AI Project Intern** — Infosys Springboard (Oct-Dec 2024)\n• Trained custom YOLO safety kit compliance model on 3,000+ images.\n• Achieved 92% detection accuracy and built OpenCV real-time alerts.\n\n[View AI Intern Certificate](/certificates/infosys_ai.pdf)\n\n📄 **Research Paper Author** — IEEE Conference 2024\n• Published paper on 'AI-Driven PPE Detection and Human Access Monitoring' (DOI: 10.1109/11211593).\n\n[View Research Paper](/certificates/ieee_decon.pdf)",
   resume: "📄 You can view Kanhaiya's resume here:\n\n[Download Resume](/Kanhaiya-Kumar-Resume.pdf)\n\nHe's an AI/ML Engineer with experience in deep learning, computer vision, and full-stack web development.",
   github: "💻 Kanhaiya's GitHub:\n\n[Open GitHub](https://github.com/iamkanhaiyakumar)\n\nHe has 51+ public repositories covering AI/ML, web development, and data science projects!",
   linkedin: "🔗 Kanhaiya's LinkedIn:\n\n[Open LinkedIn](https://www.linkedin.com/in/kanhaiyak0104)\n\nFeel free to connect with him!",
   contact: "📱 You can reach Kanhaiya via:\n\n📧 Email: [Send Email](mailto:kanhaiyak0104@gmail.com)\n📱 WhatsApp: [Chat on WhatsApp](https://wa.me/916206686966)\n🔗 LinkedIn: [Open LinkedIn](https://www.linkedin.com/in/kanhaiyak0104)\n💻 GitHub: [Open GitHub](https://github.com/iamkanhaiyakumar)",
-  achievements: "🏆 Kanhaiya's key achievements:\n\n🌐 **IEEE DECoN 2025 Reviewer** — Selected as a Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks\n🥇 **Accenture iAspire Winner** — Unlocked Gold Level in Accenture's iAspire contest\n📄 **IEEE Research Paper** — Published paper on PPE Detection using YOLO models\n🏅 **Young Turks Finalist** — 16th rank, Naukri Campus (₹10,000 award)\n🎖️ **NCC Cadet (LCPL)** — 12 MP BN Bhopal\n👨‍🏫 **GDSC Mentor** — Guided 150+ students in Google Gen AI Study Program",
+  achievements: "🏆 Kanhaiya's key achievements:\n\n🌐 **IEEE DECoN 2025 Reviewer** — Selected as a Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks\n🥇 **Accenture iAspire Winner** — Unlocked Gold Level in Accenture's iAspire contest\n\n[View Accenture Certificate](/certificates/accenture.pdf)\n\n📄 **IEEE Research Paper** — Published paper on PPE Detection using YOLO models\n\n[View Research Paper](/certificates/ieee_decon.pdf)\n\n🏅 **Young Turks Finalist** — 16th rank, Naukri Campus (₹10,000 award)\n\n🎖️ **NCC Cadet (LCPL)** — 12 MP BN Bhopal\n\n[View NCC Certificate](/certificates/ncc.pdf)\n\n👨‍🏫 **GDSC Mentor** — Guided 150+ students in Google Gen AI Study Program",
   education: "🎓 **B.Tech CSE (AI & ML)** — LNCT Excellence, Bhopal\nCGPA: 7.43 | Final year student\nSpecializing in Artificial Intelligence & Machine Learning",
-  farewell: "Thanks for visiting! 😊 Feel free to come back anytime. You can also reach Kanhaiya at kanhaiyak0104@gmail.com or connect on LinkedIn. Have a great day! 👋",
+  farewell: "Thanks for visiting! 😊 Feel free to come back anytime. You can also reach Kanhaiya via email or LinkedIn. Have a great day! 👋\n\n[Send Email](mailto:kanhaiyak0104@gmail.com)\n\n[Open LinkedIn](https://www.linkedin.com/in/kanhaiyak0104)",
   fallback: "I'm Kanhaiya's AI assistant! 🤖 I can tell you about his:\n\n• 🚀 Projects (51+ repos)\n• 🛠️ Skills (AI/ML, Web Dev)\n• 💼 Work Experience (Infosys internships)\n• 🏆 Achievements (IEEE paper, awards)\n• 📄 Resume & Contact info\n\nWhat would you like to know?",
 };
 
@@ -106,8 +112,14 @@ function classifyOffline(question) {
   if (/^(hi|hello|hey|hii|howdy|namaste|sup|good\s+(morning|evening|afternoon))/.test(q) && q.split(" ").length <= 5) return "greeting";
   if (/how\s+are\s+you|how\s+r\s+u|how\s+are\s+u|hows\s+it\s+going|how's\s+it\s+going|how\s+do\s+you\s+do/.test(q)) return "how_are_you";
   if (/^(bye|goodbye|see\s+you|take\s+care|thank\s+you|thanks|thank\s+u|thx|ok|okay|alright|sure|got\s+it|noted|cool|great|nice|awesome|perfect)$/.test(q)) return "farewell";
+  if (/deadline/.test(q)) return "deadline_ai";
+  if (/ppe|safety|helmet/.test(q)) return "ppe_detection";
+  if (/interview|mock/.test(q)) return "mock_interview";
+  if (/accenture|iaspire|gold/.test(q)) return "accenture_contest";
+  if (/what\s+is\s+git|explain\s+git|definition\s+of\s+git|what\s+is\s+github|explain\s+github/.test(q)) return "git_explain";
+  if (/currently\s+doing|doing\s+currently|current\s+status|nowadays/.test(q)) return "current_status";
   if (/resume|cv/.test(q)) return "resume";
-  if (/github/.test(q)) return "github";
+  if (/github|git\b/.test(q)) return "github";
   if (/linkedin|linked\s?in/.test(q)) return "linkedin";
   if (/project|built|developed|portfolio/.test(q)) return "projects";
   if (/skill|tech|stack|language|tool|know/.test(q)) return "skills";
@@ -131,6 +143,7 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [backendAvailable, setBackendAvailable] = useState(null);
+  const [activeApi, setActiveApi] = useState(API_BASE);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -144,31 +157,59 @@ const Chatbot = () => {
     }
   }, [isOpen]);
 
-  // Check if backend is available on mount
+  // Check if backend is available on mount (with auto failover from local to production)
   useEffect(() => {
     const checkBackend = async () => {
       try {
         const res = await fetch(`${API_BASE}/health`, { signal: AbortSignal.timeout(3000) });
         if (res.ok) {
           setBackendAvailable(true);
-          console.log("✅ AI Backend connected");
-        } else {
-          setBackendAvailable(false);
+          setActiveApi(API_BASE);
+          console.log("✅ AI Backend connected:", API_BASE);
+          return;
         }
-      } catch {
-        setBackendAvailable(false);
-        console.log("📴 AI Backend offline — using smart offline mode");
+      } catch (err) {
+        console.log("⚠️ Local backend offline, checking production fallback...");
       }
+
+      // If local dev backend failed, fall back to production deployed backend
+      if (API_BASE.includes("localhost") || API_BASE.includes("127.0.0.1")) {
+        try {
+          const PROD_URL = "https://my-portfolioo-hs8y.onrender.com";
+          const res = await fetch(`${PROD_URL}/health`, { signal: AbortSignal.timeout(4000) });
+          if (res.ok) {
+            setBackendAvailable(true);
+            setActiveApi(PROD_URL);
+            console.log("✅ AI Production Backend connected:", PROD_URL);
+            return;
+          }
+        } catch (err) {
+          console.log("📴 Production backend fallback offline too");
+        }
+      }
+
+      setBackendAvailable(false);
+      console.log("📴 AI Backend offline — using smart offline mode");
     };
     checkBackend();
   }, []);
 
   // Simulate typing effect for offline responses
   const typeResponse = async (text) => {
+    setIsTyping(false);
+    if (!text) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: "I'm Kanhaiya's AI assistant! 🤖 Ask me about his projects, skills, or experience — I'm ready to help!",
+        },
+      ]);
+      return;
+    }
     const words = text.split(" ");
     let current = "";
     setMessages((prev) => [...prev, { sender: "bot", text: "" }]);
-    setIsTyping(false);
 
     for (let i = 0; i < words.length; i++) {
       current += (i === 0 ? "" : " ") + words[i];
@@ -187,16 +228,71 @@ const Chatbot = () => {
     setInput("");
     setIsTyping(true);
 
-    // Try backend first, fallback to offline
-    if (backendAvailable) {
+    // If we already know the backend is offline, go straight to local fallback (0 latency!)
+    if (backendAvailable === false) {
+      setIsTyping(false);
+      const intent = classifyOffline(question);
+      await typeResponse(OFFLINE_RESPONSES[intent]);
+      return;
+    }
+
+    // 1. Try current active API
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+      const res = await fetch(`${activeApi}/chat-stream`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!res.ok) throw new Error("Server error");
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let botText = "";
+
+      setMessages((prev) => [...prev, { sender: "bot", text: "" }]);
+      setIsTyping(false);
+      setBackendAvailable(true);
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value);
+        botText += chunk;
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = { sender: "bot", text: botText };
+          return updated;
+        });
+      }
+      return;
+    } catch (err) {
+      console.log("⚠️ Active API request failed, trying production backend fallback...");
+    }
+
+    // 2. Failover to production API if active API was localhost
+    if (activeApi.includes("localhost") || activeApi.includes("127.0.0.1")) {
       try {
-        const res = await fetch(`${API_BASE}/chat-stream`, {
+        const PROD_URL = "https://my-portfolioo-hs8y.onrender.com";
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s for spin up
+
+        const res = await fetch(`${PROD_URL}/chat-stream`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ question }),
+          signal: controller.signal,
         });
 
-        if (!res.ok) throw new Error("Server error");
+        clearTimeout(timeoutId);
+
+        if (!res.ok) throw new Error("Production server error");
 
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
@@ -204,6 +300,8 @@ const Chatbot = () => {
 
         setMessages((prev) => [...prev, { sender: "bot", text: "" }]);
         setIsTyping(false);
+        setBackendAvailable(true);
+        setActiveApi(PROD_URL); // upgrade active API to production
 
         while (true) {
           const { done, value } = await reader.read();
@@ -216,18 +314,17 @@ const Chatbot = () => {
             return updated;
           });
         }
+        return;
       } catch (err) {
-        setIsTyping(false);
-        // Fallback to offline when backend fails
-        setBackendAvailable(false);
-        const intent = classifyOffline(question);
-        await typeResponse(OFFLINE_RESPONSES[intent]);
+        console.log("📴 Production backend fallback failed too");
       }
-    } else {
-      // Offline mode — smart pattern matching
-      const intent = classifyOffline(question);
-      await typeResponse(OFFLINE_RESPONSES[intent]);
     }
+
+    // 3. True Offline fallback
+    setIsTyping(false);
+    setBackendAvailable(false);
+    const intent = classifyOffline(question);
+    await typeResponse(OFFLINE_RESPONSES[intent]);
   };
 
   const handleSubmit = (e) => {
