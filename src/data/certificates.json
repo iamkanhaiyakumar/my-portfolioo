@@ -4,14 +4,14 @@
     "issuer": "IEEE International Conference",
     "year": "2025",
     "imageSrc": "certificates/ieee_decon.png",
-    "link": ""
+    "link": "/certificates/ieee_decon.pdf"
   },
   {
     "title": "iAspire Gold Level Certificate",
     "issuer": "Accenture",
     "year": "2025",
     "imageSrc": "certificates/accenture_iaspire.png",
-    "link": ""
+    "link": "/certificates/accenture_iaspire.pdf"
   },
   {
     "title": "5G Introductory-Level Certification",

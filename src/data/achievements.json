@@ -24,7 +24,13 @@
       "Selected as a Technical Reviewer for the IEEE International Conference on Data, Energy and Communication Networks (DECoN 2025).",
       "Evaluated and reviewed research submissions in deep learning, data networks, and AI."
     ],
-    "imageSrc": "history/ieee.svg"
+    "imageSrc": "history/ieee.svg",
+    "links": [
+      {
+        "label": "View Certificate",
+        "url": "/certificates/ieee_decon.pdf"
+      }
+    ]
   },
   {
     "role": "Gold Level Winner",
@@ -33,7 +39,13 @@
       "Successfully unlocked the prestigious Gold Level during the 'Go for Gold' contest in Accenture's iAspire program.",
       "Recognized for outstanding technical performance and engineering potential."
     ],
-    "imageSrc": "history/accenture.svg"
+    "imageSrc": "history/accenture.svg",
+    "links": [
+      {
+        "label": "View Certificate",
+        "url": "/certificates/accenture_iaspire.pdf"
+      }
+    ]
   },
   {
     "role": "Young Turks Finalist",
