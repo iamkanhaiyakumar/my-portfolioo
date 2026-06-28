@@ -110,6 +110,12 @@ export const Achievements = () => {
                         style={{
                           background: `linear-gradient(135deg, ${colors.accent}, ${colors.accent}cc)`,
                         }}
+                        onClick={(e) => {
+                          if (link.url.endsWith(".pdf") && window.showCertificate) {
+                            e.preventDefault();
+                            window.showCertificate(link.url, link.label);
+                          }
+                        }}
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />

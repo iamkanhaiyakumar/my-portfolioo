@@ -118,6 +118,10 @@
   border: 2px solid rgba(8, 12, 28, 0.98);
 }
 
+.offlineDot {
+  background: #f59e0b;
+}
+
 .headerTitle {
   font-size: 15px;
   font-weight: 700;
@@ -197,6 +201,7 @@
   font-size: 13.5px;
   line-height: 1.55;
   word-wrap: break-word;
+  position: relative;
 }
 
 .msgBot .bubble {
@@ -204,6 +209,45 @@
   border: 1px solid rgba(99, 102, 241, 0.08);
   color: var(--color-text);
   border-bottom-left-radius: 4px;
+  padding-bottom: 24px; /* Space for the absolute speak button */
+}
+
+.speakBtn {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  pointer-events: auto;
+}
+
+.bubble:hover .speakBtn {
+  opacity: 0.7;
+}
+
+.speakBtn:hover {
+  color: var(--color-primary);
+  opacity: 1 !important;
+  transform: scale(1.1);
+}
+
+.speaking {
+  color: #10b981 !important;
+  opacity: 1 !important;
+  animation: pulseColor 1.5s infinite;
+}
+
+@keyframes pulseColor {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); opacity: 0.8; }
+  100% { transform: scale(1); }
 }
 
 .msgUser .bubble {

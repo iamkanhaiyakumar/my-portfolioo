@@ -183,11 +183,34 @@
   font-weight: 700;
   box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
   transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.primaryBtn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
 }
 
 .primaryBtn:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 35px rgba(99, 102, 241, 0.45);
+}
+
+.primaryBtn:hover::after {
+  left: 150%;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .secondaryBtn {
@@ -202,12 +225,35 @@
   font-size: 15px;
   font-weight: 600;
   transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.secondaryBtn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0) 0%,
+    rgba(99, 102, 241, 0.2) 50%,
+    rgba(99, 102, 241, 0) 100%
+  );
+  transform: skewX(-25deg);
 }
 
 .secondaryBtn:hover {
   transform: translateY(-3px);
   border-color: var(--color-primary);
   background: rgba(99, 102, 241, 0.06);
+}
+
+.secondaryBtn:hover::after {
+  left: 150%;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ===== Right (Image) ===== */

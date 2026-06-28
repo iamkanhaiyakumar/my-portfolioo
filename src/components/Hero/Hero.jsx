@@ -105,10 +105,16 @@ export const Hero = () => {
             Get in Touch
           </a>
           <a
-            href="https://drive.google.com/file/d/1li4Sca2cabe92whgVI4L2hQFZ43haJ3C/view"
+            href="/Kanhaiya-Kumar-Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.secondaryBtn}
+            onClick={(e) => {
+              if (window.showCertificate) {
+                e.preventDefault();
+                window.showCertificate("/Kanhaiya-Kumar-Resume.pdf", "Kanhaiya Kumar — Resume");
+              }
+            }}
           >
             View Resume →
           </a>

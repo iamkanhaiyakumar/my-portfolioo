@@ -144,8 +144,51 @@ const Chatbot = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [backendAvailable, setBackendAvailable] = useState(null);
   const [activeApi, setActiveApi] = useState(API_BASE);
+  const [speakingText, setSpeakingText] = useState(null);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Cancel voice on unmount
+  useEffect(() => {
+    return () => {
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  const handleSpeak = (text) => {
+    if (!window.speechSynthesis) return;
+
+    window.speechSynthesis.cancel();
+
+    if (speakingText === text) {
+      setSpeakingText(null);
+      return;
+    }
+
+    const cleanText = text
+      .replace(/\*\*([^*]+)\*\*/g, "$1")
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/https?:\/\/\S+/g, "")
+      .replace(/[^\w\s\d.,!?\u00c0-\u00ff]/g, "")
+      .trim();
+
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    const voices = window.speechSynthesis.getVoices();
+    const englishVoice = voices.find(v => v.lang.startsWith("en-") && v.name.includes("Google"))
+      || voices.find(v => v.lang.startsWith("en-"))
+      || voices[0];
+
+    if (englishVoice) utterance.voice = englishVoice;
+    utterance.rate = 1.05;
+
+    utterance.onend = () => setSpeakingText(null);
+    utterance.onerror = () => setSpeakingText(null);
+
+    setSpeakingText(text);
+    window.speechSynthesis.speak(utterance);
+  };
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -385,6 +428,19 @@ const Chatbot = () => {
                 {msg.sender === "bot" && <span className={styles.msgAvi}>🤖</span>}
                 <div className={styles.bubble}>
                   {renderMessageText(msg.text)}
+                  {msg.sender === "bot" && msg.text && (
+                    <button
+                      className={`${styles.speakBtn} ${speakingText === msg.text ? styles.speaking : ""}`}
+                      onClick={() => handleSpeak(msg.text)}
+                      type="button"
+                      title={speakingText === msg.text ? "Stop speaking" : "Speak message"}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      </svg>
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
