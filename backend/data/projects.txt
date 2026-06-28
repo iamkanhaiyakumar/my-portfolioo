@@ -32,30 +32,6 @@ Details:
 - Reduced safety violation false positives by 15%
 
 [PROJECT_2]
-Name: AI Content Generator
-Tech: TypeScript, Next.js, Gemini API, Tailwind CSS
-Details:
-- High-fidelity UI generator for blogs, tweets, and copy
-- Dynamic AI prompt engineering configuration
-- Real-time text generation response rendering
-
-[PROJECT_3]
-Name: AI-powered Resume Analyzer
-Tech: Python, NLP, Machine Learning, JavaScript, SpaCy
-Details:
-- Extracts structural information and tags skills from PDFs
-- Computes matching matrix metrics for tech stack relevance
-- Ranks candidate profiles for recruitment pipelines
-
-[PROJECT_4]
-Name: Book Recommender System
-Tech: Python, Pandas, Streamlit, Machine Learning
-Details:
-- Uses collaborative filtering algorithms
-- Custom web interface built with Streamlit
-- Generates book suggestions based on reader patterns
-
-[PROJECT_5]
 Name: AI Mock Interview
 Tech: TypeScript, Next.js, Gemini API, WebRTC
 Details:
@@ -63,32 +39,55 @@ Details:
 - Evaluates candidate answers and grades core metrics
 - Personalized AI performance feedback
 
-[PROJECT_6]
-Name: Weather App
-Tech: HTML, CSS, JavaScript, OpenWeather API
+[PROJECT_3]
+Name: AI Content Generator
+Tech: TypeScript, Next.js, Gemini API, Tailwind CSS
 Details:
-- Minimalist, responsive UI forecast application
-- Displays real-time temperature, wind, and humidity indicators
+- High-fidelity UI generator for blogs, tweets, and copy
+- Dynamic AI prompt engineering configuration
+- Real-time text generation response rendering
 
-[PROJECT_7]
+[PROJECT_4]
+Name: AI-powered Resume Analyzer
+Tech: Python, NLP, Machine Learning, JavaScript, SpaCy
+Details:
+- Extracts structural information and tags skills from PDFs
+- Computes matching matrix metrics for tech stack relevance
+- Ranks candidate profiles for recruitment pipelines
+
+[PROJECT_5]
 Name: AI Blog Content Assistant
 Tech: Python, LangChain, HuggingFace, Streamlit
 Details:
 - Generates fully structured blogs using LangChain orchestrations
 - Configurable tone, word count, and style adjustments
 
-[PROJECT_8]
+[PROJECT_6]
+Name: Relu Neural Network Assignments
+Tech: Python, PyTorch, Jupyter Notebooks
+Details:
+- Custom implementations of ReLU activation and learning rate schedules
+
+[PROJECT_7]
 Name: Job Role Prediction
 Tech: Python, Flask, Random Forest, MySQL
 Details:
 - Predicts optimal software developer career paths
 - 88% model validation accuracy on 500+ student profiles
 
-[PROJECT_9]
-Name: Password Generator
-Tech: HTML, CSS, JavaScript
+[PROJECT_8]
+Name: Book Recommender System
+Tech: Python, Pandas, Streamlit, Machine Learning
 Details:
-- Generates strong random passwords with customizable symbols
+- Uses collaborative filtering algorithms
+- Custom web interface built with Streamlit
+- Generates book suggestions based on reader patterns
+
+[PROJECT_9]
+Name: JobRush Platform
+Tech: JavaScript, HTML, CSS
+Details:
+- Clean portal layout for searching and filtering tech vacancies
 
 [PROJECT_10]
 Name: Email Validator
@@ -103,22 +102,23 @@ Details:
 - Console application managing accounts, balances, and records ledger
 
 [PROJECT_12]
+Name: Weather App
+Tech: HTML, CSS, JavaScript, OpenWeather API
+Details:
+- Minimalist, responsive UI forecast application
+- Displays real-time temperature, wind, and humidity indicators
+
+[PROJECT_13]
 Name: Quiz App
 Tech: Python, Terminal CLI
 Details:
 - Interactive multiple choice terminal game with categorized trivia
 
-[PROJECT_13]
-Name: Relu Neural Network Assignments
-Tech: Python, PyTorch, Jupyter Notebooks
-Details:
-- Custom implementations of ReLU activation and learning rate schedules
-
 [PROJECT_14]
-Name: JobRush Platform
-Tech: JavaScript, HTML, CSS
+Name: Password Generator
+Tech: HTML, CSS, JavaScript
 Details:
-- Clean portal layout for searching and filtering tech vacancies
+- Generates strong random passwords with customizable symbols
 
 [ACHIEVEMENTS]
 - Rank 16 in Naukri Campus Young Turks
